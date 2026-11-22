@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { Footer } from "@/components/public/footer";
 import { Navigation } from "@/components/public/navigation";
 
 export default function PublicLayout({
@@ -33,11 +34,7 @@ export default function PublicLayout({
       >
         {children}
       </main>
-      <footer className="border-t border-border">
-        <div className="mx-auto w-full max-w-6xl px-4 py-6 text-sm text-muted-foreground">
-          <p>Site de démonstration — DemoWeb.</p>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }
