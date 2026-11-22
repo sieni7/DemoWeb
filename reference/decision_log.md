@@ -2,9 +2,9 @@
 
 | Champ | Valeur |
 |---|---|
-| Version | 0.11 |
+| Version | 0.12 |
 | Date | 2026-11-22 |
-| Statut | **CP1, CP2, CP3 validés · S0 acceptée avec réserves · audit complémentaire en cours · main/PR décidées, fusion reportée — 2026-11-22** |
+| Statut | **CP1, CP2, CP3 validés · S0 acceptée avec réserves requalifiées · TR-2026-0003 en reprise · main/PR exécutées, fusion reportée — 2026-11-22** |
 | Auteur | ORCHESTRATOR |
 | Portée | Décisions du VALIDATOR, identifiées et tracées |
 | Ne contient pas | Décisions de sprint (GO, GO_WITH_RESERVES, NO_GO, HOLD, CANCELLED) — voir `state.json` |
@@ -57,7 +57,10 @@
 | D-024 | 2026-11-22 | Acceptation du sprint S0 | **`GO_WITH_RESERVES`** — sprint `accepted_with_reserves` ; réserves R-S0-01 à R-S0-04 ; levée du gel `INC-2026-0002` ; la fusion et la création de `main` restent une décision distincte | VALIDATOR | **Validée** |
 | D-025 | 2026-11-22 | Autorisation d'audit complémentaire | `TR-2026-0003` autorisée — **GO** pour l'audit complémentaire S0 dans une session AUDITOR séparée ; condition d'environnement : `gh` authentifié et `gitleaks` installé | VALIDATOR | **Validée** |
 | D-026 | 2026-11-22 | Blocage B-01 — préparation de la fusion | Création de `main` depuis `4763b44` et ouverture de la PR `dev_sprint_00` → `main` décidées ; **exécution réservée au VALIDATOR** (les agents ne peuvent ni checkout `main`, ni merger, ni pusher hors `dev_sprint_XX`) ; **fusion reportée** tant que R-S0-01 et R-S0-02 sont `NOT_CHECKED` | VALIDATOR | **Validée** |
-| D-027 | 2026-11-22 | Dépôt des livrables AUDITOR | Droit de committer/pousser `audit_report/**` confié à l'ORCHESTRATOR à titre de **dépositaire**, sans modification de contenu ; approbation de `CHG-2026-0002` et `agents.md` v0.4 ; application différée à la fin de `TR-2026-0003` | VALIDATOR | **Validée** |
+| D-027 | 2026-11-22 | Dépôt des livrables AUDITOR | Droit de committer/pousser `audit_report/**` confié à l'ORCHESTRATOR à titre de **dépositaire**, sans modification de contenu ; approbation de `CHG-2026-0002` et `agents.md` v0.4 ; application différée à la fin de `TR-2026-0003` | VALIDATOR | **Validée — exécution D-026 confirmée : main créée depuis 4763b44 et poussée, PR #1 ouverte (2026-11-22)** |
+| D-028 | 2026-11-22 | Réserves S0 après addendum | Paquet AUDITOR retenu : **R-S0-01 levée** (CI reproduite) ; **R-S0-02 maintenue** (gitleaks absent au moment de l'audit) ; **R-S0-03 partiellement levée** — AN-08 levée (S2 régularisée, 4 commits vérifiés) mais E-01/E-05 maintenues ; **R-S0-04 maintenue** (fusion non décidée) | VALIDATOR | **Validée** |
+| D-029 | 2026-11-22 | Reprise de l'audit complémentaire | `TR-2026-0003` reprise **sous le même identifiant** (non terminale, aucun reçu, INV-05/INV-12 respectés) ; `gitleaks` v8.30.1 installé ; consommation par reçu + scan + addendum v0.2 ; aucune annulation ni nouvelle transition | VALIDATOR | **Validée** |
+| D-030 | 2026-11-22 | Clarifications S0-FUP | `INC-2026-0004` : DIV-01 = défaut de prompt / convention `last_decision` (pas une divergence système) ; DIV-02 = transition non consommée sans reçu (pas une divergence état/reçu) ; décalage de snapshot documenté ; prompt AUDITOR corrigé ; livrable AUDITOR non modifié | VALIDATOR | **Validée** |
 
 ---
 
@@ -79,9 +82,9 @@
 |---|---|
 | ~~Immédiate~~ | ~~Décision de reprise après `INC-2026-0002`~~ — levée par D-024 |
 | ~~Fin S0~~ | ~~Acceptation du résultat~~ — `GO_WITH_RESERVES` par D-024 |
-| Après acceptation | Création de `main` + PR — décision prise (D-026), exécution par le VALIDATOR en attente |
-| Après audit complémentaire | **Décision de fusion vers `main` — distincte, non prise (B-01 / R-S0-04)** |
-| ~~Mission complémentaire~~ | Vérification AUDITOR de `AN-08` et reproduction de `S0-AC-03` / `S0-AC-04` (R-S0-01 à R-S0-03) — transition `TR-2026-0003` autorisée par D-025 |
+| ~~Création `main` + PR~~ | ~~Décision D-026~~ — **exécutée par le VALIDATOR le 2026-11-22 : `main` créée depuis `4763b44`, poussée, PR #1 ouverte** |
+| Après audit complémentaire | **Décision de fusion vers `main` — distincte, non prise (R-S0-04)** — PR #1 en attente |
+| ~~Mission complémentaire~~ | Vérification AUDITOR : `TR-2026-0003` reprise par D-029, reçu + scan gitleaks + addendum v0.2 attendus |
 | Chaque sprint | Acceptation puis fusion, en deux décisions séparées |
 
 ---
@@ -101,3 +104,4 @@
 | 0.9 | 2026-11-22 | Acceptation S0 avec réserves — D-024 ajoutée |
 | 0.10 | 2026-11-22 | Audit complémentaire S0 autorisé — D-025 ajoutée |
 | 0.11 | 2026-11-22 | Préparation main/PR et dépôt audit_report — D-026 et D-027 ajoutées |
+| 0.12 | 2026-11-22 | Réserves S0, reprise TR-2026-0003 et clarifications S0-FUP — D-028, D-029 et D-030 ajoutées ; exécution D-026 consignée |
