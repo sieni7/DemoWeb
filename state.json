@@ -1,0 +1,106 @@
+{
+  "schema_version": "2.0",
+  "protocol": {
+    "name": "AKORIS",
+    "version": "2.0"
+  },
+  "governance": {
+    "profile": "standard",
+    "profile_locked": true,
+    "selected_by": "VALIDATOR",
+    "selected_at": "2026-11-22T00:00:00Z"
+  },
+  "project": {
+    "id": "demoweb",
+    "name": "DemoWeb",
+    "status": "in_progress",
+    "created_at": "2026-11-22T00:00:00Z",
+    "updated_at": "2026-11-22T17:00:00Z"
+  },
+  "checkpoints": {
+    "cp1": "validated",
+    "cp2": "validated",
+    "cp3": "validated"
+  },
+  "sprint": {
+    "current_id": "S0",
+    "current_status": "in_progress",
+    "next_id": null
+  },
+  "agent": {
+    "current_agent": "BUILDER",
+    "state_owner": "ORCHESTRATOR"
+  },
+  "transition": {
+    "transition_id": "TR-2026-0001",
+    "status": "consumed",
+    "from_agent": "ORCHESTRATOR",
+    "to_agent": "BUILDER",
+    "mandate_version": "S0-v0.1",
+    "action": "Exécuter le mandat S0 — Fondations",
+    "created_at": "2026-11-22T16:00:00Z",
+    "expires_at": null,
+    "authorized_at": "2026-11-22T16:30:00Z",
+    "consumed_at": "2026-11-22T09:32:00Z",
+    "receipt_reference": "sprint_report/TR-2026-0001_receipt.md",
+    "sprint_id": "S0",
+    "authorized_by": "VALIDATOR",
+    "decision_id": "D-020",
+    "completed_at": null,
+    "result_report": null
+  },
+  "last_decision": {
+    "value": "GO",
+    "author": "VALIDATOR",
+    "date": "2026-11-22T16:30:00Z",
+    "motif": "Autorisation de la transition TR-2026-0001 — sprint S0"
+  },
+  "blockers": [],
+  "reserves": [
+    {
+      "id": "E-01",
+      "objet": "Permissions non configurées et non testées",
+      "statut": "acceptée CP3",
+      "echeance": "S0"
+    },
+    {
+      "id": "E-02",
+      "objet": "Dépôt Git non initialisé",
+      "statut": "acceptée CP3",
+      "echeance": "S0"
+    },
+    {
+      "id": "E-03",
+      "objet": "CI absente",
+      "statut": "acceptée CP3",
+      "echeance": "S0"
+    },
+    {
+      "id": "E-04",
+      "objet": "Modèles de rapports absents",
+      "statut": "acceptée CP3",
+      "echeance": "S0"
+    },
+    {
+      "id": "E-05",
+      "objet": "Protection de main inconnue",
+      "statut": "acceptée CP3",
+      "echeance": "S0"
+    }
+  ],
+  "change_control": {
+    "active_changes": [],
+    "change_history": []
+  },
+  "permission_violations": [],
+  "transition_history": [
+    {
+      "transition_id": "TR-2026-0001",
+      "event": "consumed",
+      "by_agent": "BUILDER",
+      "at": "2026-11-22T09:32:00Z",
+      "receipt": "sprint_report/TR-2026-0001_receipt.md",
+      "note": "Réconciliation état/reçu effectuée par l'ORCHESTRATOR — reçu déjà déposé, state.json mis à jour"
+    }
+  ]
+}
