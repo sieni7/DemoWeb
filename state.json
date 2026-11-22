@@ -137,7 +137,7 @@
       {
         "id": "CHG-2026-0002",
         "objet": "Dépôt de audit_report/** par l'ORCHESTRATOR à titre de dépositaire, sans modification de contenu",
-        "statut": "approuvée par D-027 — agents.md v0.4 ; application autorisée par D-031 à la clôture de TR-2026-0003, vérification par empreinte",
+        "statut": "approuvée par D-027 ; appliquée le 2026-11-22 à la clôture de TR-2026-0003 (D-031) — commit 9020b49, empreintes vérifiées avant et après dépôt, aucun contenu modifié",
         "date": "2026-11-22T11:03:46Z",
         "reference": "docs/governance/changes/CHG-2026-0002.md"
       }

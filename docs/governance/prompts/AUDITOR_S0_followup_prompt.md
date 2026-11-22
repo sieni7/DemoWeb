@@ -1,8 +1,10 @@
 # Prompt — AUDITOR, reprise de la mission complémentaire S0
 
-> À copier dans une **session séparée**, sans contexte du BUILDER ni de l'ORCHESTRATOR. Ne pas lancer depuis une session ayant écrit du code ou de l'état.
+> **NE PAS EXÉCUTER.** Prompt conservé à titre historique uniquement.
 
-**Statut : ACTIF — reprise de `S0-FUP` sous `TR-2026-0003`, autorisée par D-025 et non consommée (D-029).** `gitleaks` v8.30.1 installé le 2026-11-22T11:12:41Z ; `gh` v2.104.0 authentifié. Corrigé après `INC-2026-0004` : champ `databaseId`, convention `last_decision`, snapshot courant. Versions antérieures : v0.1 (mission initiale, SCO-FUP sans consommation).
+**Statut : CLOS — NON EXÉCUTABLE.** La reprise qu'il décrivait a été révoquée par **D-031** (2026-11-22T11:56:19Z) : `TR-2026-0003` est une transition terminale (`cancelled`), non réactivable (INV-05). Aucun reçu, aucun scan `gitleaks_followup.json` et aucun addendum v0.2 n'ont été produits ; l'addendum v0.1 a été déposé comme trace historique (commit `9020b49`). Toute nouvelle preuve de `S0-AC-04` exigerait une **nouvelle transition** autorisée par le VALIDATOR — jamais la réutilisation de `TR-2026-0003` (INV-12).
+
+Historique : ce prompt avait été corrigé après `INC-2026-0004` (champ `databaseId`, convention `last_decision`, snapshot courant, rafraîchissement du `PATH` pour `gitleaks` v8.30.1) et activé par D-029 ; il n'est plus opérationnel.
 
 ---
 
@@ -118,8 +120,8 @@ Rappelle explicitement : tu n'as rien corrigé hors livrable, rien commité et r
 
 ---
 
-## Note pour le VALIDATOR
+## Note pour le VALIDATOR — historique
 
-La reprise de `TR-2026-0003` a été décidée par D-029 sous le même identifiant : la transition n'était pas terminale, aucun reçu n'existait, INV-05 et INV-12 sont respectés. `gitleaks` est désormais installé (v8.30.1). Le prompt corrigé supprime les deux défauts identifiés par l'addendum v0.1 (champ `id` et contrôle `last_decision`) et aligne les lectures sur le snapshot courant.
+Ce prompt a été activé par D-029 puis **révoqué par D-031**. Les paragraphes ci-dessus décrivent la mission telle qu'elle avait été cadrée ; ils ne constituent plus une instruction exécutable.
 
-`audit_report/**` reste non versionné jusqu'à la fin de `TR-2026-0003` : D-027 / CHG-2026-0002 diffèrent le dépôt à cette échéance, et l'ORCHESTRATOR ne committer pas pendant que l'AUDITOR y écrit. Les empreintes de contrôle sont enregistrées dans `INC-2026-0004` §5.
+`audit_report/**` a été déposé le 2026-11-22 par l'ORCHESTRATOR à titre de dépositaire (commit `9020b49`, D-027 / CHG-2026-0002), après vérification des empreintes avant et après commit. Les empreintes sont enregistrées dans `INC-2026-0004` §5 et dans `CHG-2026-0002` §7. `S0-AC-04` reste définitivement `NOT_CHECKED` et R-S0-02 maintenue.
