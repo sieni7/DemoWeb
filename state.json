@@ -24,7 +24,7 @@
   },
   "sprint": {
     "current_id": "S0",
-    "current_status": "builder_completed",
+    "current_status": "auditing",
     "next_id": null
   },
   "agent": {
@@ -40,20 +40,20 @@
     "action": "Audit indépendant du livrable S0 — Fondations",
     "created_at": "2026-11-22T10:25:00Z",
     "expires_at": null,
-    "authorized_at": null,
+    "authorized_at": "2026-11-22T10:28:00Z",
     "consumed_at": null,
     "receipt_reference": null,
     "sprint_id": "S0",
-    "authorized_by": null,
-    "decision_id": null,
+    "authorized_by": "VALIDATOR",
+    "decision_id": "D-021",
     "completed_at": null,
     "result_report": null
   },
   "last_decision": {
     "value": "GO",
     "author": "VALIDATOR",
-    "date": "2026-11-22T09:30:00Z",
-    "motif": "Autorisation de la transition TR-2026-0001 — sprint S0"
+    "date": "2026-11-22T10:28:00Z",
+    "motif": "Autorisation de la transition TR-2026-0002 — audit indépendant du sprint S0"
   },
   "blockers": [
     {
@@ -122,6 +122,13 @@
       "date": "2026-11-22T10:20:00Z",
       "acteur": "ORCHESTRATOR",
       "preuve": "sprint_report/S0_report.md"
+    },
+    {
+      "transition_id": "TR-2026-0002",
+      "status": "authorized",
+      "date": "2026-11-22T10:28:00Z",
+      "acteur": "VALIDATOR",
+      "decision_id": "D-021"
     }
   ]
 }

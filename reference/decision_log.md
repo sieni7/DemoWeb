@@ -2,9 +2,9 @@
 
 | Champ | Valeur |
 |---|---|
-| Version | 0.6 |
+| Version | 0.7 |
 | Date | 2026-11-22 |
-| Statut | **CP1, CP2, CP3 validés · S0 autorisé — 2026-11-22** |
+| Statut | **CP1, CP2, CP3 validés · S0 livré · audit autorisé — 2026-11-22** |
 | Auteur | ORCHESTRATOR |
 | Portée | Décisions du VALIDATOR, identifiées et tracées |
 | Ne contient pas | Décisions de sprint (GO, GO_WITH_RESERVES, NO_GO, HOLD, CANCELLED) — voir `state.json` |
@@ -51,6 +51,7 @@
 | D-018 | 2026-11-22 | Validation CP3 | Préparation validée **avec écarts acceptés** (E-01 à E-05) ; permissions et protection de `main` restent `unknown` | VALIDATOR | **Validée** |
 | D-019 | 2026-11-22 | Matrice de permissions | Matrice déclarée dans `agents.md` §3 validée | VALIDATOR | **Validée** |
 | D-020 | 2026-11-22 | Autorisation de transition | `TR-2026-0001` autorisée — **GO** pour l'exécution de S0 par le BUILDER | VALIDATOR | **Validée** |
+| D-021 | 2026-11-22 | Autorisation d'audit | `TR-2026-0002` autorisée — **GO** pour l'audit indépendant de S0. Modalité : prompt fourni au VALIDATOR pour exécution en session séparée, sans lancement de sous-agent depuis la session courante | VALIDATOR | **Validée** |
 
 ---
 
@@ -86,3 +87,4 @@
 | 0.4 | 2026-11-22 | CP2 validé — D-012 à D-016 confirmées, D-017 ajoutée |
 | 0.5 | 2026-11-22 | CP3 validé avec écarts — D-018 et D-019 ajoutées |
 | 0.6 | 2026-11-22 | Transition TR-2026-0001 autorisée — D-020 ajoutée |
+| 0.7 | 2026-11-22 | S0 livré ; audit TR-2026-0002 autorisé — D-021 ajoutée |
