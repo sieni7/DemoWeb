@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - dev_sprint_00
+      - dev_sprint_01
+      - dev_sprint_02
+      - dev_sprint_03
+      - dev_sprint_04
+      - dev_sprint_05
+      - dev_sprint_06
+      - dev_sprint_07
+  pull_request:
+
+jobs:
+  quality:
+    name: Lint, typecheck, tests, build and secret scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Unit tests
+        run: npm run test
+
+      - name: Build
+        run: npm run build
+
+      - name: Secret scan (gitleaks)
+        run: >-
+          docker run --rm -v "$PWD:/repo" -w /repo
+          zricethezav/gitleaks:latest detect --source /repo --redact --verbose
