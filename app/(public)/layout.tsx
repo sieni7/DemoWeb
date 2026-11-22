@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { Footer } from "@/components/public/footer";
 import { Navigation } from "@/components/public/navigation";
+import { ThemeToggle } from "@/components/public/theme-toggle";
 
 export default function PublicLayout({
   children,
@@ -24,7 +25,10 @@ export default function PublicLayout({
           >
             DemoWeb
           </Link>
-          <Navigation />
+          <div className="flex items-center gap-2">
+            <Navigation />
+            <ThemeToggle />
+          </div>
         </div>
       </header>
       <main
