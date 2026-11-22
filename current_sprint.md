@@ -2,9 +2,9 @@
 
 | Champ | Valeur |
 |---|---|
-| Version | 0.4 |
+| Version | 0.5 |
 | Date | 2026-11-22 |
-| Statut | **S0 ACCEPTÉE AVEC RÉSERVES — D-024 ; réserves requalifiées D-028, 2026-11-22** |
+| Statut | **S0 ACCEPTÉE AVEC RÉSERVES — D-024 ; réserves requalifiées D-028, TR-2026-0003 close D-031, 2026-11-22** |
 | Sprint | **S0 — Fondations** |
 | `mandate_version` | `S0-v0.1` |
 | Branche | `dev_sprint_00` |
@@ -102,3 +102,4 @@
 | 0.2 | 2026-11-22 | CP3 validé — mandat en attente d'autorisation de transition |
 | 0.3 | 2026-11-22 | S0 acceptée avec réserves (D-024) ; `mandate_version` inchangée (`S0-v0.1`) |
 | 0.4 | 2026-11-22 | Réserves requalifiées (D-028) : R-S0-01 levée, R-S0-02 maintenue, AN-08 levée dans R-S0-03, E-01/E-05 et R-S0-04 maintenues ; D-026 exécutée (main + PR #1) ; reprise TR-2026-0003 (D-029) ; `mandate_version` inchangée |
+| 0.5 | 2026-11-22 | D-029 révoquée (D-031) : TR-2026-0003 close sans consommation, S0-AC-04 définitivement NOT_CHECKED, addendum v0.1 déposé à titre historique ; `mandate_version` inchangée |

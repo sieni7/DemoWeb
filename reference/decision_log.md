@@ -2,9 +2,9 @@
 
 | Champ | Valeur |
 |---|---|
-| Version | 0.12 |
+| Version | 0.13 |
 | Date | 2026-11-22 |
-| Statut | **CP1, CP2, CP3 validés · S0 acceptée avec réserves requalifiées · TR-2026-0003 en reprise · main/PR exécutées, fusion reportée — 2026-11-22** |
+| Statut | **CP1, CP2, CP3 validés · S0 acceptée avec réserves · TR-2026-0003 close sans consommation · main/PR exécutées, fusion reportée — 2026-11-22** |
 | Auteur | ORCHESTRATOR |
 | Portée | Décisions du VALIDATOR, identifiées et tracées |
 | Ne contient pas | Décisions de sprint (GO, GO_WITH_RESERVES, NO_GO, HOLD, CANCELLED) — voir `state.json` |
@@ -59,8 +59,9 @@
 | D-026 | 2026-11-22 | Blocage B-01 — préparation de la fusion | Création de `main` depuis `4763b44` et ouverture de la PR `dev_sprint_00` → `main` décidées ; **exécution réservée au VALIDATOR** (les agents ne peuvent ni checkout `main`, ni merger, ni pusher hors `dev_sprint_XX`) ; **fusion reportée** tant que R-S0-01 et R-S0-02 sont `NOT_CHECKED` | VALIDATOR | **Validée** |
 | D-027 | 2026-11-22 | Dépôt des livrables AUDITOR | Droit de committer/pousser `audit_report/**` confié à l'ORCHESTRATOR à titre de **dépositaire**, sans modification de contenu ; approbation de `CHG-2026-0002` et `agents.md` v0.4 ; application différée à la fin de `TR-2026-0003` | VALIDATOR | **Validée — exécution D-026 confirmée : main créée depuis 4763b44 et poussée, PR #1 ouverte (2026-11-22)** |
 | D-028 | 2026-11-22 | Réserves S0 après addendum | Paquet AUDITOR retenu : **R-S0-01 levée** (CI reproduite) ; **R-S0-02 maintenue** (gitleaks absent au moment de l'audit) ; **R-S0-03 partiellement levée** — AN-08 levée (S2 régularisée, 4 commits vérifiés) mais E-01/E-05 maintenues ; **R-S0-04 maintenue** (fusion non décidée) | VALIDATOR | **Validée** |
-| D-029 | 2026-11-22 | Reprise de l'audit complémentaire | `TR-2026-0003` reprise **sous le même identifiant** (non terminale, aucun reçu, INV-05/INV-12 respectés) ; `gitleaks` v8.30.1 installé ; consommation par reçu + scan + addendum v0.2 ; aucune annulation ni nouvelle transition | VALIDATOR | **Validée** |
+| D-029 | 2026-11-22 | Reprise de l'audit complémentaire | `TR-2026-0003` reprise **sous le même identifiant** (non terminale, aucun reçu, INV-05/INV-12 respectés) ; `gitleaks` v8.30.1 installé ; consommation par reçu + scan + addendum v0.2 ; aucune annulation ni nouvelle transition | VALIDATOR | **Révoquée par D-031** |
 | D-030 | 2026-11-22 | Clarifications S0-FUP | `INC-2026-0004` : DIV-01 = défaut de prompt / convention `last_decision` (pas une divergence système) ; DIV-02 = transition non consommée sans reçu (pas une divergence état/reçu) ; décalage de snapshot documenté ; prompt AUDITOR corrigé ; livrable AUDITOR non modifié | VALIDATOR | **Validée** |
+| D-031 | 2026-11-22 | Révocation de la reprise d'audit | **D-029 révoquée** : `TR-2026-0003` close sans consommation (`cancelled`) conformément à `state_model.md` §4.2 ; aucun reçu déposé, INV-04 respecté ; S0-AC-04 définitivement `NOT_CHECKED` ; R-S0-02 maintenue ; dépôt de l'addendum v0.1 autorisé à titre de trace historique (D-027 / CHG-2026-0002) | VALIDATOR | **Validée** |
 
 ---
 
@@ -83,8 +84,9 @@
 | ~~Immédiate~~ | ~~Décision de reprise après `INC-2026-0002`~~ — levée par D-024 |
 | ~~Fin S0~~ | ~~Acceptation du résultat~~ — `GO_WITH_RESERVES` par D-024 |
 | ~~Création `main` + PR~~ | ~~Décision D-026~~ — **exécutée par le VALIDATOR le 2026-11-22 : `main` créée depuis `4763b44`, poussée, PR #1 ouverte** |
-| Après audit complémentaire | **Décision de fusion vers `main` — distincte, non prise (R-S0-04)** — PR #1 en attente |
-| ~~Mission complémentaire~~ | Vérification AUDITOR : `TR-2026-0003` reprise par D-029, reçu + scan gitleaks + addendum v0.2 attendus |
+| Après audit complémentaire | **Décision de fusion vers `main` — distincte, non prise (R-S0-04)** — PR #1 en attente ; R-S0-02 maintenue, S0-AC-04 définitivement `NOT_CHECKED` |
+| ~~Mission complémentaire~~ | ~~Reprise par D-029~~ — **révoquée par D-031** : `TR-2026-0003` close sans consommation ; addendum v0.1 déposé comme trace historique |
+| Si nouvelle preuve S0-AC-04 requise | Nouvelle transition AUDITOR à autoriser par le VALIDATOR — aucun identifiant consommé réutilisé (INV-12) |
 | Chaque sprint | Acceptation puis fusion, en deux décisions séparées |
 
 ---
@@ -105,3 +107,4 @@
 | 0.10 | 2026-11-22 | Audit complémentaire S0 autorisé — D-025 ajoutée |
 | 0.11 | 2026-11-22 | Préparation main/PR et dépôt audit_report — D-026 et D-027 ajoutées |
 | 0.12 | 2026-11-22 | Réserves S0, reprise TR-2026-0003 et clarifications S0-FUP — D-028, D-029 et D-030 ajoutées ; exécution D-026 consignée |
+| 0.13 | 2026-11-22 | Révocation de D-031 — `TR-2026-0003` close sans consommation, S0-AC-04 définitivement NOT_CHECKED, dépôt addendum autorisé |
