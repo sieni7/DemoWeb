@@ -37,11 +37,14 @@ Vérifie dans state.json que TR-2026-0003 existe avec :
 Vérifie qu'aucun fichier audit_report/TR-2026-0003_receipt.md n'existe (INV-04).
 
 ### Environnement
+`gitleaks` a été installé le 2026-11-22T11:12:41Z dans le PATH utilisateur persistant. Si ta session a démarré avant cette installation, rafraîchis le PATH avant toute vérification :
+`$env:Path = [Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [Environment]::GetEnvironmentVariable("Path","User")`
+
 Vérifie AVANT de consommer :
 - `gh --version` puis `gh auth status` (attendu : v2.104.0, compte sieni7) ;
 - `gitleaks version` (attendu : 8.30.1).
 
-Si un outil manque : ARRÊT. Ne consomme pas la transition. Une seconde mission NOT_CHECKED n'apporte aucune preuve.
+Si un outil manque après rafraîchissement du PATH : ARRÊT. Ne consomme pas la transition. Une seconde mission NOT_CHECKED n'apporte aucune preuve.
 
 Si tout est présent : dépose ton reçu dans audit_report/TR-2026-0003_receipt.md en suivant templates/transition_receipt_template.md. Ne modifie pas state.json : l'ORCHESTRATOR enregistre la consommation après coup.
 
@@ -119,4 +122,4 @@ Rappelle explicitement : tu n'as rien corrigé hors livrable, rien commité et r
 
 La reprise de `TR-2026-0003` a été décidée par D-029 sous le même identifiant : la transition n'était pas terminale, aucun reçu n'existait, INV-05 et INV-12 sont respectés. `gitleaks` est désormais installé (v8.30.1). Le prompt corrigé supprime les deux défauts identifiés par l'addendum v0.1 (champ `id` et contrôle `last_decision`) et aligne les lectures sur le snapshot courant.
 
-`audit_report/**` reste non versionné jusqu'à la fin de `TR-2026-0003` : D-027 / CHG-2026-0002 diffèrent le dépôt à cette échéance, et l'ORCHESTRATOR ne committerapas pendant que l'AUDITOR y écrit. Les empreintes de contrôle sont enregistrées dans `INC-2026-0004` §5.
+`audit_report/**` reste non versionné jusqu'à la fin de `TR-2026-0003` : D-027 / CHG-2026-0002 diffèrent le dépôt à cette échéance, et l'ORCHESTRATOR ne committer pas pendant que l'AUDITOR y écrit. Les empreintes de contrôle sont enregistrées dans `INC-2026-0004` §5.
