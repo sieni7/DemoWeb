@@ -2,9 +2,9 @@
 
 | Champ | Valeur |
 |---|---|
-| Version | 0.15 |
+| Version | 0.16 |
 | Date | 2026-11-22 |
-| Statut | **CP1, CP2, CP3 validés · protection de main à activer puis fusion S0 (D-034) · S1 autorisée (D-033) — 2026-11-22** |
+| Statut | **CP1, CP2, CP3 validés · main protégée · S0 fusionnée (merge `2a2272f4`) · S1 autorisée — 2026-11-22** |
 | Auteur | ORCHESTRATOR |
 | Portée | Décisions du VALIDATOR, identifiées et tracées |
 | Ne contient pas | Décisions de sprint (GO, GO_WITH_RESERVES, NO_GO, HOLD, CANCELLED) — voir `state.json` |
@@ -62,9 +62,9 @@
 | D-029 | 2026-11-22 | Reprise de l'audit complémentaire | `TR-2026-0003` reprise **sous le même identifiant** (non terminale, aucun reçu, INV-05/INV-12 respectés) ; `gitleaks` v8.30.1 installé ; consommation par reçu + scan + addendum v0.2 ; aucune annulation ni nouvelle transition | VALIDATOR | **Révoquée par D-031** |
 | D-030 | 2026-11-22 | Clarifications S0-FUP | `INC-2026-0004` : DIV-01 = défaut de prompt / convention `last_decision` (pas une divergence système) ; DIV-02 = transition non consommée sans reçu (pas une divergence état/reçu) ; décalage de snapshot documenté ; prompt AUDITOR corrigé ; livrable AUDITOR non modifié | VALIDATOR | **Validée** |
 | D-031 | 2026-11-22 | Révocation de la reprise d'audit | **D-029 révoquée** : `TR-2026-0003` close sans consommation (`cancelled`) conformément à `state_model.md` §4.2 ; aucun reçu déposé, INV-04 respecté ; S0-AC-04 définitivement `NOT_CHECKED` ; R-S0-02 maintenue ; dépôt de l'addendum v0.1 autorisé à titre de trace historique (D-027 / CHG-2026-0002) | VALIDATOR | **Validée** |
-| D-032 | 2026-11-22 | Fusion S0 vers `main` | **`GO` pour la fusion** de `dev_sprint_00` dans `main` (PR #1) — décision distincte de D-024, prise en application de D-005 / GC-07 / `state_model.md` §3.2. **Dérogation explicite** : fusion autorisée alors que R-S0-02 reste maintenue et S0-AC-04 définitivement `NOT_CHECKED` ; le secret scan de la CI (run `45020282228`) est une preuve `declared_only` de l'intégration continue, pas une reproduction indépendante. Exécution de la fusion **réservée au VALIDATOR** (les agents ne peuvent ni checkout `main`, ni merger). E-05 / T1 à T5 restent `unknown` | VALIDATOR | **Validée — exécution en attente du VALIDATOR** |
+| D-032 | 2026-11-22 | Fusion S0 vers `main` | **`GO` pour la fusion** de `dev_sprint_00` dans `main` (PR #1) — décision distincte de D-024, prise en application de D-005 / GC-07 / `state_model.md` §3.2. **Dérogation explicite** : fusion autorisée alors que R-S0-02 reste maintenue et S0-AC-04 définitivement `NOT_CHECKED` ; le secret scan de la CI est une preuve `declared_only` de l'intégration continue, pas une reproduction indépendante. Exécution réservée au VALIDATOR | VALIDATOR | **Validée — exécutée le 2026-11-22T12:16:09Z : PR #1 `MERGED`, merge commit `2a2272f405a98c47d77842d7b99992ba28578e26` ; `main` = `2a2272f4`** |
 | D-033 | 2026-11-22 | Autorisation du sprint S1 | **`GO` pour S1 — Design system** ; mandat `S1-v0.1` approuvé ; transition **`TR-2026-0004`** autorisée vers le BUILDER sur `dev_sprint_01` ; reçu `sprint_report/TR-2026-0004_receipt.md`. Effet subordonné à l'exécution de D-032 : le prompt BUILDER bloque si la PR #1 n'est pas `MERGED` ou si `dev_sprint_01` ne dérive pas de `main`. R-S0-02 reste maintenue ; la dérogation de D-032 ne lève pas la réserve | VALIDATOR | **Validée** |
-| D-034 | 2026-11-22 | Protection de `main` avant fusion | **`GO` pour activer la protection de `main` puis fusionner S0** — constat confirmé : `gh api repos/sieni7/DemoWeb/branches/main/protection` renvoie 404 « Branch not protected », donc E-05 n'est plus `unknown` mais **absence confirmée**. Protection attendue : PR obligatoire, status checks stricts sur `Lint, typecheck, tests, build and secret scan`, `enforce_admins`, interdiction des force push et suppressions. Preuve d'activation requise avant fusion ; exécution réservée au VALIDATOR | VALIDATOR | **Validée — exécution en attente** |
+| D-034 | 2026-11-22 | Protection de `main` avant fusion | **`GO` pour activer la protection de `main` puis fusionner S0** — constat confirmé : `gh api repos/sieni7/DemoWeb/branches/main/protection` renvoie 404 « Branch not protected », donc E-05 n'est plus `unknown` mais **absence confirmée**. Protection : PR obligatoire, status checks stricts sur `Lint, typecheck, tests, build and secret scan`, `enforce_admins`, interdiction des force push et suppressions | VALIDATOR | **Validée — exécutée : protection active et prouvée par `gh api` (`strict: true`, `enforce_admins.enabled: true`, `allow_force_pushes.enabled: false`, `allow_deletions.enabled: false`) avant fusion** |
 
 ---
 
@@ -87,7 +87,7 @@
 | ~~Immédiate~~ | ~~Décision de reprise après `INC-2026-0002`~~ — levée par D-024 |
 | ~~Fin S0~~ | ~~Acceptation du résultat~~ — `GO_WITH_RESERVES` par D-024 |
 | ~~Création `main` + PR~~ | ~~Décision D-026~~ — **exécutée par le VALIDATOR le 2026-11-22 : `main` créée depuis `4763b44`, poussée, PR #1 ouverte** |
-| ~~Fusion S0 vers `main`~~ | ~~Décision distincte non prise~~ — **D-032 (GO)**, confirmée par **D-034** : activer d'abord la protection de `main`, prouver l'activation, puis fusionner ; dérogation explicite à R-S0-02 maintenue |
+| ~~Fusion S0 vers `main`~~ | **Exécutée le 2026-11-22T12:16:09Z** — protection activée et prouvée (D-034), PR #1 `MERGED`, merge commit `2a2272f4` ; dérogation explicite à R-S0-02 maintenue |
 | ~~Mission complémentaire~~ | ~~Reprise par D-029~~ — **révoquée par D-031** : `TR-2026-0003` close sans consommation ; addendum v0.1 déposé comme trace historique |
 | Si nouvelle preuve S0-AC-04 requise | Nouvelle transition AUDITOR à autoriser par le VALIDATOR — aucun identifiant consommé réutilisé (INV-12) |
 | ~~Sprint suivant~~ | ~~S1 non autorisé~~ — **GO par D-033**, mandat `S1-v0.1`, transition `TR-2026-0004` vers le BUILDER ; effet subordonné à la fusion S0 |
@@ -114,3 +114,4 @@
 | 0.13 | 2026-11-22 | Révocation de D-031 — `TR-2026-0003` close sans consommation, S0-AC-04 définitivement NOT_CHECKED, dépôt addendum autorisé |
 | 0.14 | 2026-11-22 | D-032 (fusion S0 décidée, dérogation R-S0-02) et D-033 (GO S1, mandat `S1-v0.1`, transition `TR-2026-0004`) |
 | 0.15 | 2026-11-22 | D-034 — activation de la protection de `main` requise avant la fusion ; absence de protection confirmée par 404 |
+| 0.16 | 2026-11-22 | Exécution D-034 (protection active et prouvée) puis D-032 (PR #1 `MERGED`, merge `2a2272f4`) |

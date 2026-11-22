@@ -15,7 +15,7 @@
     "name": "DemoWeb",
     "status": "in_progress",
     "created_at": "2026-11-22T08:00:00Z",
-    "updated_at": "2026-11-22T12:12:47Z"
+    "updated_at": "2026-11-22T12:16:09Z"
   },
   "checkpoints": {
     "cp1": "validated",
@@ -29,8 +29,12 @@
     "previous_sprint": {
       "id": "S0",
       "status_before_merge": "accepted_with_reserves",
+      "status_after_merge": "merged",
       "merge_decision_id": "D-032",
-      "merge_execution": "en attente du VALIDATOR — PR #1 à fusionner"
+      "protection_decision_id": "D-034",
+      "merge_executed_at": "2026-11-22T12:16:09Z",
+      "merge_commit": "2a2272f405a98c47d77842d7b99992ba28578e26",
+      "merge_execution": "exécutée par le VALIDATOR — PR #1 MERGED ; main = 2a2272f4 ; dérogation explicite à R-S0-02 maintenue"
     }
   },
   "agent": {
@@ -59,16 +63,16 @@
   "last_decision": {
     "value": "GO",
     "author": "VALIDATOR",
-    "date": "2026-11-22T12:12:47Z",
-    "motif": "Décision D-034 — activer la protection de main (absence confirmée par 404) puis fusionner S0 ; D-032 et D-033 maintenues. Exécution réservée au VALIDATOR. R-S0-02 reste maintenue ; S0-AC-04 reste définitivement NOT_CHECKED"
+    "date": "2026-11-22T12:16:09Z",
+    "motif": "Exécution par le VALIDATOR de D-034 (protection de main activée et prouvée) puis de D-032 (PR #1 MERGED, merge commit 2a2272f4). S0 est merged ; S1 reste autorisée via TR-2026-0004. R-S0-02 maintenue et S0-AC-04 définitivement NOT_CHECKED"
   },
   "blockers": [
     {
       "id": "B-01",
-      "objet": "Pull request S0 — main créée et PR ouverte, fusion décidée mais non exécutée",
-      "statut": "en cours de résolution — D-032 (GO fusion) prise ; exécution par le VALIDATOR en attente",
-      "detail": "PR #1 'S0 — Fondations' vérifiée MERGEABLE / CLEAN, checks passants (runs 45020888944 et 45020894138). D-032 autorise la fusion avec dérogation explicite à R-S0-02 ; R-S0-02 reste maintenue et S0-AC-04 définitivement NOT_CHECKED. D-034 constate l'absence confirmée de protection de main (404) et exige son activation avant fusion ; T1 à T5 NON EXÉCUTÉS. Les agents ne peuvent ni checkout main ni merger : exécution réservée au VALIDATOR.",
-      "decision_attendue": "Activation et preuve de protection de main (D-034), puis exécution de la fusion (D-032)"
+      "objet": "Pull request S0 — fusion exécutée",
+      "statut": "levé — D-034 exécutée puis D-032 exécutée par le VALIDATOR",
+      "detail": "Protection de main activée et prouvée (D-034), puis PR #1 'S0 — Fondations' fusionnée le 2026-11-22T12:16:09Z, merge commit 2a2272f405a98c47d77842d7b99992ba28578e26. Vérification : state MERGED, main = 2a2272f4 sur origin. R-S0-02 reste maintenue et S0-AC-04 définitivement NOT_CHECKED ; dérogation explicite documentée. E-01 demeure unknown (T1 à T5 NON EXÉCUTÉS).",
+      "decision_attendue": "aucune — B-01 clos"
     }
   ],
   "reserves": [
@@ -99,8 +103,8 @@
     {
       "id": "E-05",
       "objet": "Protection de main inconnue",
-      "statut": "qualifiée par D-034 — absence de protection CONFIRMÉE (404 « Branch not protected »), plus unknown ; activation décidée par D-034, preuve d'activation et fusion en attente du VALIDATOR ; T1 à T5 NON EXÉCUTÉS",
-      "echeance": "avant fusion S0 — D-034"
+      "statut": "levée par D-034 — protection activée et prouvée avant fusion : PR obligatoire, status checks stricts sur 'Lint, typecheck, tests, build and secret scan', enforce_admins true, force push et suppressions interdits ; T1 à T5 restent NON EXÉCUTÉS",
+      "echeance": "close"
     },
     {
       "id": "R-S0-01",
@@ -117,8 +121,8 @@
     {
       "id": "R-S0-03",
       "objet": "Vérification de AN-08 par addendum AUDITOR ; maintien de E-01 et E-05 jusqu'à preuve technique T1 à T5",
-      "statut": "partiellement levée par D-028 — AN-08 levée (S2 régularisée, 4 commits vérifiés existants et non réécrits) ; E-01 et E-05 maintenues (permissions et protection de main unknown, T1 à T5 NON EXÉCUTÉS)",
-      "echeance": "T1 à T5 pour E-01/E-05"
+      "statut": "partiellement levée — AN-08 levée par D-028 (S2 régularisée, 4 commits vérifiés) ; E-05 levée par D-034 (protection de main activée et prouvée) ; E-01 maintenue (permissions unknown, T1 à T5 NON EXÉCUTÉS)",
+      "echeance": "T1 à T5 pour E-01"
     },
     {
       "id": "R-S0-04",

@@ -2,9 +2,9 @@
 
 | Champ | Valeur |
 |---|---|
-| Version | 0.1 |
+| Version | 0.2 |
 | Date | 2026-11-22 |
-| Statut | **S1 AUTORISÉ — D-033 ; exécution subordonnée à la fusion S0 (D-032)** |
+| Statut | **S1 AUTORISÉ — D-033 ; précondition de fusion S0 remplie (D-032/D-034 exécutées)** |
 | Sprint | **S1 — Design system** |
 | `mandate_version` | `S1-v0.1` |
 | Branche | `dev_sprint_01` (à créer depuis `main` après fusion de S0) |
@@ -13,7 +13,7 @@
 
 **Références :** [roadmap.md](sprints/roadmap.md) §2 · [architecture.md](docs/architecture/architecture.md) §2 et §6 · [requirements.md](docs/requirements/requirements.md) FR-01/FR-02/NFR-02/NFR-08 · [AGENTS.md](AGENTS.md).
 
-> Ce mandat ne vaut **aucune autorisation d'exécution** par lui-même. L'autorisation est portée par la transition `TR-2026-0004` (D-033) et par le reçu que le BUILDER doit déposer. Le démarrage effectif est subordonné à l'exécution de D-032 : PR #1 `MERGED` et `dev_sprint_01` dérivée de `main`.
+> Ce mandat ne vaut **aucune autorisation d'exécution** par lui-même. L'autorisation est portée par la transition `TR-2026-0004` (D-033) et par le reçu que le BUILDER doit déposer. La précondition est remplie : PR #1 `MERGED` (merge `2a2272f4`), protection de `main` activée et prouvée. Le BUILDER doit créer `dev_sprint_01` depuis `main` mise à jour.
 
 ---
 
@@ -105,3 +105,4 @@ Mettre en place le design system et la structure des pages publiques vides : lay
 | Version | Date | Modification |
 |---|---|---|
 | 0.1 | 2026-11-22 | Mandat initial S1 — Design system ; `TR-2026-0004` autorisée par D-033 ; subordonné à la fusion S0 (D-032) |
+| 0.2 | 2026-11-22 | Précondition remplie : protection de main active (D-034) et PR #1 fusionnée (merge `2a2272f4`) ; `mandate_version` inchangée (`S1-v0.1`) |
