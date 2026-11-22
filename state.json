@@ -33,7 +33,7 @@
   },
   "transition": {
     "transition_id": "TR-2026-0002",
-    "status": "awaiting_human_go",
+    "status": "authorized",
     "from_agent": "ORCHESTRATOR",
     "to_agent": "AUDITOR",
     "mandate_version": "S0-v0.1",
