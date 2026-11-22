@@ -2,14 +2,14 @@
 
 | Champ | Valeur |
 |---|---|
-| Version | 0.3 |
+| Version | 0.4 |
 | Date | 2026-11-22 |
-| Statut | **VALIDÉ CP3 — 2026-11-22 · amendé par D-023 — 2026-11-22** |
+| Statut | **VALIDÉ CP3 — 2026-11-22 · amendé par D-023 et D-027 — 2026-11-22** |
 | Auteur | ORCHESTRATOR |
 | Portée | Rôles, contrats, matrice de permissions, reçus, blocages |
 | Ne contient pas | Règles du protocole AKORIS (voir `C:\documentation`), mandats de sprint |
 
-**Sources :** `C:\documentation\protocol\governance_core.md`, `permission_policy.md`, `transition_policy.md` · décisions D-005, D-010, D-014, D-019, D-023 · `docs/governance/changes/CHG-2026-0001.md`.
+**Sources :** `C:\documentation\protocol\governance_core.md`, `permission_policy.md`, `transition_policy.md` · décisions D-005, D-010, D-014, D-019, D-023, D-027 · `docs/governance/changes/CHG-2026-0001.md`, `CHG-2026-0002.md`.
 
 > **Principe (GC-36).** Une permission déclarée n'est pas une permission appliquée. Les règles ci-dessous sont **déclarées** ; leur effectivité reste `unknown` tant que T1 à T5 n'ont pas été exécutés.
 
@@ -74,14 +74,18 @@ Décide seul : profil, CP1/CP2/CP3, autorisation de chaque transition, acceptati
 | `opencode.json`, `.opencode/**` | interdit | interdit | interdit |
 | `git commit` — fichiers de gouvernance possédés (`state.json`, `state.md`, `current_sprint.md`, `docs/**`, `sprints/**`, `debt_report/**`, `reference/**`) | **autorisé** | interdit | interdit |
 | `git commit` — code, tests, configurations et livrables de sprint (`src/**`, `app/**`, `components/**`, `lib/**`, `tests/**`, `public/**`, `package.json`, `.github/**`, `prisma/**`, `sprint_report/**`) | interdit | **autorisé** | interdit |
+| `git commit` — livrables AUDITOR (`audit_report/**`), **à titre de dépositaire, sans modification de contenu** | **autorisé** | interdit | interdit |
 | `git push` (branche `dev_sprint_XX`) — fichiers de gouvernance possédés | **autorisé** | interdit | interdit |
 | `git push` (branche `dev_sprint_XX`) — code, tests, configurations et livrables de sprint | interdit | **autorisé** | interdit |
+| `git push` (branche `dev_sprint_XX`) — livrables AUDITOR, à titre de dépositaire | **autorisé** | interdit | interdit |
 | `git merge`, `git push --force`, `git reset --hard` | interdit | interdit | interdit |
 | `git checkout main`, `git switch main` | interdit | interdit | interdit |
 
 **Classification :** toutes ces règles sont `unknown` au sens de `permission_policy.md` §2 — présentes sur le papier, non éprouvées.
 
-**Amendement v0.3 :** la séparation des droits de commit et de push par nature de fichier a été approuvée par D-023 (CHG-2026-0001) pour régulariser les quatre commits de gouvernance de `INC-2026-0003`. Le droit de committer `audit_report/**` n'est **pas** accordé : ce point reste ouvert.
+**Amendement v0.3 :** la séparation des droits de commit et de push par nature de fichier a été approuvée par D-023 (CHG-2026-0001) pour régulariser les quatre commits de gouvernance de `INC-2026-0003`.
+
+**Amendement v0.4 :** le dépôt de `audit_report/**` est confié à l'ORCHESTRATOR à titre de **dépositaire**, sans modification de contenu (D-027, CHG-2026-0002). L'AUDITOR conserve l'écriture et l'indépendance procédurale (GC-37) ; il ne commit pas. Application différée jusqu'à la fin de `TR-2026-0003`.
 
 ---
 
@@ -118,3 +122,4 @@ Ces mesures sont **procédurales** : elles ne transforment pas un `unknown` en `
 | 0.1 | 2026-11-22 | Version initiale — contrats, matrice déclarée, mesures compensatoires |
 | 0.2 | 2026-11-22 | CP3 validé — matrice de permissions validée par le VALIDATOR |
 | 0.3 | 2026-11-22 | D-023 / CHG-2026-0001 — droits de commit et push séparés par chemin ; `reference/**` ajouté |
+| 0.4 | 2026-11-22 | D-027 / CHG-2026-0002 — dépôt de `audit_report/**` par l'ORCHESTRATOR à titre de dépositaire |
