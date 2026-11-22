@@ -13,9 +13,9 @@
   "project": {
     "id": "demoweb",
     "name": "DemoWeb",
-    "status": "under_review",
+    "status": "blocked",
     "created_at": "2026-11-22T08:00:00Z",
-    "updated_at": "2026-11-22T10:20:00Z"
+    "updated_at": "2026-11-22T10:49:11Z"
   },
   "checkpoints": {
     "cp1": "validated",
@@ -24,7 +24,7 @@
   },
   "sprint": {
     "current_id": "S0",
-    "current_status": "auditing",
+    "current_status": "audit_completed",
     "next_id": null
   },
   "agent": {
@@ -33,7 +33,7 @@
   },
   "transition": {
     "transition_id": "TR-2026-0002",
-    "status": "authorized",
+    "status": "completed",
     "from_agent": "ORCHESTRATOR",
     "to_agent": "AUDITOR",
     "mandate_version": "S0-v0.1",
@@ -41,13 +41,13 @@
     "created_at": "2026-11-22T10:25:00Z",
     "expires_at": null,
     "authorized_at": "2026-11-22T10:28:00Z",
-    "consumed_at": null,
-    "receipt_reference": null,
+    "consumed_at": "2026-11-22T10:45:00Z",
+    "receipt_reference": "audit_report/TR-2026-0002_receipt.md",
     "sprint_id": "S0",
     "authorized_by": "VALIDATOR",
     "decision_id": "D-021",
-    "completed_at": null,
-    "result_report": null
+    "completed_at": "2026-11-22T10:49:11Z",
+    "result_report": "audit_report/S0_audit.md"
   },
   "last_decision": {
     "value": "GO",
@@ -68,7 +68,7 @@
     {
       "id": "E-01",
       "objet": "Permissions non configurées et non testées",
-      "statut": "acceptée CP3",
+      "statut": "acceptée CP3 ; maintenue — T1 à T5 non exécutés, effectivité unknown",
       "echeance": "S0"
     },
     {
@@ -80,7 +80,7 @@
     {
       "id": "E-03",
       "objet": "CI absente",
-      "statut": "acceptée CP3 — levée en S0 (run 45011380497 : success)",
+      "statut": "acceptée CP3 — levée sur preuve déclarée (run 45011380497 : success) ; reproduction indépendante toujours NOT_CHECKED, voir AN-01",
       "echeance": "S0"
     },
     {
@@ -92,15 +92,36 @@
     {
       "id": "E-05",
       "objet": "Protection de main inconnue",
-      "statut": "acceptée CP3 — non levée (main n'existe pas encore)",
+      "statut": "acceptée CP3 ; maintenue — main n'existe pas, protection unknown",
       "echeance": "S0"
     }
   ],
   "change_control": {
     "active_changes": [],
-    "change_history": []
+    "change_history": [
+      {
+        "id": "CHG-2026-0001",
+        "objet": "Précision de la matrice de permissions AGENTS.md §3 — droit de commit des livrables de gouvernance",
+        "statut": "approuvée par D-023 — mise en œuvre en AGENTS.md v0.3 ; vérification en attente (AN-08)",
+        "date": "2026-11-22T10:49:11Z",
+        "reference": "docs/governance/changes/CHG-2026-0001.md"
+      }
+    ]
   },
-  "permission_violations": [],
+  "permission_violations": [
+    {
+      "id": "PV-2026-0001",
+      "objet": "Quatre commits de gouvernance effectués par l'ORCHESTRATOR alors que AGENTS.md v0.2 §3 interdisait git commit à l'ORCHESTRATOR",
+      "statut": "qualifiée S2 — régularisée rétroactivement par D-023, limitée aux fichiers de gouvernance, sous réserve de vérification AUDITOR (AN-08)",
+      "commits": [
+        "05f52f6",
+        "c80db1c",
+        "2c976d6",
+        "507ec41"
+      ],
+      "reference": "docs/governance/incidents/INC-2026-0003.md"
+    }
+  ],
   "transition_history": [
     {
       "transition_id": "TR-2026-0001",
@@ -129,6 +150,21 @@
       "date": "2026-11-22T10:28:00Z",
       "acteur": "VALIDATOR",
       "decision_id": "D-021"
+    },
+    {
+      "transition_id": "TR-2026-0002",
+      "status": "consumed",
+      "date": "2026-11-22T10:45:00Z",
+      "acteur": "AUDITOR",
+      "preuve": "audit_report/TR-2026-0002_receipt.md"
+    },
+    {
+      "transition_id": "TR-2026-0002",
+      "status": "completed",
+      "date": "2026-11-22T10:49:11Z",
+      "acteur": "AUDITOR",
+      "reconcilie_par": "ORCHESTRATOR",
+      "preuve": "docs/governance/incidents/INC-2026-0002.md ; audit_report/S0_audit.md"
     }
   ]
 }

@@ -2,9 +2,9 @@
 
 | Champ | Valeur |
 |---|---|
-| Version | 0.7 |
+| Version | 0.8 |
 | Date | 2026-11-22 |
-| Statut | **CP1, CP2, CP3 validés · S0 livré · audit autorisé — 2026-11-22** |
+| Statut | **CP1, CP2, CP3 validés · S0 livré · audit réalisé · arbitrages 1 et 2 décidés — 2026-11-22** |
 | Auteur | ORCHESTRATOR |
 | Portée | Décisions du VALIDATOR, identifiées et tracées |
 | Ne contient pas | Décisions de sprint (GO, GO_WITH_RESERVES, NO_GO, HOLD, CANCELLED) — voir `state.json` |
@@ -52,6 +52,8 @@
 | D-019 | 2026-11-22 | Matrice de permissions | Matrice déclarée dans `agents.md` §3 validée | VALIDATOR | **Validée** |
 | D-020 | 2026-11-22 | Autorisation de transition | `TR-2026-0001` autorisée — **GO** pour l'exécution de S0 par le BUILDER | VALIDATOR | **Validée** |
 | D-021 | 2026-11-22 | Autorisation d'audit | `TR-2026-0002` autorisée — **GO** pour l'audit indépendant de S0. Modalité : prompt fourni au VALIDATOR pour exécution en session séparée, sans lancement de sous-agent depuis la session courante | VALIDATOR | **Validée** |
+| D-022 | 2026-11-22 | Arbitrage 1 — divergence état/reçu | Réconciliation de `TR-2026-0002` **par correction de l'état**, sans invalider le reçu ; application de `state_model.md` §7.2 ; gel opérationnel jusqu'à la décision de reprise | VALIDATOR | **Validée** |
+| D-023 | 2026-11-22 | Arbitrage 2 — violations de permission | Qualification S2 de `PV-2026-0001` / `AN-08` ; **régularisation rétroactive** des 4 commits de gouvernance ; approbation de `CHG-2026-0001` et de `AGENTS.md` v0.3 | VALIDATOR | **Validée** |
 
 ---
 
@@ -71,8 +73,10 @@
 
 | Échéance | Décision |
 |---|---|
+| Immédiate | Décision de reprise après `INC-2026-0002` — lève le gel et le statut `blocked` |
 | Fin S0 | Acceptation du résultat (GO / GO_WITH_RESERVES / NO_GO / HOLD) |
 | Après acceptation | Décision de fusion vers `main` — distincte |
+| Mission complémentaire | Vérification AUDITOR de `AN-08` et reproduction de `S0-AC-03` / `S0-AC-04` |
 | Chaque sprint | Acceptation puis fusion, en deux décisions séparées |
 
 ---
@@ -88,3 +92,4 @@
 | 0.5 | 2026-11-22 | CP3 validé avec écarts — D-018 et D-019 ajoutées |
 | 0.6 | 2026-11-22 | Transition TR-2026-0001 autorisée — D-020 ajoutée |
 | 0.7 | 2026-11-22 | S0 livré ; audit TR-2026-0002 autorisé — D-021 ajoutée |
+| 0.8 | 2026-11-22 | Arbitrage état/reçu et arbitrage permissions — D-022 et D-023 ajoutées |
