@@ -2,7 +2,7 @@
 
 > À copier dans une **session séparée**, sans contexte du BUILDER ni de l'ORCHESTRATOR. Ne pas lancer depuis une session ayant écrit du code ou de l'état.
 
-**Statut : BROUILLON — non exécutable en l'état.** Aucune transition d'audit complémentaire n'est autorisée : `state.json` ne contient aucune transition active. Le VALIDATOR doit autoriser une nouvelle `TR-2026-0003` adressée à l'AUDITOR. L'ORCHESTRATOR ne l'active pas.
+**Statut : ACTIF — à copier dans une session AUDITOR séparée.** Transition `TR-2026-0003` autorisée par D-025 le 2026-11-22T10:56:58Z. Condition préalable vérifiée par l'AUDITOR : `gh` authentifié et `gitleaks` installé ; sinon arrêt avant consommation de la transition.
 
 ---
 
@@ -108,6 +108,6 @@ Rappelle explicitement : tu n'as rien corrigé, rien commité et rien décidé.
 
 ## Note pour le VALIDATOR
 
-Cette mission ne peut démarrer qu'après autorisation d'une transition `TR-2026-0003`. Elle doit impérativement s'exécuter dans un environnement où `gh` est authentifié et `gitleaks` installé, sinon elle reproduirait l'échec de la première mission.
+La transition `TR-2026-0003` a été autorisée par D-025. La mission doit impérativement s'exécuter dans un environnement où `gh` est authentifié et `gitleaks` installé, sinon elle reproduirait l'échec de la première mission.
 
 Autre point non tranché : la matrice `agents.md` v0.3 ne donne à aucun agent le droit de committer `audit_report/**`. Le reçu et l'addendum resteront donc non versionnés tant qu'une décision n'aura pas désigné un dépositaire.

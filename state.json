@@ -15,7 +15,7 @@
     "name": "DemoWeb",
     "status": "ready",
     "created_at": "2026-11-22T08:00:00Z",
-    "updated_at": "2026-11-22T10:54:26Z"
+    "updated_at": "2026-11-22T10:56:58Z"
   },
   "checkpoints": {
     "cp1": "validated",
@@ -28,32 +28,32 @@
     "next_id": null
   },
   "agent": {
-    "current_agent": "ORCHESTRATOR",
+    "current_agent": "AUDITOR",
     "state_owner": "ORCHESTRATOR"
   },
   "transition": {
-    "transition_id": "TR-2026-0002",
-    "status": "completed",
+    "transition_id": "TR-2026-0003",
+    "status": "authorized",
     "from_agent": "ORCHESTRATOR",
     "to_agent": "AUDITOR",
-    "mandate_version": "S0-v0.1",
-    "action": "Audit indépendant du livrable S0 — Fondations",
-    "created_at": "2026-11-22T10:25:00Z",
+    "mandate_version": "S0-FUP-v0.1",
+    "action": "Audit complémentaire S0 — reproduction S0-AC-03/S0-AC-04, vérification AN-08",
+    "created_at": "2026-11-22T10:56:58Z",
     "expires_at": null,
-    "authorized_at": "2026-11-22T10:28:00Z",
-    "consumed_at": "2026-11-22T10:45:00Z",
-    "receipt_reference": "audit_report/TR-2026-0002_receipt.md",
+    "authorized_at": "2026-11-22T10:56:58Z",
+    "consumed_at": null,
+    "receipt_reference": null,
     "sprint_id": "S0",
     "authorized_by": "VALIDATOR",
-    "decision_id": "D-021",
-    "completed_at": "2026-11-22T10:49:11Z",
-    "result_report": "audit_report/S0_audit.md"
+    "decision_id": "D-025",
+    "completed_at": null,
+    "result_report": null
   },
   "last_decision": {
-    "value": "GO_WITH_RESERVES",
+    "value": "GO",
     "author": "VALIDATOR",
-    "date": "2026-11-22T10:54:26Z",
-    "motif": "Décision D-024 — acceptation de S0 avec réserves R-S0-01 à R-S0-04 ; reprise levée après INC-2026-0002 ; la fusion et la création de main restent des décisions distinctes"
+    "date": "2026-11-22T10:56:58Z",
+    "motif": "Décision D-025 — autorisation de TR-2026-0003, audit complémentaire S0. L'acceptation S0 reste GO_WITH_RESERVES (D-024) et le sprint reste accepted_with_reserves"
   },
   "blockers": [
     {
@@ -189,6 +189,13 @@
       "acteur": "AUDITOR",
       "reconcilie_par": "ORCHESTRATOR",
       "preuve": "docs/governance/incidents/INC-2026-0002.md ; audit_report/S0_audit.md"
+    },
+    {
+      "transition_id": "TR-2026-0003",
+      "status": "authorized",
+      "date": "2026-11-22T10:56:58Z",
+      "acteur": "VALIDATOR",
+      "decision_id": "D-025"
     }
   ]
 }

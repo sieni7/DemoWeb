@@ -2,9 +2,9 @@
 
 | Champ | Valeur |
 |---|---|
-| Version | 0.9 |
+| Version | 0.10 |
 | Date | 2026-11-22 |
-| Statut | **CP1, CP2, CP3 validés · S0 acceptée avec réserves — 2026-11-22** |
+| Statut | **CP1, CP2, CP3 validés · S0 acceptée avec réserves · audit complémentaire autorisé — 2026-11-22** |
 | Auteur | ORCHESTRATOR |
 | Portée | Décisions du VALIDATOR, identifiées et tracées |
 | Ne contient pas | Décisions de sprint (GO, GO_WITH_RESERVES, NO_GO, HOLD, CANCELLED) — voir `state.json` |
@@ -55,6 +55,7 @@
 | D-022 | 2026-11-22 | Arbitrage 1 — divergence état/reçu | Réconciliation de `TR-2026-0002` **par correction de l'état**, sans invalider le reçu ; application de `state_model.md` §7.2 ; gel opérationnel jusqu'à la décision de reprise | VALIDATOR | **Validée** |
 | D-023 | 2026-11-22 | Arbitrage 2 — violations de permission | Qualification S2 de `PV-2026-0001` / `AN-08` ; **régularisation rétroactive** des 4 commits de gouvernance ; approbation de `CHG-2026-0001` et de `AGENTS.md` v0.3 | VALIDATOR | **Validée** |
 | D-024 | 2026-11-22 | Acceptation du sprint S0 | **`GO_WITH_RESERVES`** — sprint `accepted_with_reserves` ; réserves R-S0-01 à R-S0-04 ; levée du gel `INC-2026-0002` ; la fusion et la création de `main` restent une décision distincte | VALIDATOR | **Validée** |
+| D-025 | 2026-11-22 | Autorisation d'audit complémentaire | `TR-2026-0003` autorisée — **GO** pour l'audit complémentaire S0 dans une session AUDITOR séparée ; condition d'environnement : `gh` authentifié et `gitleaks` installé | VALIDATOR | **Validée** |
 
 ---
 
@@ -77,7 +78,7 @@
 | ~~Immédiate~~ | ~~Décision de reprise après `INC-2026-0002`~~ — levée par D-024 |
 | ~~Fin S0~~ | ~~Acceptation du résultat~~ — `GO_WITH_RESERVES` par D-024 |
 | Après acceptation | **Décision de fusion vers `main` — distincte, non prise (B-01 / R-S0-04)** |
-| Mission complémentaire | Vérification AUDITOR de `AN-08` et reproduction de `S0-AC-03` / `S0-AC-04` (R-S0-01 à R-S0-03) |
+| ~~Mission complémentaire~~ | Vérification AUDITOR de `AN-08` et reproduction de `S0-AC-03` / `S0-AC-04` (R-S0-01 à R-S0-03) — transition `TR-2026-0003` autorisée par D-025 |
 | Chaque sprint | Acceptation puis fusion, en deux décisions séparées |
 
 ---
@@ -95,3 +96,4 @@
 | 0.7 | 2026-11-22 | S0 livré ; audit TR-2026-0002 autorisé — D-021 ajoutée |
 | 0.8 | 2026-11-22 | Arbitrage état/reçu et arbitrage permissions — D-022 et D-023 ajoutées |
 | 0.9 | 2026-11-22 | Acceptation S0 avec réserves — D-024 ajoutée |
+| 0.10 | 2026-11-22 | Audit complémentaire S0 autorisé — D-025 ajoutée |
