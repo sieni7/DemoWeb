@@ -13,9 +13,9 @@
   "project": {
     "id": "demoweb",
     "name": "DemoWeb",
-    "status": "ready",
+    "status": "in_progress",
     "created_at": "2026-11-22T08:00:00Z",
-    "updated_at": "2026-11-22T11:56:19Z"
+    "updated_at": "2026-11-22T12:07:44Z"
   },
   "checkpoints": {
     "cp1": "validated",
@@ -23,49 +23,52 @@
     "cp3": "validated"
   },
   "sprint": {
-    "current_id": "S0",
-    "current_status": "accepted_with_reserves",
-    "next_id": null
+    "current_id": "S1",
+    "current_status": "authorized",
+    "next_id": "S2",
+    "previous_sprint": {
+      "id": "S0",
+      "status_before_merge": "accepted_with_reserves",
+      "merge_decision_id": "D-032",
+      "merge_execution": "en attente du VALIDATOR — PR #1 à fusionner"
+    }
   },
   "agent": {
-    "current_agent": "ORCHESTRATOR",
+    "current_agent": "BUILDER",
     "state_owner": "ORCHESTRATOR"
   },
   "transition": {
-    "transition_id": "TR-2026-0003",
-    "status": "cancelled",
+    "transition_id": "TR-2026-0004",
+    "status": "authorized",
     "from_agent": "ORCHESTRATOR",
-    "to_agent": "AUDITOR",
-    "mandate_version": "S0-FUP-v0.1",
-    "action": "Audit complémentaire S0 — reproduction S0-AC-03/S0-AC-04, vérification AN-08",
-    "created_at": "2026-11-22T10:56:58Z",
+    "to_agent": "BUILDER",
+    "mandate_version": "S1-v0.1",
+    "action": "Exécution du sprint S1 — Design system : layout, navigation, footer, thème sombre, pages vides",
+    "created_at": "2026-11-22T12:07:44Z",
     "expires_at": null,
-    "authorized_at": "2026-11-22T10:56:58Z",
+    "authorized_at": "2026-11-22T12:07:44Z",
     "consumed_at": null,
     "receipt_reference": null,
-    "sprint_id": "S0",
+    "sprint_id": "S1",
     "authorized_by": "VALIDATOR",
-    "decision_id": "D-025",
+    "decision_id": "D-033",
     "completed_at": null,
-    "result_report": "audit_report/S0_audit_addendum.md",
-    "cancelled_at": "2026-11-22T11:56:19Z",
-    "cancelled_by": "VALIDATOR",
-    "cancellation_decision_id": "D-031",
-    "cancellation_motif": "Reprise D-029 révoquée ; aucun reçu déposé, INV-04 respecté ; S0-AC-04 définitivement NOT_CHECKED ; INV-05 — transition terminale non réactivable"
+    "result_report": null,
+    "precondition": "Exécution de D-032 : PR #1 MERGED et dev_sprint_01 créée depuis main — le prompt BUILDER bloque sinon (Étape 0)"
   },
   "last_decision": {
     "value": "GO",
     "author": "VALIDATOR",
-    "date": "2026-11-22T11:56:19Z",
-    "motif": "Décision D-031 — révocation de D-029 : TR-2026-0003 close sans consommation, S0-AC-04 définitivement NOT_CHECKED, R-S0-02 maintenue, dépôt de audit_report/** autorisé à titre de trace historique. L'acceptation S0 reste GO_WITH_RESERVES (D-024) et la fusion reste non décidée"
+    "date": "2026-11-22T12:07:44Z",
+    "motif": "Décisions D-032 et D-033 — GO pour la fusion S0 vers main (exécution réservée au VALIDATOR, dérogation explicite à R-S0-02) et GO pour S1 avec autorisation de TR-2026-0004 vers le BUILDER sur dev_sprint_01. R-S0-02 reste maintenue ; S0-AC-04 reste définitivement NOT_CHECKED"
   },
   "blockers": [
     {
       "id": "B-01",
-      "objet": "Pull request S0 — main créée et PR ouverte, fusion en attente",
-      "statut": "partiellement levé — D-026 exécutée par le VALIDATOR ; fusion non décidée",
-      "detail": "D-026 exécutée le 2026-11-22 : git branch main 4763b44, git push origin main, gh pr create --base main --head dev_sprint_00. PR #1 'S0 — Fondations' vérifiée OPEN (https://github.com/sieni7/DemoWeb/pull/1). La protection de main reste unknown (E-05), T1 à T5 NON EXÉCUTÉS. Fusion = décision VALIDATOR distincte (D-005, GC-07), reportée tant que R-S0-02 est NOT_CHECKED.",
-      "decision_attendue": "Décision de fusion distincte + preuve de protection de main (E-05)"
+      "objet": "Pull request S0 — main créée et PR ouverte, fusion décidée mais non exécutée",
+      "statut": "en cours de résolution — D-032 (GO fusion) prise ; exécution par le VALIDATOR en attente",
+      "detail": "PR #1 'S0 — Fondations' vérifiée MERGEABLE / CLEAN, checks passants (dont secret scan, run 45020282228). D-032 autorise la fusion avec dérogation explicite à R-S0-02 ; R-S0-02 reste maintenue et S0-AC-04 définitivement NOT_CHECKED. La protection de main reste unknown (E-05), T1 à T5 NON EXÉCUTÉS. Les agents ne peuvent ni checkout main ni merger : exécution réservée au VALIDATOR.",
+      "decision_attendue": "Exécution de la fusion par le VALIDATOR, puis preuve de protection de main (E-05)"
     }
   ],
   "reserves": [
@@ -108,8 +111,8 @@
     {
       "id": "R-S0-02",
       "objet": "Reproduction indépendante de S0-AC-04 — gitleaks detect --source . --redact sans secret",
-      "statut": "maintenue par D-028 et D-031 — définitivement NOT_CHECKED : aucun scan reproduit, TR-2026-0003 close sans consommation ; seule la preuve declared_only du BUILDER subsiste, insuffisante pour un critère critique",
-      "echeance": "avant autorisation de S1 — nouvelle transition à autoriser si preuve requise"
+      "statut": "maintenue par D-028 et D-031 — définitivement NOT_CHECKED : aucun scan reproduit, TR-2026-0003 close sans consommation ; D-032 accorde une dérogation explicite à la fusion et D-033 une dérogation explicite au démarrage de S1, sans lever la réserve",
+      "echeance": "nouvelle transition AUDITOR à autoriser par le VALIDATOR si preuve requise — aucun identifiant consommé réutilisé"
     },
     {
       "id": "R-S0-03",
@@ -120,8 +123,8 @@
     {
       "id": "R-S0-04",
       "objet": "Résolution de B-01 — création de main, ouverture de la PR puis fusion de S0",
-      "statut": "maintenue par D-028 — création main + PR #1 exécutées (D-026) ; fusion toujours non décidée et R-S0-02 toujours NOT_CHECKED",
-      "echeance": "décision VALIDATOR distincte de l'acceptation et de l'audit"
+      "statut": "levée par D-032 — fusion de dev_sprint_00 vers main autorisée par décision VALIDATOR distincte, avec dérogation explicite à R-S0-02 ; exécution de la fusion en attente du VALIDATOR",
+      "echeance": "close — B-01 subsiste jusqu'à exécution effective de la fusion"
     }
   ],
   "change_control": {
@@ -230,6 +233,14 @@
       "acteur": "VALIDATOR",
       "decision_id": "D-031",
       "detail": "D-029 révoquée — aucun reçu déposé, INV-04 respecté ; S0-AC-04 définitivement NOT_CHECKED ; INV-05 : transition terminale non réactivable ; addendum v0.1 déposé comme trace historique"
+    },
+    {
+      "transition_id": "TR-2026-0004",
+      "status": "authorized",
+      "date": "2026-11-22T12:07:44Z",
+      "acteur": "VALIDATOR",
+      "decision_id": "D-033",
+      "detail": "GO pour S1 — Design system ; mandat S1-v0.1 ; BUILDER sur dev_sprint_01 ; subordonné à l'exécution de D-032 (fusion S0)"
     }
   ]
 }
