@@ -13,9 +13,9 @@
   "project": {
     "id": "demoweb",
     "name": "DemoWeb",
-    "status": "blocked",
+    "status": "ready",
     "created_at": "2026-11-22T08:00:00Z",
-    "updated_at": "2026-11-22T10:49:11Z"
+    "updated_at": "2026-11-22T10:54:26Z"
   },
   "checkpoints": {
     "cp1": "validated",
@@ -24,7 +24,7 @@
   },
   "sprint": {
     "current_id": "S0",
-    "current_status": "audit_completed",
+    "current_status": "accepted_with_reserves",
     "next_id": null
   },
   "agent": {
@@ -50,10 +50,10 @@
     "result_report": "audit_report/S0_audit.md"
   },
   "last_decision": {
-    "value": "GO",
+    "value": "GO_WITH_RESERVES",
     "author": "VALIDATOR",
-    "date": "2026-11-22T10:28:00Z",
-    "motif": "Autorisation de la transition TR-2026-0002 — audit indépendant du sprint S0"
+    "date": "2026-11-22T10:54:26Z",
+    "motif": "Décision D-024 — acceptation de S0 avec réserves R-S0-01 à R-S0-04 ; reprise levée après INC-2026-0002 ; la fusion et la création de main restent des décisions distinctes"
   },
   "blockers": [
     {
@@ -94,6 +94,30 @@
       "objet": "Protection de main inconnue",
       "statut": "acceptée CP3 ; maintenue — main n'existe pas, protection unknown",
       "echeance": "S0"
+    },
+    {
+      "id": "R-S0-01",
+      "objet": "Reproduction indépendante de S0-AC-03 — run CI 45011380497 = success",
+      "statut": "ouverte — actuellement NOT_CHECKED (preuve declared_only, gh indisponible)",
+      "echeance": "avant autorisation de S1"
+    },
+    {
+      "id": "R-S0-02",
+      "objet": "Reproduction indépendante de S0-AC-04 — gitleaks detect --source . --redact sans secret",
+      "statut": "ouverte — actuellement NOT_CHECKED (preuve declared_only, binaire indisponible)",
+      "echeance": "avant autorisation de S1"
+    },
+    {
+      "id": "R-S0-03",
+      "objet": "Vérification de AN-08 par addendum AUDITOR ; maintien de E-01 et E-05 jusqu'à preuve technique T1 à T5",
+      "statut": "ouverte — addendum non produit ; permissions et protection de main toujours unknown",
+      "echeance": "mission AUDITOR complémentaire / T1 à T5"
+    },
+    {
+      "id": "R-S0-04",
+      "objet": "Résolution de B-01 — création de la branche main et fusion de S0",
+      "statut": "ouverte — décision VALIDATOR distincte non prise",
+      "echeance": "décision distincte de l'acceptation"
     }
   ],
   "change_control": {

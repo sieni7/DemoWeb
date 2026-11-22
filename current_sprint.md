@@ -4,7 +4,7 @@
 |---|---|
 | Version | 0.2 |
 | Date | 2026-11-22 |
-| Statut | **VALIDÉ CP3 — en attente d'autorisation de transition** |
+| Statut | **S0 ACCEPTÉE AVEC RÉSERVES — D-024, 2026-11-22** |
 | Sprint | **S0 — Fondations** |
 | `mandate_version` | `S0-v0.1` |
 | Branche | `dev_sprint_00` |
@@ -100,3 +100,4 @@
 |---|---|---|
 | 0.1 | 2026-11-22 | Version initiale — mandat S0 |
 | 0.2 | 2026-11-22 | CP3 validé — mandat en attente d'autorisation de transition |
+| 0.3 | 2026-11-22 | S0 acceptée avec réserves (D-024) ; `mandate_version` inchangée (`S0-v0.1`) |
