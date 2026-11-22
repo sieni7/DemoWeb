@@ -2,9 +2,9 @@
 
 | Champ | Valeur |
 |---|---|
-| Version | 0.16 |
+| Version | 0.17 |
 | Date | 2026-11-22 |
-| Statut | **CP1, CP2, CP3 validés · main protégée · S0 fusionnée (merge `2a2272f4`) · S1 autorisée — 2026-11-22** |
+| Statut | **CP1, CP2, CP3 validés · main protégée · S0 fusionnée · S1 autorisée · INC-2026-0005 qualifié — 2026-11-22** |
 | Auteur | ORCHESTRATOR |
 | Portée | Décisions du VALIDATOR, identifiées et tracées |
 | Ne contient pas | Décisions de sprint (GO, GO_WITH_RESERVES, NO_GO, HOLD, CANCELLED) — voir `state.json` |
@@ -65,6 +65,7 @@
 | D-032 | 2026-11-22 | Fusion S0 vers `main` | **`GO` pour la fusion** de `dev_sprint_00` dans `main` (PR #1) — décision distincte de D-024, prise en application de D-005 / GC-07 / `state_model.md` §3.2. **Dérogation explicite** : fusion autorisée alors que R-S0-02 reste maintenue et S0-AC-04 définitivement `NOT_CHECKED` ; le secret scan de la CI est une preuve `declared_only` de l'intégration continue, pas une reproduction indépendante. Exécution réservée au VALIDATOR | VALIDATOR | **Validée — exécutée le 2026-11-22T12:16:09Z : PR #1 `MERGED`, merge commit `2a2272f405a98c47d77842d7b99992ba28578e26` ; `main` = `2a2272f4`** |
 | D-033 | 2026-11-22 | Autorisation du sprint S1 | **`GO` pour S1 — Design system** ; mandat `S1-v0.1` approuvé ; transition **`TR-2026-0004`** autorisée vers le BUILDER sur `dev_sprint_01` ; reçu `sprint_report/TR-2026-0004_receipt.md`. Effet subordonné à l'exécution de D-032 : le prompt BUILDER bloque si la PR #1 n'est pas `MERGED` ou si `dev_sprint_01` ne dérive pas de `main`. R-S0-02 reste maintenue ; la dérogation de D-032 ne lève pas la réserve | VALIDATOR | **Validée** |
 | D-034 | 2026-11-22 | Protection de `main` avant fusion | **`GO` pour activer la protection de `main` puis fusionner S0** — constat confirmé : `gh api repos/sieni7/DemoWeb/branches/main/protection` renvoie 404 « Branch not protected », donc E-05 n'est plus `unknown` mais **absence confirmée**. Protection : PR obligatoire, status checks stricts sur `Lint, typecheck, tests, build and secret scan`, `enforce_admins`, interdiction des force push et suppressions | VALIDATOR | **Validée — exécutée : protection active et prouvée par `gh api` (`strict: true`, `enforce_admins.enabled: true`, `allow_force_pushes.enabled: false`, `allow_deletions.enabled: false`) avant fusion** |
+| D-035 | 2026-11-22 | Livrables hors transition | **Dépôt comme traces historiques** de `audit_report/S0_audit_rapport_signe.md` et `sprint_report/BUILDER_snapshot_refresh_report.md`, sans modification de contenu ; qualification `INC-2026-0005` : livrables produits hors transition, snapshots périmés, aucune divergence état/reçu, INV-04/INV-05 respectés ; aucune réserve levée, aucune transition consommée | VALIDATOR | **Validée** |
 
 ---
 
@@ -115,3 +116,4 @@
 | 0.14 | 2026-11-22 | D-032 (fusion S0 décidée, dérogation R-S0-02) et D-033 (GO S1, mandat `S1-v0.1`, transition `TR-2026-0004`) |
 | 0.15 | 2026-11-22 | D-034 — activation de la protection de `main` requise avant la fusion ; absence de protection confirmée par 404 |
 | 0.16 | 2026-11-22 | Exécution D-034 (protection active et prouvée) puis D-032 (PR #1 `MERGED`, merge `2a2272f4`) |
+| 0.17 | 2026-11-22 | D-035 — dépôt des rapports signés comme traces historiques ; `INC-2026-0005` qualifié |
