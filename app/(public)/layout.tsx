@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { Navigation } from "@/components/public/navigation";
+
 export default function PublicLayout({
   children,
 }: Readonly<{
@@ -13,7 +15,7 @@ export default function PublicLayout({
       >
         Aller au contenu principal
       </a>
-      <header className="border-b border-border bg-background/80">
+      <header className="relative border-b border-border bg-background/80">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4">
           <Link
             href="/"
@@ -21,6 +23,7 @@ export default function PublicLayout({
           >
             DemoWeb
           </Link>
+          <Navigation />
         </div>
       </header>
       <main
