@@ -15,7 +15,7 @@
     "name": "DemoWeb",
     "status": "in_progress",
     "created_at": "2026-11-22T08:00:00Z",
-    "updated_at": "2026-11-22T12:07:44Z"
+    "updated_at": "2026-11-22T12:12:47Z"
   },
   "checkpoints": {
     "cp1": "validated",
@@ -59,16 +59,16 @@
   "last_decision": {
     "value": "GO",
     "author": "VALIDATOR",
-    "date": "2026-11-22T12:07:44Z",
-    "motif": "Décisions D-032 et D-033 — GO pour la fusion S0 vers main (exécution réservée au VALIDATOR, dérogation explicite à R-S0-02) et GO pour S1 avec autorisation de TR-2026-0004 vers le BUILDER sur dev_sprint_01. R-S0-02 reste maintenue ; S0-AC-04 reste définitivement NOT_CHECKED"
+    "date": "2026-11-22T12:12:47Z",
+    "motif": "Décision D-034 — activer la protection de main (absence confirmée par 404) puis fusionner S0 ; D-032 et D-033 maintenues. Exécution réservée au VALIDATOR. R-S0-02 reste maintenue ; S0-AC-04 reste définitivement NOT_CHECKED"
   },
   "blockers": [
     {
       "id": "B-01",
       "objet": "Pull request S0 — main créée et PR ouverte, fusion décidée mais non exécutée",
       "statut": "en cours de résolution — D-032 (GO fusion) prise ; exécution par le VALIDATOR en attente",
-      "detail": "PR #1 'S0 — Fondations' vérifiée MERGEABLE / CLEAN, checks passants (dont secret scan, run 45020282228). D-032 autorise la fusion avec dérogation explicite à R-S0-02 ; R-S0-02 reste maintenue et S0-AC-04 définitivement NOT_CHECKED. La protection de main reste unknown (E-05), T1 à T5 NON EXÉCUTÉS. Les agents ne peuvent ni checkout main ni merger : exécution réservée au VALIDATOR.",
-      "decision_attendue": "Exécution de la fusion par le VALIDATOR, puis preuve de protection de main (E-05)"
+      "detail": "PR #1 'S0 — Fondations' vérifiée MERGEABLE / CLEAN, checks passants (runs 45020888944 et 45020894138). D-032 autorise la fusion avec dérogation explicite à R-S0-02 ; R-S0-02 reste maintenue et S0-AC-04 définitivement NOT_CHECKED. D-034 constate l'absence confirmée de protection de main (404) et exige son activation avant fusion ; T1 à T5 NON EXÉCUTÉS. Les agents ne peuvent ni checkout main ni merger : exécution réservée au VALIDATOR.",
+      "decision_attendue": "Activation et preuve de protection de main (D-034), puis exécution de la fusion (D-032)"
     }
   ],
   "reserves": [
@@ -99,8 +99,8 @@
     {
       "id": "E-05",
       "objet": "Protection de main inconnue",
-      "statut": "acceptée CP3 ; maintenue — main créée et PR #1 ouverte (D-026), mais protection toujours unknown et T1 à T5 NON EXÉCUTÉS",
-      "echeance": "S0"
+      "statut": "qualifiée par D-034 — absence de protection CONFIRMÉE (404 « Branch not protected »), plus unknown ; activation décidée par D-034, preuve d'activation et fusion en attente du VALIDATOR ; T1 à T5 NON EXÉCUTÉS",
+      "echeance": "avant fusion S0 — D-034"
     },
     {
       "id": "R-S0-01",
