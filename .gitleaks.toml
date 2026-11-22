@@ -1,0 +1,15 @@
+title = "DemoWeb secret scan configuration"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Generated build artifacts, dependencies and test reports are not source code"
+paths = [
+  '''(^|/)\.next/''',
+  '''(^|/)node_modules/''',
+  '''(^|/)coverage/''',
+  '''(^|/)playwright-report/''',
+  '''(^|/)test-results/''',
+  '''(^|/)blob-report/''',
+]

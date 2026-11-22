@@ -8,14 +8,14 @@
     "profile": "standard",
     "profile_locked": true,
     "selected_by": "VALIDATOR",
-    "selected_at": "2026-11-22T00:00:00Z"
+    "selected_at": "2026-11-22T08:00:00Z"
   },
   "project": {
     "id": "demoweb",
     "name": "DemoWeb",
     "status": "in_progress",
-    "created_at": "2026-11-22T00:00:00Z",
-    "updated_at": "2026-11-22T17:00:00Z"
+    "created_at": "2026-11-22T08:00:00Z",
+    "updated_at": "2026-11-22T12:12:47Z"
   },
   "checkpoints": {
     "cp1": "validated",
@@ -23,84 +23,224 @@
     "cp3": "validated"
   },
   "sprint": {
-    "current_id": "S0",
-    "current_status": "in_progress",
-    "next_id": null
+    "current_id": "S1",
+    "current_status": "authorized",
+    "next_id": "S2",
+    "previous_sprint": {
+      "id": "S0",
+      "status_before_merge": "accepted_with_reserves",
+      "merge_decision_id": "D-032",
+      "merge_execution": "en attente du VALIDATOR — PR #1 à fusionner"
+    }
   },
   "agent": {
     "current_agent": "BUILDER",
     "state_owner": "ORCHESTRATOR"
   },
   "transition": {
-    "transition_id": "TR-2026-0001",
-    "status": "consumed",
+    "transition_id": "TR-2026-0004",
+    "status": "authorized",
     "from_agent": "ORCHESTRATOR",
     "to_agent": "BUILDER",
-    "mandate_version": "S0-v0.1",
-    "action": "Exécuter le mandat S0 — Fondations",
-    "created_at": "2026-11-22T16:00:00Z",
+    "mandate_version": "S1-v0.1",
+    "action": "Exécution du sprint S1 — Design system : layout, navigation, footer, thème sombre, pages vides",
+    "created_at": "2026-11-22T12:07:44Z",
     "expires_at": null,
-    "authorized_at": "2026-11-22T16:30:00Z",
-    "consumed_at": "2026-11-22T09:32:00Z",
-    "receipt_reference": "sprint_report/TR-2026-0001_receipt.md",
-    "sprint_id": "S0",
+    "authorized_at": "2026-11-22T12:07:44Z",
+    "consumed_at": null,
+    "receipt_reference": null,
+    "sprint_id": "S1",
     "authorized_by": "VALIDATOR",
-    "decision_id": "D-020",
+    "decision_id": "D-033",
     "completed_at": null,
-    "result_report": null
+    "result_report": null,
+    "precondition": "Exécution de D-032 : PR #1 MERGED et dev_sprint_01 créée depuis main — le prompt BUILDER bloque sinon (Étape 0)"
   },
   "last_decision": {
     "value": "GO",
     "author": "VALIDATOR",
-    "date": "2026-11-22T16:30:00Z",
-    "motif": "Autorisation de la transition TR-2026-0001 — sprint S0"
+    "date": "2026-11-22T12:12:47Z",
+    "motif": "Décision D-034 — activer la protection de main (absence confirmée par 404) puis fusionner S0 ; D-032 et D-033 maintenues. Exécution réservée au VALIDATOR. R-S0-02 reste maintenue ; S0-AC-04 reste définitivement NOT_CHECKED"
   },
-  "blockers": [],
+  "blockers": [
+    {
+      "id": "B-01",
+      "objet": "Pull request S0 — main créée et PR ouverte, fusion décidée mais non exécutée",
+      "statut": "en cours de résolution — D-032 (GO fusion) prise ; exécution par le VALIDATOR en attente",
+      "detail": "PR #1 'S0 — Fondations' vérifiée MERGEABLE / CLEAN, checks passants (runs 45020888944 et 45020894138). D-032 autorise la fusion avec dérogation explicite à R-S0-02 ; R-S0-02 reste maintenue et S0-AC-04 définitivement NOT_CHECKED. D-034 constate l'absence confirmée de protection de main (404) et exige son activation avant fusion ; T1 à T5 NON EXÉCUTÉS. Les agents ne peuvent ni checkout main ni merger : exécution réservée au VALIDATOR.",
+      "decision_attendue": "Activation et preuve de protection de main (D-034), puis exécution de la fusion (D-032)"
+    }
+  ],
   "reserves": [
     {
       "id": "E-01",
       "objet": "Permissions non configurées et non testées",
-      "statut": "acceptée CP3",
+      "statut": "acceptée CP3 ; maintenue — T1 à T5 non exécutés, effectivité unknown",
       "echeance": "S0"
     },
     {
       "id": "E-02",
       "objet": "Dépôt Git non initialisé",
-      "statut": "acceptée CP3",
+      "statut": "acceptée CP3 — levée en S0 (dépôt initialisé et branche dev_sprint_00 poussée)",
       "echeance": "S0"
     },
     {
       "id": "E-03",
       "objet": "CI absente",
-      "statut": "acceptée CP3",
+      "statut": "acceptée CP3 — levée ; reproduction indépendante désormais prouvée par l'AUDITOR (run 45011380497 : success) et R-S0-01 levée par D-028",
       "echeance": "S0"
     },
     {
       "id": "E-04",
       "objet": "Modèles de rapports absents",
-      "statut": "acceptée CP3",
+      "statut": "acceptée CP3 — levée en S0 (7 modèles copiés)",
       "echeance": "S0"
     },
     {
       "id": "E-05",
       "objet": "Protection de main inconnue",
-      "statut": "acceptée CP3",
-      "echeance": "S0"
+      "statut": "qualifiée par D-034 — absence de protection CONFIRMÉE (404 « Branch not protected »), plus unknown ; activation décidée par D-034, preuve d'activation et fusion en attente du VALIDATOR ; T1 à T5 NON EXÉCUTÉS",
+      "echeance": "avant fusion S0 — D-034"
+    },
+    {
+      "id": "R-S0-01",
+      "objet": "Reproduction indépendante de S0-AC-03 — run CI 45011380497 = success",
+      "statut": "levée par D-028 — preuve reproduced, gh run view 45011380497 (databaseId) → conclusion success, status completed, headBranch dev_sprint_00",
+      "echeance": "close"
+    },
+    {
+      "id": "R-S0-02",
+      "objet": "Reproduction indépendante de S0-AC-04 — gitleaks detect --source . --redact sans secret",
+      "statut": "maintenue par D-028 et D-031 — définitivement NOT_CHECKED : aucun scan reproduit, TR-2026-0003 close sans consommation ; D-032 accorde une dérogation explicite à la fusion et D-033 une dérogation explicite au démarrage de S1, sans lever la réserve",
+      "echeance": "nouvelle transition AUDITOR à autoriser par le VALIDATOR si preuve requise — aucun identifiant consommé réutilisé"
+    },
+    {
+      "id": "R-S0-03",
+      "objet": "Vérification de AN-08 par addendum AUDITOR ; maintien de E-01 et E-05 jusqu'à preuve technique T1 à T5",
+      "statut": "partiellement levée par D-028 — AN-08 levée (S2 régularisée, 4 commits vérifiés existants et non réécrits) ; E-01 et E-05 maintenues (permissions et protection de main unknown, T1 à T5 NON EXÉCUTÉS)",
+      "echeance": "T1 à T5 pour E-01/E-05"
+    },
+    {
+      "id": "R-S0-04",
+      "objet": "Résolution de B-01 — création de main, ouverture de la PR puis fusion de S0",
+      "statut": "levée par D-032 — fusion de dev_sprint_00 vers main autorisée par décision VALIDATOR distincte, avec dérogation explicite à R-S0-02 ; exécution de la fusion en attente du VALIDATOR",
+      "echeance": "close — B-01 subsiste jusqu'à exécution effective de la fusion"
     }
   ],
   "change_control": {
     "active_changes": [],
-    "change_history": []
+    "change_history": [
+      {
+        "id": "CHG-2026-0001",
+        "objet": "Précision de la matrice de permissions AGENTS.md §3 — droit de commit des livrables de gouvernance",
+        "statut": "approuvée par D-023 — mise en œuvre en AGENTS.md v0.3 ; vérification en attente (AN-08)",
+        "date": "2026-11-22T10:49:11Z",
+        "reference": "docs/governance/changes/CHG-2026-0001.md"
+      },
+      {
+        "id": "CHG-2026-0002",
+        "objet": "Dépôt de audit_report/** par l'ORCHESTRATOR à titre de dépositaire, sans modification de contenu",
+        "statut": "approuvée par D-027 ; appliquée le 2026-11-22 à la clôture de TR-2026-0003 (D-031) — commit 9020b49, empreintes vérifiées avant et après dépôt, aucun contenu modifié",
+        "date": "2026-11-22T11:03:46Z",
+        "reference": "docs/governance/changes/CHG-2026-0002.md"
+      }
+    ]
   },
-  "permission_violations": [],
+  "permission_violations": [
+    {
+      "id": "PV-2026-0001",
+      "objet": "Quatre commits de gouvernance effectués par l'ORCHESTRATOR alors que AGENTS.md v0.2 §3 interdisait git commit à l'ORCHESTRATOR",
+      "statut": "qualifiée S2 — régularisée rétroactivement par D-023, limitée aux fichiers de gouvernance ; AN-08 levée par D-028 sur preuve AUDITOR (addendum S0-FUP : 4 commits existants et non réécrits)",
+      "commits": [
+        "05f52f6",
+        "c80db1c",
+        "2c976d6",
+        "507ec41"
+      ],
+      "reference": "docs/governance/incidents/INC-2026-0003.md"
+    }
+  ],
   "transition_history": [
     {
       "transition_id": "TR-2026-0001",
-      "event": "consumed",
-      "by_agent": "BUILDER",
-      "at": "2026-11-22T09:32:00Z",
-      "receipt": "sprint_report/TR-2026-0001_receipt.md",
-      "note": "Réconciliation état/reçu effectuée par l'ORCHESTRATOR — reçu déjà déposé, state.json mis à jour"
+      "status": "authorized",
+      "date": "2026-11-22T09:30:00Z",
+      "acteur": "VALIDATOR",
+      "decision_id": "D-020"
+    },
+    {
+      "transition_id": "TR-2026-0001",
+      "status": "consumed",
+      "date": "2026-11-22T09:32:00Z",
+      "acteur": "BUILDER",
+      "preuve": "sprint_report/TR-2026-0001_receipt.md"
+    },
+    {
+      "transition_id": "TR-2026-0001",
+      "status": "completed",
+      "date": "2026-11-22T10:20:00Z",
+      "acteur": "ORCHESTRATOR",
+      "preuve": "sprint_report/S0_report.md"
+    },
+    {
+      "transition_id": "TR-2026-0002",
+      "status": "authorized",
+      "date": "2026-11-22T10:28:00Z",
+      "acteur": "VALIDATOR",
+      "decision_id": "D-021"
+    },
+    {
+      "transition_id": "TR-2026-0002",
+      "status": "consumed",
+      "date": "2026-11-22T10:45:00Z",
+      "acteur": "AUDITOR",
+      "preuve": "audit_report/TR-2026-0002_receipt.md"
+    },
+    {
+      "transition_id": "TR-2026-0002",
+      "status": "completed",
+      "date": "2026-11-22T10:49:11Z",
+      "acteur": "AUDITOR",
+      "reconcilie_par": "ORCHESTRATOR",
+      "preuve": "docs/governance/incidents/INC-2026-0002.md ; audit_report/S0_audit.md"
+    },
+    {
+      "transition_id": "TR-2026-0003",
+      "status": "authorized",
+      "date": "2026-11-22T10:56:58Z",
+      "acteur": "VALIDATOR",
+      "decision_id": "D-025"
+    },
+    {
+      "transition_id": "TR-2026-0003",
+      "status": "mission_partial_no_receipt",
+      "date": "2026-11-22T11:08:00Z",
+      "acteur": "AUDITOR",
+      "detail": "Addendum v0.1 produit, transition non consommée (gitleaks absent) — aucun reçu déposé, INV-04 respecté ; qualifié par INC-2026-0004 / D-030"
+    },
+    {
+      "transition_id": "TR-2026-0003",
+      "status": "resumed",
+      "date": "2026-11-22T11:12:41Z",
+      "acteur": "VALIDATOR",
+      "decision_id": "D-029",
+      "detail": "Reprise sous le même identifiant — transition non terminale, gitleaks v8.30.1 installé, reçu + scan + addendum v0.2 attendus"
+    },
+    {
+      "transition_id": "TR-2026-0003",
+      "status": "cancelled",
+      "date": "2026-11-22T11:56:19Z",
+      "acteur": "VALIDATOR",
+      "decision_id": "D-031",
+      "detail": "D-029 révoquée — aucun reçu déposé, INV-04 respecté ; S0-AC-04 définitivement NOT_CHECKED ; INV-05 : transition terminale non réactivable ; addendum v0.1 déposé comme trace historique"
+    },
+    {
+      "transition_id": "TR-2026-0004",
+      "status": "authorized",
+      "date": "2026-11-22T12:07:44Z",
+      "acteur": "VALIDATOR",
+      "decision_id": "D-033",
+      "detail": "GO pour S1 — Design system ; mandat S1-v0.1 ; BUILDER sur dev_sprint_01 ; subordonné à l'exécution de D-032 (fusion S0)"
     }
   ]
 }
