@@ -92,6 +92,8 @@
 | ~~Mission complémentaire~~ | ~~Reprise par D-029~~ — **révoquée par D-031** : `TR-2026-0003` close sans consommation ; addendum v0.1 déposé comme trace historique |
 | Si nouvelle preuve S0-AC-04 requise | Nouvelle transition AUDITOR à autoriser par le VALIDATOR — aucun identifiant consommé réutilisé (INV-12) |
 | ~~Sprint suivant~~ | ~~S1 non autorisé~~ — **GO par D-033**, mandat `S1-v0.1`, transition `TR-2026-0004` vers le BUILDER ; effet subordonné à la fusion S0 |
+| ~~Exécution S1~~ | **Livrée le 2026-11-22T14:19:08Z** — `TR-2026-0004` consommée puis complétée ; `sprint=S1/builder_completed` ; aucune acceptation décidée |
+| À court terme | **GO pour l'audit S1** — décision VALIDATOR à prendre ; nouvelle transition AUDITOR à autoriser (`TR-2026-0005`), aucune réactivation de `TR-2026-0003` |
 | Chaque sprint | Acceptation puis fusion, en deux décisions séparées |
 
 ---

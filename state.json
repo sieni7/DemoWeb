@@ -15,7 +15,7 @@
     "name": "DemoWeb",
     "status": "in_progress",
     "created_at": "2026-11-22T08:00:00Z",
-    "updated_at": "2026-11-22T12:23:20Z"
+    "updated_at": "2026-11-23T05:26:52Z"
   },
   "checkpoints": {
     "cp1": "validated",
@@ -24,7 +24,7 @@
   },
   "sprint": {
     "current_id": "S1",
-    "current_status": "authorized",
+    "current_status": "builder_completed",
     "next_id": "S2",
     "previous_sprint": {
       "id": "S0",
@@ -38,12 +38,12 @@
     }
   },
   "agent": {
-    "current_agent": "BUILDER",
+    "current_agent": "ORCHESTRATOR",
     "state_owner": "ORCHESTRATOR"
   },
   "transition": {
     "transition_id": "TR-2026-0004",
-    "status": "authorized",
+    "status": "completed",
     "from_agent": "ORCHESTRATOR",
     "to_agent": "BUILDER",
     "mandate_version": "S1-v0.1",
@@ -51,14 +51,15 @@
     "created_at": "2026-11-22T12:07:44Z",
     "expires_at": null,
     "authorized_at": "2026-11-22T12:07:44Z",
-    "consumed_at": null,
-    "receipt_reference": null,
+    "consumed_at": "2026-11-22T12:28:32Z",
+    "receipt_reference": "sprint_report/TR-2026-0004_receipt.md",
     "sprint_id": "S1",
     "authorized_by": "VALIDATOR",
     "decision_id": "D-033",
-    "completed_at": null,
-    "result_report": null,
-    "precondition": "Exécution de D-032 : PR #1 MERGED et dev_sprint_01 créée depuis main — le prompt BUILDER bloque sinon (Étape 0)"
+    "completed_at": "2026-11-22T14:19:08Z",
+    "result_report": "sprint_report/S1_report.md",
+    "precondition": "Exécution de D-032 : PR #1 MERGED et dev_sprint_01 créée depuis main — vérifiée par le BUILDER à la consommation",
+    "completion_detail": "10 commits atomiques sur dev_sprint_01 (bb36642 reçu puis T1-1 à T1-9 et clôture 3774469) ; CI success runs 45027731226 et 45032235345 ; gitleaks declared_only, R-S0-02 maintenue"
   },
   "last_decision": {
     "value": "GO",
@@ -245,6 +246,22 @@
       "acteur": "VALIDATOR",
       "decision_id": "D-033",
       "detail": "GO pour S1 — Design system ; mandat S1-v0.1 ; BUILDER sur dev_sprint_01 ; subordonné à l'exécution de D-032 (fusion S0)"
+    },
+    {
+      "transition_id": "TR-2026-0004",
+      "status": "consumed",
+      "date": "2026-11-22T12:28:32Z",
+      "acteur": "BUILDER",
+      "preuve": "sprint_report/TR-2026-0004_receipt.md",
+      "detail": "Reçu déposé en premier, avant T1-1 ; INV-04 respecté"
+    },
+    {
+      "transition_id": "TR-2026-0004",
+      "status": "completed",
+      "date": "2026-11-22T14:19:08Z",
+      "acteur": "BUILDER",
+      "preuve": "sprint_report/S1_report.md",
+      "detail": "S1 livré : 10 commits atomiques sur dev_sprint_01, CI verte (45027731226, 45032235345), preuves dans sprint_report/evidence/. Aucune décision d'acceptation prise."
     }
   ]
 }
