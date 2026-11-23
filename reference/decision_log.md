@@ -2,9 +2,9 @@
 
 | Champ | Valeur |
 |---|---|
-| Version | 0.18 |
+| Version | 0.19 |
 | Date | 2026-11-23 |
-| Statut | **CP1, CP2, CP3 validés · main protégée · S0 fusionnée · S1 livrée · audit S1 autorisé (D-036) — 2026-11-23** |
+| Statut | **CP1, CP2, CP3 validés · main protégée · S0 fusionnée · S1 livrée et auditée · acceptation S1 en attente du VALIDATOR — 2026-11-23** |
 | Auteur | ORCHESTRATOR |
 | Portée | Décisions du VALIDATOR, identifiées et tracées |
 | Ne contient pas | Décisions de sprint (GO, GO_WITH_RESERVES, NO_GO, HOLD, CANCELLED) — voir `state.json` |
@@ -94,8 +94,8 @@
 | Si nouvelle preuve S0-AC-04 requise | Nouvelle transition AUDITOR à autoriser par le VALIDATOR — aucun identifiant consommé réutilisé (INV-12) |
 | ~~Sprint suivant~~ | ~~S1 non autorisé~~ — **GO par D-033**, mandat `S1-v0.1`, transition `TR-2026-0004` vers le BUILDER ; effet subordonné à la fusion S0 |
 | ~~Exécution S1~~ | **Livrée le 2026-11-22T14:19:08Z** — `TR-2026-0004` consommée puis complétée ; `sprint=S1/builder_completed` ; aucune acceptation décidée |
-| ~~Audit S1~~ | ~~Décision d'autorisation à prendre~~ — **D-036 (`GO`) rendue le 2026-11-23T05:33:42Z** ; `TR-2026-0005` autorisée vers AUDITOR, prompt actif en session séparée |
-| À court terme | Réception du reçu `audit_report/TR-2026-0005_receipt.md` puis de `audit_report/S1_audit.md` ; ensuite seulement **acceptation S1** par le VALIDATOR, puis **fusion S1** par une décision distincte |
+| ~~Audit S1~~ | **D-036 (`GO`) rendue le 2026-11-23T05:33:42Z** ; `TR-2026-0005` consommée le 2026-11-23T05:45:00Z et complétée le 2026-11-23T05:50:20Z ; reçu `audit_report/TR-2026-0005_receipt.md` et rapport `audit_report/S1_audit.md` livrés. Recommandation AUDITOR : `GO_WITH_RESERVES` — **avis, non décision** |
+| À court terme | **Acceptation S1** — décision VALIDATOR à prendre (`GO` / `GO_WITH_RESERVES` / `NO_GO` / `HOLD`) ; puis, **séparément**, fusion S1 vers `main`. `R-S0-02` et `E-01` maintenues, `S1-AC-08` `NOT_CHECKED` |
 | Chaque sprint | Acceptation puis fusion, en deux décisions séparées |
 
 ---
@@ -122,3 +122,4 @@
 | 0.16 | 2026-11-22 | Exécution D-034 (protection active et prouvée) puis D-032 (PR #1 `MERGED`, merge `2a2272f4`) |
 | 0.17 | 2026-11-22 | D-035 — dépôt des rapports signés comme traces historiques ; `INC-2026-0005` qualifié |
 | 0.18 | 2026-11-23 | D-036 — `GO` pour l'audit S1 ; `TR-2026-0005` autorisée vers AUDITOR ; `S1/auditing` |
+| 0.19 | 2026-11-23 | Consignation de la consommation et de la livraison de l'audit S1 ; `S1/audit_completed` ; recommandation `GO_WITH_RESERVES` enregistrée comme avis, aucune décision d'acceptation prise |

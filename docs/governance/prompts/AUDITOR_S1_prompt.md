@@ -4,7 +4,7 @@
 |---|---|
 | Version | 0.1 |
 | Date | 2026-11-23T05:30:00Z |
-| Statut | **ACTIF — `TR-2026-0005` autorisée par D-036 (`GO` pour l'audit S1), non consommée** |
+| Statut | **CLOS — `TR-2026-0005` consommée puis complétée ; prompt non réexécutable (INV-05)** |
 | Transition associée | `TR-2026-0005` — `authorized` / `to_agent=AUDITOR` / `decision_id=D-036` dans `state.json` sur `dev_sprint_00` |
 | À copier dans | une **session séparée**, sans contexte du BUILDER ni de l'ORCHESTRATOR |
 
@@ -144,3 +144,4 @@ Ce prompt est volontairement autonome : il ne présuppose aucune connaissance de
 |---|---|---|
 | 0.1 | 2026-11-23T05:30:00Z | Rédaction en mode non exécutable, en attente de D-036 et de `TR-2026-0005` |
 | 0.2 | 2026-11-23T05:33:42Z | D-036 `GO` rendue : prompt activé, `TR-2026-0005` autorisée vers AUDITOR |
+| 0.3 | 2026-11-23T05:50:20Z | Audit livré : prompt clos, transition complétée, aucune réexécution autorisée |
