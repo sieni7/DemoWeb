@@ -2,9 +2,9 @@
 
 | Champ | Valeur |
 |---|---|
-| Version | 0.8 |
+| Version | 0.9 |
 | Date | 2026-11-23 |
-| Statut | **S1 FUSIONNÉE — PR #2 `MERGED`, merge `b2cbc2e` (D-038) ; synchronisation de la gouvernance autorisée au titre de D-038, exécution en attente (B-02)** |
+| Statut | **S1 FUSIONNÉE ET GOUVERNANCE SYNCHRONISÉE — PR #2 `MERGED` (`b2cbc2e`), PR #3 `MERGED` (`f303923`) ; B-02 clos — 2026-11-23** |
 | Sprint | **S1 — Design system** |
 | `mandate_version` | `S1-v0.1` |
 | Branche | `dev_sprint_01` (à créer depuis `main` après fusion de S0) |
@@ -101,7 +101,8 @@ Mettre en place le design system et la structure des pages publiques vides : lay
 | Audit | **`TR-2026-0005/completed`** — reçu `audit_report/TR-2026-0005_receipt.md`, rapport `audit_report/S1_audit.md` ; recommandation AUDITOR `GO_WITH_RESERVES` (avis, non décision) |
 | Acceptation | **D-037 `GO`** — 2026-11-23T06:00:41Z, aucune réserve nouvelle ; `R-S0-02` et `E-01` maintenues ; sprint `S1/accepted` |
 | Fusion | **D-038 `GO` exécuté** — PR #2 `dev_sprint_01` → `main` `MERGED`, merge commit `b2cbc2e318593d4eb846363c248ecba8a2df8611` ; dérogation explicite : `S1-AC-08` `NOT_CHECKED`, `R-S0-02` maintenue |
-| Suite | **B-02** — `main` porte encore le snapshot BUILDER ; PR de synchronisation `dev_sprint_00` → `main` **autorisée au titre de D-038** (confirmation du 2026-11-23T06:18:36Z), à exécuter par le VALIDATOR |
+| Gouvernance | **Synchronisée le 2026-11-23T06:34:09Z au titre de D-038** — PR #3 `dev_sprint_00` → `main` `MERGED`, merge commit `f303923f2213d9a1c82a1cb8a5bfe2c274af1ee6`, `main` = `f303923` ; `origin/main` vérifié : `S1/merged`, `agent=ORCHESTRATOR`, D-036 à D-038, `audit_report/S1_audit.md` et `audit_report/TR-2026-0005_receipt.md` présents |
+| Suite | **B-02 clos** — aucune décision S2 sans décision VALIDATOR explicite ; `R-S0-02` et `E-01` maintenues, `S1-AC-08` et `S0-AC-04` `NOT_CHECKED` |
 
 ---
 
@@ -117,3 +118,4 @@ Mettre en place le design system et la structure des pages publiques vides : lay
 | 0.6 | 2026-11-23 | Fusion autorisée (D-038), exécution réservée au VALIDATOR ; `mandate_version` inchangée |
 | 0.7 | 2026-11-23 | Fusion exécutée (PR #2, merge `b2cbc2e`) ; ouverture de B-02 ; `mandate_version` inchangée |
 | 0.8 | 2026-11-23 | Synchronisation gouvernance confirmée au titre de D-038 ; `mandate_version` inchangée |
+| 0.9 | 2026-11-23 | Synchronisation exécutée (PR #3, merge `f303923`) ; cohérence de `main` vérifiée, B-02 clos ; `mandate_version` inchangée |
