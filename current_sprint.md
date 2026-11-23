@@ -2,9 +2,9 @@
 
 | Champ | Valeur |
 |---|---|
-| Version | 0.1 |
-| Date | 2026-11-22 |
-| Statut | **S1 AUTORISÉ — D-033 ; exécution subordonnée à la fusion S0 (D-032)** |
+| Version | 0.8 |
+| Date | 2026-11-23 |
+| Statut | **S1 FUSIONNÉE — PR #2 `MERGED`, merge `b2cbc2e` (D-038) ; synchronisation de la gouvernance autorisée au titre de D-038, exécution en attente (B-02)** |
 | Sprint | **S1 — Design system** |
 | `mandate_version` | `S1-v0.1` |
 | Branche | `dev_sprint_01` (à créer depuis `main` après fusion de S0) |
@@ -13,7 +13,7 @@
 
 **Références :** [roadmap.md](sprints/roadmap.md) §2 · [architecture.md](docs/architecture/architecture.md) §2 et §6 · [requirements.md](docs/requirements/requirements.md) FR-01/FR-02/NFR-02/NFR-08 · [AGENTS.md](AGENTS.md).
 
-> Ce mandat ne vaut **aucune autorisation d'exécution** par lui-même. L'autorisation est portée par la transition `TR-2026-0004` (D-033) et par le reçu que le BUILDER doit déposer. Le démarrage effectif est subordonné à l'exécution de D-032 : PR #1 `MERGED` et `dev_sprint_01` dérivée de `main`.
+> Ce mandat ne vaut **aucune autorisation d'exécution** par lui-même. L'autorisation est portée par la transition `TR-2026-0004` (D-033) et par le reçu que le BUILDER doit déposer. La précondition est remplie : PR #1 `MERGED` (merge `2a2272f4`), protection de `main` activée et prouvée. Le BUILDER doit créer `dev_sprint_01` depuis `main` mise à jour.
 
 ---
 
@@ -97,6 +97,11 @@ Mettre en place le design system et la structure des pages publiques vides : lay
 | Autorisation | VALIDATOR — D-033, 2026-11-22T12:07:44Z |
 | Reçu | `sprint_report/TR-2026-0004_receipt.md` |
 | Précondition | Fusion S0 exécutée (D-032) |
+| État d'exécution | **Livrée** — `TR-2026-0004/completed`, rapport `sprint_report/S1_report.md` |
+| Audit | **`TR-2026-0005/completed`** — reçu `audit_report/TR-2026-0005_receipt.md`, rapport `audit_report/S1_audit.md` ; recommandation AUDITOR `GO_WITH_RESERVES` (avis, non décision) |
+| Acceptation | **D-037 `GO`** — 2026-11-23T06:00:41Z, aucune réserve nouvelle ; `R-S0-02` et `E-01` maintenues ; sprint `S1/accepted` |
+| Fusion | **D-038 `GO` exécuté** — PR #2 `dev_sprint_01` → `main` `MERGED`, merge commit `b2cbc2e318593d4eb846363c248ecba8a2df8611` ; dérogation explicite : `S1-AC-08` `NOT_CHECKED`, `R-S0-02` maintenue |
+| Suite | **B-02** — `main` porte encore le snapshot BUILDER ; PR de synchronisation `dev_sprint_00` → `main` **autorisée au titre de D-038** (confirmation du 2026-11-23T06:18:36Z), à exécuter par le VALIDATOR |
 
 ---
 
@@ -105,3 +110,10 @@ Mettre en place le design system et la structure des pages publiques vides : lay
 | Version | Date | Modification |
 |---|---|---|
 | 0.1 | 2026-11-22 | Mandat initial S1 — Design system ; `TR-2026-0004` autorisée par D-033 ; subordonné à la fusion S0 (D-032) |
+| 0.2 | 2026-11-22 | Précondition remplie : protection de main active (D-034) et PR #1 fusionnée (merge `2a2272f4`) ; `mandate_version` inchangée (`S1-v0.1`) |
+| 0.3 | 2026-11-23 | Consignation de la livraison S1 et de l'autorisation d'audit (D-036 / `TR-2026-0005`) ; `mandate_version` inchangée (`S1-v0.1`) |
+| 0.4 | 2026-11-23 | Audit livré (`TR-2026-0005/completed`) ; recommandation AUDITOR `GO_WITH_RESERVES` enregistrée comme avis ; `mandate_version` inchangée |
+| 0.5 | 2026-11-23 | Acceptation `GO` (D-037) ; `mandate_version` inchangée (`S1-v0.1`) |
+| 0.6 | 2026-11-23 | Fusion autorisée (D-038), exécution réservée au VALIDATOR ; `mandate_version` inchangée |
+| 0.7 | 2026-11-23 | Fusion exécutée (PR #2, merge `b2cbc2e`) ; ouverture de B-02 ; `mandate_version` inchangée |
+| 0.8 | 2026-11-23 | Synchronisation gouvernance confirmée au titre de D-038 ; `mandate_version` inchangée |

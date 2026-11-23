@@ -2,7 +2,7 @@
 
 > À copier dans une **session séparée**, sans contexte de l'ORCHESTRATOR ni de l'AUDITOR. Ne pas lancer depuis une session ayant écrit de l'état ou du code pour S0.
 
-**Statut : ACTIF — `TR-2026-0004` autorisée par D-033, non consommée.** Précondition bloquante : fusion S0 exécutée par le VALIDATOR (D-032) — PR #1 `MERGED` et `dev_sprint_01` dérivée de `main`. Si le VALIDATOR n'a pas encore fusionné, n'exécute pas ce prompt.
+**Statut : ACTIF — `TR-2026-0004` autorisée par D-033, non consommée.** Précondition remplie le 2026-11-22T12:16:09Z : protection de `main` active (D-034) et PR #1 `MERGED` (merge `2a2272f4`). L'étape 0 du prompt revérifie ces faits ; le BUILDER crée `dev_sprint_01` depuis la `main` mise à jour.
 
 ---
 

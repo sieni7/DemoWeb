@@ -15,7 +15,7 @@
     "name": "DemoWeb",
     "status": "in_progress",
     "created_at": "2026-11-22T08:00:00Z",
-    "updated_at": "2026-11-22T12:12:47Z"
+    "updated_at": "2026-11-23T06:18:36Z"
   },
   "checkpoints": {
     "cp1": "validated",
@@ -24,51 +24,78 @@
   },
   "sprint": {
     "current_id": "S1",
-    "current_status": "authorized",
+    "current_status": "merged",
     "next_id": "S2",
     "previous_sprint": {
       "id": "S0",
       "status_before_merge": "accepted_with_reserves",
+      "status_after_merge": "merged",
       "merge_decision_id": "D-032",
-      "merge_execution": "en attente du VALIDATOR — PR #1 à fusionner"
+      "protection_decision_id": "D-034",
+      "merge_executed_at": "2026-11-22T12:16:09Z",
+      "merge_commit": "2a2272f405a98c47d77842d7b99992ba28578e26",
+      "merge_execution": "exécutée par le VALIDATOR — PR #1 MERGED ; main = 2a2272f4 ; dérogation explicite à R-S0-02 maintenue"
+    },
+    "acceptance": {
+      "decision_id": "D-037",
+      "value": "GO",
+      "author": "VALIDATOR",
+      "date": "2026-11-23T06:00:41Z",
+      "decision_type": "acceptance_sprint",
+      "basis": "TR-2026-0005/completed ; audit_report/S1_audit.md : S1-AC-01 à S1-AC-07 PASS, S1-AC-08 NOT_CHECKED (gitleaks absent, preuve declared_only)",
+      "reserves": "aucune réserve nouvelle ; R-S0-02 et E-01 restent maintenues (réserves S0 antérieures)",
+      "merge": "GO décidé par D-038 le 2026-11-23T06:02:53Z — exécution réservée au VALIDATOR",
+      "merge_execution": "exécutée par le VALIDATOR le 2026-11-23T06:08:46Z — PR #2 'S1 — Design system' (dev_sprint_01 -> main) MERGED, merge commit b2cbc2e318593d4eb846363c248ecba8a2df8611, main = b2cbc2e ; checks verts (run 45032235345), mergeStateStatus CLEAN ; dérogation explicite à S1-AC-08 NOT_CHECKED et aux réserves R-S0-02 / E-01 maintenues",
+      "governance_sync": "confirmée par le VALIDATOR le 2026-11-23T06:18:36Z au titre de D-038 (aucune décision distincte requise) : PR de synchronisation dev_sprint_00 -> main à créer puis fusionner ; exécution réservée au VALIDATOR. main porte provisoirement le snapshot BUILDER (S1/authorized, agent=BUILDER, TR-2026-0004/authorized) et ne contient pas encore les livrables d'audit S1"
     }
   },
   "agent": {
-    "current_agent": "BUILDER",
+    "current_agent": "ORCHESTRATOR",
     "state_owner": "ORCHESTRATOR"
   },
   "transition": {
-    "transition_id": "TR-2026-0004",
-    "status": "authorized",
+    "transition_id": "TR-2026-0005",
+    "status": "completed",
     "from_agent": "ORCHESTRATOR",
-    "to_agent": "BUILDER",
+    "to_agent": "AUDITOR",
     "mandate_version": "S1-v0.1",
-    "action": "Exécution du sprint S1 — Design system : layout, navigation, footer, thème sombre, pages vides",
-    "created_at": "2026-11-22T12:07:44Z",
+    "action": "Audit indépendant du sprint S1 — Design system : vérification des critères S1-AC-01 à S1-AC-08",
+    "created_at": "2026-11-23T05:30:00Z",
     "expires_at": null,
-    "authorized_at": "2026-11-22T12:07:44Z",
-    "consumed_at": null,
-    "receipt_reference": null,
+    "authorized_at": "2026-11-23T05:33:42Z",
+    "consumed_at": "2026-11-23T05:45:00Z",
+    "receipt_reference": "audit_report/TR-2026-0005_receipt.md",
     "sprint_id": "S1",
     "authorized_by": "VALIDATOR",
-    "decision_id": "D-033",
-    "completed_at": null,
-    "result_report": null,
-    "precondition": "Exécution de D-032 : PR #1 MERGED et dev_sprint_01 créée depuis main — le prompt BUILDER bloque sinon (Étape 0)"
+    "decision_id": "D-036",
+    "completed_at": "2026-11-23T05:50:20Z",
+    "result_report": "audit_report/S1_audit.md",
+    "precondition": "D-036 (GO audit S1) rendue par le VALIDATOR ; TR-2026-0004 completed et terminale, TR-2026-0003 cancelled. INV-02/INV-03 respectés.",
+    "prompt": "docs/governance/prompts/AUDITOR_S1_prompt.md",
+    "completion_detail": "S1-AC-01 à S1-AC-07 PASS (reproduced ou cross_checked) ; S1-AC-08 NOT_CHECKED (missing — gitleaks absent, preuve BUILDER declared_only). Aucune divergence état/reçu (INV-04) ; décalage de snapshot S3 consigné (INC-2026-0005). Anomalies AN-S1-01 (S1) et AN-S1-02 à AN-S1-04 (S3). R-S0-02 et E-01 maintenues. Recommandation AUDITOR : GO_WITH_RESERVES — avis non décisionnel ; aucune acceptation ni fusion décidée."
   },
   "last_decision": {
     "value": "GO",
     "author": "VALIDATOR",
-    "date": "2026-11-22T12:12:47Z",
-    "motif": "Décision D-034 — activer la protection de main (absence confirmée par 404) puis fusionner S0 ; D-032 et D-033 maintenues. Exécution réservée au VALIDATOR. R-S0-02 reste maintenue ; S0-AC-04 reste définitivement NOT_CHECKED"
+    "date": "2026-11-23T06:02:53Z",
+    "decision_id": "D-038",
+    "decision_type": "merge_sprint",
+    "motif": "Décision distincte D-038 — GO pour la fusion de S1 vers main, après acceptation D-037. Exécutée par le VALIDATOR : PR #2 MERGED, merge commit b2cbc2e318593d4eb846363c248ecba8a2df8611. Décision de fusion distincte de l'acceptation (GC-07 / state_model §3.2). R-S0-02 et E-01 maintenues, dérogation explicite : S1-AC-08 reste NOT_CHECKED et S0-AC-04 définitivement NOT_CHECKED. Aucune décision S2. Périmètre confirmé par le VALIDATOR le 2026-11-23T06:18:36Z : D-038 couvre aussi la PR de synchronisation dev_sprint_00 -> main (B-02 qualifié, en attente d'exécution)."
   },
   "blockers": [
     {
       "id": "B-01",
-      "objet": "Pull request S0 — main créée et PR ouverte, fusion décidée mais non exécutée",
-      "statut": "en cours de résolution — D-032 (GO fusion) prise ; exécution par le VALIDATOR en attente",
-      "detail": "PR #1 'S0 — Fondations' vérifiée MERGEABLE / CLEAN, checks passants (runs 45020888944 et 45020894138). D-032 autorise la fusion avec dérogation explicite à R-S0-02 ; R-S0-02 reste maintenue et S0-AC-04 définitivement NOT_CHECKED. D-034 constate l'absence confirmée de protection de main (404) et exige son activation avant fusion ; T1 à T5 NON EXÉCUTÉS. Les agents ne peuvent ni checkout main ni merger : exécution réservée au VALIDATOR.",
-      "decision_attendue": "Activation et preuve de protection de main (D-034), puis exécution de la fusion (D-032)"
+      "objet": "Pull request S0 — fusion exécutée",
+      "statut": "levé — D-034 exécutée puis D-032 exécutée par le VALIDATOR",
+      "detail": "Protection de main activée et prouvée (D-034), puis PR #1 'S0 — Fondations' fusionnée le 2026-11-22T12:16:09Z, merge commit 2a2272f405a98c47d77842d7b99992ba28578e26. Vérification : state MERGED, main = 2a2272f4 sur origin. R-S0-02 reste maintenue et S0-AC-04 définitivement NOT_CHECKED ; dérogation explicite documentée. E-01 demeure unknown (T1 à T5 NON EXÉCUTÉS).",
+      "decision_attendue": "aucune — B-01 clos"
+    },
+    {
+      "id": "B-02",
+      "objet": "Cohérence de la gouvernance sur main après fusion S1",
+      "statut": "qualifié — exécution autorisée au titre de D-038 (confirmation VALIDATOR du 2026-11-23T06:18:36Z), en attente d'exécution",
+      "detail": "Après la PR #2 (merge b2cbc2e), main contient le code S1 et ses preuves BUILDER, mais son state.json est le snapshot du BUILDER (S1/authorized, agent=BUILDER, TR-2026-0004/authorized). L'état courant (S1/merged, D-037, D-038, TR-2026-0005/completed) et les livrables audit_report/S1_audit.md et audit_report/TR-2026-0005_receipt.md restent sur dev_sprint_00. Ce décalage est un fait constaté, pas une divergence état/reçu (INV-04) : les reçus déposés sont cohérents avec la consignation sur dev_sprint_00. Comparaison GitHub : main...dev_sprint_00 = diverged (11 ahead, 13 behind), 12 fichiers de gouvernance/audit, aucun conflit détecté par git merge-tree.",
+      "decision_attendue": "aucune — PR de synchronisation dev_sprint_00 -> main à exécuter par le VALIDATOR au titre de D-038"
     }
   ],
   "reserves": [
@@ -99,8 +126,8 @@
     {
       "id": "E-05",
       "objet": "Protection de main inconnue",
-      "statut": "qualifiée par D-034 — absence de protection CONFIRMÉE (404 « Branch not protected »), plus unknown ; activation décidée par D-034, preuve d'activation et fusion en attente du VALIDATOR ; T1 à T5 NON EXÉCUTÉS",
-      "echeance": "avant fusion S0 — D-034"
+      "statut": "levée par D-034 — protection activée et prouvée avant fusion : PR obligatoire, status checks stricts sur 'Lint, typecheck, tests, build and secret scan', enforce_admins true, force push et suppressions interdits ; T1 à T5 restent NON EXÉCUTÉS",
+      "echeance": "close"
     },
     {
       "id": "R-S0-01",
@@ -117,8 +144,8 @@
     {
       "id": "R-S0-03",
       "objet": "Vérification de AN-08 par addendum AUDITOR ; maintien de E-01 et E-05 jusqu'à preuve technique T1 à T5",
-      "statut": "partiellement levée par D-028 — AN-08 levée (S2 régularisée, 4 commits vérifiés existants et non réécrits) ; E-01 et E-05 maintenues (permissions et protection de main unknown, T1 à T5 NON EXÉCUTÉS)",
-      "echeance": "T1 à T5 pour E-01/E-05"
+      "statut": "partiellement levée — AN-08 levée par D-028 (S2 régularisée, 4 commits vérifiés) ; E-05 levée par D-034 (protection de main activée et prouvée) ; E-01 maintenue (permissions unknown, T1 à T5 NON EXÉCUTÉS)",
+      "echeance": "T1 à T5 pour E-01"
     },
     {
       "id": "R-S0-04",
@@ -241,6 +268,46 @@
       "acteur": "VALIDATOR",
       "decision_id": "D-033",
       "detail": "GO pour S1 — Design system ; mandat S1-v0.1 ; BUILDER sur dev_sprint_01 ; subordonné à l'exécution de D-032 (fusion S0)"
+    },
+    {
+      "transition_id": "TR-2026-0004",
+      "status": "consumed",
+      "date": "2026-11-22T12:28:32Z",
+      "acteur": "BUILDER",
+      "preuve": "sprint_report/TR-2026-0004_receipt.md",
+      "detail": "Reçu déposé en premier, avant T1-1 ; INV-04 respecté"
+    },
+    {
+      "transition_id": "TR-2026-0004",
+      "status": "completed",
+      "date": "2026-11-22T14:19:08Z",
+      "acteur": "BUILDER",
+      "preuve": "sprint_report/S1_report.md",
+      "detail": "S1 livré : 10 commits atomiques sur dev_sprint_01, CI verte (45027731226, 45032235345), preuves dans sprint_report/evidence/. Aucune décision d'acceptation prise."
+    },
+    {
+      "transition_id": "TR-2026-0005",
+      "status": "authorized",
+      "date": "2026-11-23T05:33:42Z",
+      "acteur": "VALIDATOR",
+      "decision_id": "D-036",
+      "detail": "GO pour l'audit S1 — mandat S1-v0.1 ; AUDITOR sur dev_sprint_01 ; état S1/builder_completed -> auditing ; aucune consommation ni reçu à ce jour"
+    },
+    {
+      "transition_id": "TR-2026-0005",
+      "status": "consumed",
+      "date": "2026-11-23T05:45:00Z",
+      "acteur": "AUDITOR",
+      "preuve": "audit_report/TR-2026-0005_receipt.md",
+      "detail": "Reçu déposé en premier, avant toute vérification ; INV-04 respecté, aucun reçu antérieur"
+    },
+    {
+      "transition_id": "TR-2026-0005",
+      "status": "completed",
+      "date": "2026-11-23T05:50:20Z",
+      "acteur": "AUDITOR",
+      "preuve": "audit_report/S1_audit.md",
+      "detail": "Audit livré : 7 critères PASS, S1-AC-08 NOT_CHECKED ; recommandation GO_WITH_RESERVES (avis). R-S0-02 et E-01 maintenues ; aucune décision VALIDATOR d'acceptation ou de fusion."
     }
   ]
 }
