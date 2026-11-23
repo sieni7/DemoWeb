@@ -15,7 +15,7 @@
     "name": "DemoWeb",
     "status": "in_progress",
     "created_at": "2026-11-22T08:00:00Z",
-    "updated_at": "2026-11-23T06:42:55Z"
+    "updated_at": "2026-11-23T06:59:30Z"
   },
   "checkpoints": {
     "cp1": "validated",
@@ -23,20 +23,20 @@
     "cp3": "validated"
   },
   "sprint": {
-    "current_id": "S1",
-    "current_status": "merged",
-    "next_id": "S2",
+    "current_id": "S2",
+    "current_status": "authorized",
+    "next_id": "S3",
     "previous_sprint": {
-      "id": "S0",
-      "status_before_merge": "accepted_with_reserves",
+      "id": "S1",
+      "status_before_merge": "accepted",
       "status_after_merge": "merged",
-      "merge_decision_id": "D-032",
-      "protection_decision_id": "D-034",
-      "merge_executed_at": "2026-11-22T12:16:09Z",
-      "merge_commit": "2a2272f405a98c47d77842d7b99992ba28578e26",
-      "merge_execution": "exécutée par le VALIDATOR — PR #1 MERGED ; main = 2a2272f4 ; dérogation explicite à R-S0-02 maintenue"
+      "merge_decision_id": "D-038",
+      "merge_executed_at": "2026-11-23T06:08:46Z",
+      "merge_commit": "b2cbc2e318593d4eb846363c248ecba8a2df8611",
+      "merge_execution": "exécutée par le VALIDATOR — PR #2 MERGED ; main = b2cbc2e ; dérogation explicite à S1-AC-08 NOT_CHECKED et aux réserves R-S0-02 / E-01 maintenues ; synchronisation gouvernance PR #3 (f303923) et clôture B-02 PR #4 (16f6d02)"
     },
     "acceptance": {
+      "sprint_id": "S1",
       "decision_id": "D-037",
       "value": "GO",
       "author": "VALIDATOR",
@@ -50,37 +50,39 @@
     }
   },
   "agent": {
-    "current_agent": "ORCHESTRATOR",
+    "current_agent": "BUILDER",
     "state_owner": "ORCHESTRATOR"
   },
   "transition": {
-    "transition_id": "TR-2026-0005",
-    "status": "completed",
+    "transition_id": "TR-2026-0006",
+    "status": "authorized",
     "from_agent": "ORCHESTRATOR",
-    "to_agent": "AUDITOR",
-    "mandate_version": "S1-v0.1",
-    "action": "Audit indépendant du sprint S1 — Design system : vérification des critères S1-AC-01 à S1-AC-08",
-    "created_at": "2026-11-23T05:30:00Z",
+    "to_agent": "BUILDER",
+    "mandate_version": "S2-v0.1",
+    "action": "Exécution du sprint S2 — Données + auth : Prisma/Neon, Auth.js + argon2, session admin, protection des routes /admin/** et verrouillage après 5 échecs",
+    "created_at": "2026-11-23T06:55:41Z",
     "expires_at": null,
-    "authorized_at": "2026-11-23T05:33:42Z",
-    "consumed_at": "2026-11-23T05:45:00Z",
-    "receipt_reference": "audit_report/TR-2026-0005_receipt.md",
-    "sprint_id": "S1",
+    "authorized_at": "2026-11-23T06:55:41Z",
+    "consumed_at": null,
+    "receipt_reference": null,
+    "sprint_id": "S2",
     "authorized_by": "VALIDATOR",
-    "decision_id": "D-036",
-    "completed_at": "2026-11-23T05:50:20Z",
-    "result_report": "audit_report/S1_audit.md",
-    "precondition": "D-036 (GO audit S1) rendue par le VALIDATOR ; TR-2026-0004 completed et terminale, TR-2026-0003 cancelled. INV-02/INV-03 respectés.",
-    "prompt": "docs/governance/prompts/AUDITOR_S1_prompt.md",
-    "completion_detail": "S1-AC-01 à S1-AC-07 PASS (reproduced ou cross_checked) ; S1-AC-08 NOT_CHECKED (missing — gitleaks absent, preuve BUILDER declared_only). Aucune divergence état/reçu (INV-04) ; décalage de snapshot S3 consigné (INC-2026-0005). Anomalies AN-S1-01 (S1) et AN-S1-02 à AN-S1-04 (S3). R-S0-02 et E-01 maintenues. Recommandation AUDITOR : GO_WITH_RESERVES — avis non décisionnel ; aucune acceptation ni fusion décidée."
+    "decision_id": "D-040",
+    "completed_at": null,
+    "result_report": null,
+    "precondition": "PR #4 MERGED (merge 16f6d029b287fd5368818dcdac992a8b6339b639), main = 16f6d02 ; protection de main active et prouvée (D-034) ; dev_sprint_02 à créer depuis origin/main par le BUILDER ; aucun checkout main, aucune PR ni fusion par un agent.",
+    "prompt": "docs/governance/prompts/BUILDER_S2_prompt.md",
+    "mandat": "current_sprint.md (S2-v0.1) — mandat S1 archivé dans sprints/S1_mandate.md",
+    "reçu_attendu": "sprint_report/TR-2026-0006_receipt.md",
+    "rapport_attendu": "sprint_report/S2_report.md"
   },
   "last_decision": {
     "value": "GO",
     "author": "VALIDATOR",
-    "date": "2026-11-23T06:37:49Z",
-    "decision_id": "D-039",
-    "decision_type": "governance_sync",
-    "motif": "Décision distincte D-039 — GO pour une PR complémentaire dev_sprint_00 -> main portant la clôture de B-02 (commit 8bfaa9d), après synchronisation exécutée au titre de D-038 (PR #3, merge f303923). Exécutée par le VALIDATOR le 2026-11-23T06:42:23Z : PR #4 'Gouvernance — clôture B-02 (D-039)' MERGED, merge commit 16f6d029b287fd5368818dcdac992a8b6339b639, main = 16f6d02 ; checks verts (runs 45125664922 et 45125673603), mergeStateStatus CLEAN, protection de main maintenue (ni --admin ni --auto). Vérification directe de origin/main : S1/merged, agent=ORCHESTRATOR, last_decision=D-039, B-02 'levé — synchronisation exécutée…'. Blocage transitoire consigné : premier merge refusé avant propagation des checks sur le head f660a0e issu de update-branch, puis résolu sans contournement. Aucune décision de sprint, aucune transition, aucun identifiant réutilisé, aucune ouverture S2. Le décalage résiduel d'un commit entre la branche d'autorité et main est structurel, non une divergence état/reçu (INV-04). R-S0-02 et E-01 maintenues, S1-AC-08 et S0-AC-04 NOT_CHECKED."
+    "date": "2026-11-23T06:55:41Z",
+    "decision_id": "D-040",
+    "decision_type": "sprint_authorization",
+    "motif": "Décision distincte D-040 — GO pour l'ouverture du sprint S2 (Données + auth) : mandat S2-v0.1 approuvé, transition TR-2026-0006 autorisée depuis ORCHESTRATOR vers BUILDER sur dev_sprint_02 à créer depuis main = 16f6d02 (PR #4 MERGED, protection active). exécution confiée au BUILDER en session séparée via docs/governance/prompts/BUILDER_S2_prompt.md ; reçu attendu sprint_report/TR-2026-0006_receipt.md. Cette décision n'autorise ni audit S2, ni acceptation S2, ni fusion S2, ni S3, ni levée de réserve : R-S0-02 et E-01 restent maintenues, S0-AC-04 et S1-AC-08 restent NOT_CHECKED. Aucun identifiant de transition réutilisé (TR-2026-0001 à TR-2026-0005 terminales) ; INV-04/INV-05/INV-12 respectés. Aucun merge, aucune PR, aucun checkout main par un agent."
   },
   "blockers": [
     {
@@ -102,7 +104,7 @@
     {
       "id": "E-01",
       "objet": "Permissions non configurées et non testées",
-      "statut": "acceptée CP3 ; maintenue — T1 à T5 non exécutés, effectivité unknown",
+      "statut": "acceptée CP3 ; maintenue — T1 à T5 non exécutés, effectivité unknown ; D-040 (GO S2) ne lève pas la réserve",
       "echeance": "S0"
     },
     {
@@ -138,7 +140,7 @@
     {
       "id": "R-S0-02",
       "objet": "Reproduction indépendante de S0-AC-04 — gitleaks detect --source . --redact sans secret",
-      "statut": "maintenue par D-028 et D-031 — définitivement NOT_CHECKED : aucun scan reproduit, TR-2026-0003 close sans consommation ; D-032 accorde une dérogation explicite à la fusion et D-033 une dérogation explicite au démarrage de S1, sans lever la réserve",
+      "statut": "maintenue par D-028 et D-031 — définitivement NOT_CHECKED : aucun scan reproduit, TR-2026-0003 close sans consommation ; D-032 accorde une dérogation explicite à la fusion et D-033 une dérogation explicite au démarrage de S1, sans lever la réserve ; D-040 (GO S2) ne lève pas la réserve",
       "echeance": "nouvelle transition AUDITOR à autoriser par le VALIDATOR si preuve requise — aucun identifiant consommé réutilisé"
     },
     {
@@ -308,6 +310,14 @@
       "acteur": "AUDITOR",
       "preuve": "audit_report/S1_audit.md",
       "detail": "Audit livré : 7 critères PASS, S1-AC-08 NOT_CHECKED ; recommandation GO_WITH_RESERVES (avis). R-S0-02 et E-01 maintenues ; aucune décision VALIDATOR d'acceptation ou de fusion."
+    },
+    {
+      "transition_id": "TR-2026-0006",
+      "status": "authorized",
+      "date": "2026-11-23T06:55:41Z",
+      "acteur": "VALIDATOR",
+      "decision_id": "D-040",
+      "detail": "GO pour S2 — Données + auth ; mandat S2-v0.1 ; BUILDER sur dev_sprint_02 à créer depuis main = 16f6d02 ; reçu attendu sprint_report/TR-2026-0006_receipt.md ; aucune consommation, aucun audit, aucune acceptation, aucune fusion, aucune ouverture S3. R-S0-02 et E-01 maintenues."
     }
   ]
 }

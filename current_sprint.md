@@ -1,123 +1,126 @@
-# DemoWeb — Mandat du sprint S1
+# DemoWeb — Mandat du sprint S2
 
 | Champ | Valeur |
 |---|---|
-| Version | 1.1 |
+| Version | 0.1 |
 | Date | 2026-11-23 |
-| Statut | **FINALISATION TERMINÉE — S1 fusionnée (PR #2 `b2cbc2e`), gouvernance synchronisée (PR #3 `f303923`), clôture B-02 portée sur `main` (PR #4 `16f6d02`) — 2026-11-23** |
-| Sprint | **S1 — Design system** |
-| `mandate_version` | `S1-v0.1` |
-| Branche | `dev_sprint_01` (à créer depuis `main` après fusion de S0) |
+| Statut | **AUTORISÉE — `TR-2026-0006` autorisée par D-040, non consommée ; en attente de la session BUILDER** |
+| Sprint | **S2 — Données + auth** |
+| `mandate_version` | `S2-v0.1` |
+| Branche | `dev_sprint_02` (à créer depuis `main` = `16f6d02`) |
 | Auteur | ORCHESTRATOR |
 | Validateur | VALIDATOR |
 
-**Références :** [roadmap.md](sprints/roadmap.md) §2 · [architecture.md](docs/architecture/architecture.md) §2 et §6 · [requirements.md](docs/requirements/requirements.md) FR-01/FR-02/NFR-02/NFR-08 · [AGENTS.md](AGENTS.md).
+**Références :** [roadmap.md](sprints/roadmap.md) §2 et §4 · [architecture.md](docs/architecture/architecture.md) §2, §3 et §5 · [requirements.md](docs/requirements/requirements.md) FR-06 / NFR-05 / NFR-06 · [ADR-002](docs/adr/ADR-002-database.md) · [ADR-003](docs/adr/ADR-003-authentication.md) · [AGENTS.md](AGENTS.md).
 
-> Ce mandat ne vaut **aucune autorisation d'exécution** par lui-même. L'autorisation est portée par la transition `TR-2026-0004` (D-033) et par le reçu que le BUILDER doit déposer. La précondition est remplie : PR #1 `MERGED` (merge `2a2272f4`), protection de `main` activée et prouvée. Le BUILDER doit créer `dev_sprint_01` depuis `main` mise à jour.
+> Ce mandat ne vaut **aucune autorisation d'exécution** par lui-même. L'autorisation est portée par la transition `TR-2026-0006` (D-040) et par le reçu que le BUILDER doit déposer. Le mandat S1 est archivé dans [`sprints/S1_mandate.md`](sprints/S1_mandate.md) ; toutes ses décisions sont consignées dans `reference/decision_log.md`.
 
 ---
 
 ## 1. Objectif
 
-Mettre en place le design system et la structure des pages publiques vides : layout commun, navigation responsive, pied de page, thème sombre persistant et routes de la vitrine. Aucun contenu métier, aucune animation, aucune donnée, aucune authentification.
+Mettre en place la persistance et l'authentification du futur backoffice : base PostgreSQL Neon via Prisma avec migrations reproductibles, Auth.js avec argon2id et GitHub OAuth, session admin unique, protection des routes `/admin/**` et verrouillage après cinq échecs. Aucun CRUD métier, aucun upload, aucun formulaire de contact fonctionnel.
 
 ---
 
-## 2. Périmètre autorisé
+## 2. Précondition
+
+- D-040 (`GO` pour S2) rendue par le VALIDATOR le 2026-11-23T06:55:41Z.
+- PR #4 `MERGED` (merge `16f6d029b287fd5368818dcdac992a8b6339b639`) ; `origin/main` = `16f6d02`.
+- Protection de `main` active et prouvée (D-034) ; strict, check obligatoire, `enforce_admins`, pas de force push ni de suppression.
+- `dev_sprint_02` reste à créer par le BUILDER depuis `origin/main` mise à jour.
+- Aucun agent ne peut `git checkout main`, `git switch main`, fusionner ni ouvrir de PR.
+
+L'étape 0 du prompt BUILDER revérifie ces faits avant toute consommation de la transition.
+
+---
+
+## 3. Périmètre autorisé
 
 | # | Tâche | Livrable |
 |---|---|---|
-| T1-1 | Créer `app/(public)/layout.tsx` : structure commune (lien d'évitement, `header`, `main`, `footer`) | Layout public |
-| T1-2 | Composant `Navigation` responsive avec menu mobile accessible (shadcn/ui, sans nouvelle dépendance) | `components/public/navigation.tsx` |
-| T1-3 | Composant `Footer` en français, avec lien vers `/privacy` (route vide) | `components/public/footer.tsx` |
-| T1-4 | Thème clair/sombre : variables CSS Tailwind v4, bascule persistée, initialisation sans flash | `components/public/theme-toggle.tsx` + `app/globals.css` |
-| T1-5 | Routes vides conformes à l'architecture §2 : `/`, `/projects`, `/projects/[slug]`, `/about`, `/contact`, `/privacy` | Pages `app/(public)/**` |
-| T1-6 | Design tokens Tailwind v4 : couleurs, typographie, espacements, contrastes AA | `app/globals.css` |
-| T1-7 | Accessibilité de base : focus visible, navigation clavier du menu, `aria-*`, `prefers-reduced-motion` pris en compte | Composants + tests |
-| T1-8 | Tests Vitest (navigation, bascule de thème) et Playwright (375 / 768 / 1440, clair et sombre) | `tests/**` |
-| T1-9 | CI verte sur `dev_sprint_01` et production des preuves | Preuves dans `sprint_report/**` |
+| T2-1 | Schéma Prisma initial conforme architecture §3 : `User`, `Account`, `Session`, `Project`, `Media`, `ContactMessage`, `LoginAttempt` (et table de vérification si requise par l'adaptateur Auth.js) ; `slug` unique, `status` ∈ {`draft`,`published`}, `tags` en `String[]` | `prisma/schema.prisma` + `prisma/migrations/**` |
+| T2-2 | Connexion Neon via `PrismaClient` singleton et pooling PgBouncer ; `.env.example` contenant **les noms de variables uniquement, sans aucune valeur réelle** (`DATABASE_URL`, `AUTH_SECRET`, `AUTH_GITHUB_ID`, `AUTH_GITHUB_SECRET`, `ADMIN_GITHUB_LOGINS`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`) ; `.env` ignoré | Configuration + `.env.example` |
+| T2-3 | Auth.js v5 avec adaptateur Prisma ; fournisseurs `credentials` (argon2id) et GitHub OAuth ; sessions JWT signées 8 h avec renouvellement glissant ; rôle unique `ADMIN`, aucune inscription publique ; script de *seed* administrateur à partir des variables d'environnement | `lib/auth/**`, `app/api/auth/[...nextauth]/route.ts`, script de seed |
+| T2-4 | Protection des routes : `middleware.ts` exigeant une session sur `/admin/**` sauf `/admin/login` ; page de connexion en français ; tableau de bord `/admin` minimal sans CRUD | `middleware.ts`, `app/(admin)/**` |
+| T2-5 | Verrouillage : état en base dans `LoginAttempt` (`identifier`, `ipHash`, `success`, `createdAt`) ; 5 échecs consécutifs en 15 min → blocage 15 min, compteur partagé en base ; test e2e simulant plusieurs instances serverless | `lib/auth/**` + tests |
+| T2-6 | Sécurité complémentaire : rate limiting du login avec compteur partagé en base, validation Zod des entrées, en-têtes CSP / HSTS / `X-Content-Type-Options` / `Referrer-Policy` | Configuration + tests |
+| T2-7 | RGPD — modèle de données : `ContactMessage.consentAt` et `retentionUntil = createdAt + 12 mois` ; **documenter dans le rapport** une proposition de purge automatique et de sauvegarde Neon, sans implémenter de tâche planifiée (décision VALIDATOR ultérieure) | Schéma + section du rapport |
+| T2-8 | Tests Vitest (hachage argon2, verrouillage, garde de route, schéma) et Playwright (connexion, refus sans session, verrouillage, déconnexion) | `tests/**` |
+| T2-9 | CI verte sur `dev_sprint_02` et production des preuves | `sprint_report/**` |
+
+Les dépendances autorisées sont celles arrêtées en ADR-002 et ADR-003 : `prisma`, `@prisma/client`, `next-auth` (v5), `@auth/prisma-adapter`, `argon2`, `zod`. Toute autre dépendance doit être signalée au VALIDATOR avant ajout.
 
 ---
 
-## 3. Exclusions
+## 4. Exclusions
 
-- Aucun contenu réel ni contenu fictif détaillé : les pages restent des squelettes titrés (contenu en S3).
-- Aucune animation GSAP/ScrollTrigger, Lenis, transition de page ou micro-interaction (S4).
-- Aucune scène 3D, WebGL ou Three.js (S5).
-- Aucun modèle Prisma, migration, base de données ou appel réseau applicatif (S2).
-- Aucune authentification, aucun backoffice, aucune route `/api/**` (S2/S6).
-- Aucun formulaire de contact fonctionnel, aucun envoi d'email, aucun Turnstile (S7).
-- Aucun SEO avancé : pas de sitemap, pas de robots, pas d'OpenGraph (S3). `title` et `meta description` minimaux autorisés.
+- Aucun CRUD de projets, textes ou médias, aucun upload Vercel Blob : S6.
+- Aucun formulaire de contact fonctionnel, aucun envoi d'email Resend, aucun Turnstile : S7.
+- Aucun contenu vitrine détaillé : S3. Aucune animation GSAP/ScrollTrigger/Lenis : S4. Aucune 3D/WebGL : S5.
+- Aucun SEO avancé (sitemap, robots, OpenGraph) : S3.
+- Aucune réinitialisation de mot de passe : hors périmètre ADR-003 (intervention manuelle).
+- Aucune inscription publique, aucun second rôle que `ADMIN`.
+- Aucune tâche T1 à T5 relative aux permissions : réserve `E-01`, décision distincte requise.
+- Aucune rotation de réserve, aucune modification de `AGENTS.md`, `state.json`, `docs/**`, `sprints/**`, `reference/**`, `audit_report/**` ou `debt_report/**`.
 - Aucun déploiement, aucune création de `main`, aucune PR, aucune fusion.
-- Aucune nouvelle dépendance hors stack validée : **notamment pas de `next-themes` ni de Framer Motion en S1**.
 
 ---
 
-## 4. Critères d'acceptation du sprint
+## 5. Critères d'acceptation du sprint
 
 | Réf. | Critère |
 |---|---|
-| S1-AC-01 | `npm run dev` démarre sans erreur ; les six routes répondent `200`. |
-| S1-AC-02 | Navigation responsive de 375 à 1440 px, sans débordement horizontal ni chevauchement. |
-| S1-AC-03 | Bascule clair/sombre fonctionnelle, persistée après rechargement, sans flash initial. |
-| S1-AC-04 | Lien d'évitement, focus visible et navigation clavier du menu mobile opérationnels. |
-| S1-AC-05 | `npm run lint`, `npm run typecheck` et `npm run test` passent ; les tests Playwright couvrent 375 / 768 / 1440 en clair et en sombre. |
-| S1-AC-06 | Structure conforme à `docs/architecture/architecture.md` §2 ; aucun fichier interdit au BUILDER n'est modifié. |
-| S1-AC-07 | Le workflow CI passe au vert sur `dev_sprint_01`. |
-| S1-AC-08 | `gitleaks detect --source . --redact` ne signale aucun secret. **Preuve `declared_only` du BUILDER : elle ne lève pas R-S0-02**, qui reste `NOT_CHECKED` (D-031). |
+| S2-AC-01 | Les migrations Prisma sont reproductibles depuis un schéma vide ; la commande exacte, la date et le résultat sont consignés. |
+| S2-AC-02 | Une requête vers `/admin/**` sans session est refusée ou redirigée ; `/admin/login` reste accessible. |
+| S2-AC-03 | Connexion `credentials` (argon2id) et GitHub OAuth opérationnelles ; rôle `ADMIN` unique ; aucune inscription publique. |
+| S2-AC-04 | Session JWT signée, durée 8 h, renouvellement glissant vérifiables. |
+| S2-AC-05 | Verrouillage effectif : 5 échecs en 15 min → blocage 15 min, état partagé en base (`LoginAttempt`) ; test e2e consigné. |
+| S2-AC-06 | `npm run lint`, `npm run typecheck`, `npm run test`, `npm run build` et Playwright passent ; workflow CI vert sur `dev_sprint_02`. |
+| S2-AC-07 | Aucun secret dans le dépôt public : `.env.example` sans valeurs, `.env` ignoré ; sortie `gitleaks` produite. **Preuve `declared_only` du BUILDER : elle ne lève pas `R-S0-02`.** |
+| S2-AC-08 | Structure conforme à `architecture.md` §2/§3/§5 ; aucun fichier interdit modifié ; `retentionUntil` calculé sur `ContactMessage`. |
+
+`NOT_CHECKED` ne vaut jamais `PASS`. Si l'accès à une base Neon de test n'est pas disponible, les critères dépendants d'une exécution réelle sont `NOT_CHECKED` avec motif explicite — aucune sortie n'est inventée.
 
 ---
 
-## 5. Preuves attendues
+## 6. Preuves attendues
 
-- Captures des six routes à 375 / 768 / 1440 px, en clair et en sombre.
-- Sortie brute des commandes `npm run lint`, `npm run typecheck`, `npm run test` et des tests Playwright.
-- URL de l'exécution CI verte sur `dev_sprint_01`.
-- Sortie de `gitleaks` (version, date, nombre de findings).
+- Schéma Prisma et liste des migrations avec leurs hashes.
+- Sorties brutes de `lint`, `typecheck`, `test`, `build`, Playwright et `gitleaks` (version, date, nombre de findings).
+- URL de l'exécution CI verte sur `dev_sprint_02`.
+- Sortie du test de verrouillage et de la vérification de refus d'accès `/admin/**`.
 - Liste des commits atomiques avec leurs hashes.
+- Mentions explicites dans le rapport : « aucune réserve levée », « `R-S0-02` reste maintenue », « `E-01` reste maintenue », « aucune décision prise », « aucune fusion effectuée », « `audit_report/**` non modifié ».
 
 ---
 
-## 6. Git
+## 7. Git
 
-- Commits atomiques, un par tâche `T1-x`.
-- `dev_sprint_01` créée depuis `main` après fusion de S0 ; aucun `git checkout main` ni `git switch main`.
-- Push uniquement sur `dev_sprint_01`. Aucun merge, aucun `push --force`, aucun `reset --hard`.
-- Aucune PR : sa création relève d'une décision VALIDATOR ultérieure.
+- `dev_sprint_02` créée depuis `origin/main` = `16f6d02` après `git fetch origin` ; aucun `checkout main` ni `switch main`.
+- Un commit atomique par tâche `T2-x`. Push uniquement sur `dev_sprint_02`.
+- Aucun merge, aucun `push --force`, aucun `reset --hard`, aucune PR : sa création relève d'une décision VALIDATOR ultérieure.
 
 ---
 
-## 7. Transition
+## 8. Transition
 
 | Champ | Valeur |
 |---|---|
-| `transition_id` | `TR-2026-0004` |
-| `mandate_version` | `S1-v0.1` |
+| `transition_id` | `TR-2026-0006` |
+| `mandate_version` | `S2-v0.1` |
 | Destinataire | BUILDER |
-| Autorisation | VALIDATOR — D-033, 2026-11-22T12:07:44Z |
-| Reçu | `sprint_report/TR-2026-0004_receipt.md` |
-| Précondition | Fusion S0 exécutée (D-032) |
-| État d'exécution | **Livrée** — `TR-2026-0004/completed`, rapport `sprint_report/S1_report.md` |
-| Audit | **`TR-2026-0005/completed`** — reçu `audit_report/TR-2026-0005_receipt.md`, rapport `audit_report/S1_audit.md` ; recommandation AUDITOR `GO_WITH_RESERVES` (avis, non décision) |
-| Acceptation | **D-037 `GO`** — 2026-11-23T06:00:41Z, aucune réserve nouvelle ; `R-S0-02` et `E-01` maintenues ; sprint `S1/accepted` |
-| Fusion | **D-038 `GO` exécuté** — PR #2 `dev_sprint_01` → `main` `MERGED`, merge commit `b2cbc2e318593d4eb846363c248ecba8a2df8611` ; dérogation explicite : `S1-AC-08` `NOT_CHECKED`, `R-S0-02` maintenue |
-| Gouvernance | **Synchronisée le 2026-11-23T06:34:09Z au titre de D-038** — PR #3 `dev_sprint_00` → `main` `MERGED`, merge commit `f303923f2213d9a1c82a1cb8a5bfe2c274af1ee6`, `main` = `f303923` ; `origin/main` vérifié : `S1/merged`, `agent=ORCHESTRATOR`, D-036 à D-038, `audit_report/S1_audit.md` et `audit_report/TR-2026-0005_receipt.md` présents |
-| Suite | **Finalisation terminée** — D-039 exécutée le 2026-11-23T06:42:23Z : PR #4 `MERGED`, merge `16f6d029b287fd5368818dcdac992a8b6339b639`, `main` = `16f6d02`, B-02 clos sur `main`. Aucune décision S2 sans décision explicite ; `R-S0-02` et `E-01` maintenues, `S1-AC-08` et `S0-AC-04` `NOT_CHECKED` |
+| Autorisation | VALIDATOR — D-040, 2026-11-23T06:55:41Z |
+| Reçu | `sprint_report/TR-2026-0006_receipt.md` |
+| Précondition | PR #4 `MERGED`, `main` = `16f6d02`, protection active |
+| État d'exécution | **Autorisée — non consommée** |
+
+Les réserves `R-S0-02` et `E-01` restent maintenues ; `S0-AC-04` et `S1-AC-08` restent `NOT_CHECKED`. Aucune transition S3 ni audit S2 n'est autorisé à ce stade.
 
 ---
 
-## 8. Historique
+## 9. Historique
 
 | Version | Date | Modification |
 |---|---|---|
-| 0.1 | 2026-11-22 | Mandat initial S1 — Design system ; `TR-2026-0004` autorisée par D-033 ; subordonné à la fusion S0 (D-032) |
-| 0.2 | 2026-11-22 | Précondition remplie : protection de main active (D-034) et PR #1 fusionnée (merge `2a2272f4`) ; `mandate_version` inchangée (`S1-v0.1`) |
-| 0.3 | 2026-11-23 | Consignation de la livraison S1 et de l'autorisation d'audit (D-036 / `TR-2026-0005`) ; `mandate_version` inchangée (`S1-v0.1`) |
-| 0.4 | 2026-11-23 | Audit livré (`TR-2026-0005/completed`) ; recommandation AUDITOR `GO_WITH_RESERVES` enregistrée comme avis ; `mandate_version` inchangée |
-| 0.5 | 2026-11-23 | Acceptation `GO` (D-037) ; `mandate_version` inchangée (`S1-v0.1`) |
-| 0.6 | 2026-11-23 | Fusion autorisée (D-038), exécution réservée au VALIDATOR ; `mandate_version` inchangée |
-| 0.7 | 2026-11-23 | Fusion exécutée (PR #2, merge `b2cbc2e`) ; ouverture de B-02 ; `mandate_version` inchangée |
-| 0.8 | 2026-11-23 | Synchronisation gouvernance confirmée au titre de D-038 ; `mandate_version` inchangée |
-| 0.9 | 2026-11-23 | Synchronisation exécutée (PR #3, merge `f303923`) ; cohérence de `main` vérifiée, B-02 clos ; `mandate_version` inchangée |
-| 1.0 | 2026-11-23 | D-039 — `GO` pour la PR complémentaire de clôture vers `main`, exécution réservée au VALIDATOR ; `mandate_version` inchangée |
-| 1.1 | 2026-11-23 | D-039 exécutée (PR #4, merge `16f6d02`) ; B-02 clos sur `main`, finalisation terminée ; `mandate_version` inchangée |
+| 0.1 | 2026-11-23 | Mandat initial S2 — Données + auth ; `TR-2026-0006` autorisée par D-040 ; mandat S1 archivé dans `sprints/S1_mandate.md` |
