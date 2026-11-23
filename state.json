@@ -70,7 +70,7 @@
     "decision_id": "D-040",
     "completed_at": null,
     "result_report": null,
-    "precondition": "PR #4 MERGED (merge 16f6d029b287fd5368818dcdac992a8b6339b639), main = 16f6d02 ; protection de main active et prouvée (D-034) ; dev_sprint_02 à créer depuis origin/main par le BUILDER ; aucun checkout main, aucune PR ni fusion par un agent.",
+    "precondition": "PR #4 MERGED (merge 16f6d029b287fd5368818dcdac992a8b6339b639), main = 16f6d02 ; protection de main active et prouvée (D-034) ; consignation D-040 sur dev_sprint_00 (df56a39) — main porte encore D-039 : synchronisation de la gouvernance vers main à décider par le VALIDATOR (décision distincte, exécution réservée au VALIDATOR) avant consommation ; dev_sprint_02 à créer depuis origin/main par le BUILDER ; aucun checkout main, aucune PR ni fusion par un agent.",
     "prompt": "docs/governance/prompts/BUILDER_S2_prompt.md",
     "mandat": "current_sprint.md (S2-v0.1) — mandat S1 archivé dans sprints/S1_mandate.md",
     "reçu_attendu": "sprint_report/TR-2026-0006_receipt.md",
@@ -82,7 +82,7 @@
     "date": "2026-11-23T06:55:41Z",
     "decision_id": "D-040",
     "decision_type": "sprint_authorization",
-    "motif": "Décision distincte D-040 — GO pour l'ouverture du sprint S2 (Données + auth) : mandat S2-v0.1 approuvé, transition TR-2026-0006 autorisée depuis ORCHESTRATOR vers BUILDER sur dev_sprint_02 à créer depuis main = 16f6d02 (PR #4 MERGED, protection active). exécution confiée au BUILDER en session séparée via docs/governance/prompts/BUILDER_S2_prompt.md ; reçu attendu sprint_report/TR-2026-0006_receipt.md. Cette décision n'autorise ni audit S2, ni acceptation S2, ni fusion S2, ni S3, ni levée de réserve : R-S0-02 et E-01 restent maintenues, S0-AC-04 et S1-AC-08 restent NOT_CHECKED. Aucun identifiant de transition réutilisé (TR-2026-0001 à TR-2026-0005 terminales) ; INV-04/INV-05/INV-12 respectés. Aucun merge, aucune PR, aucun checkout main par un agent."
+    "motif": "Décision distincte D-040 — GO pour l'ouverture du sprint S2 (Données + auth) : mandat S2-v0.1 approuvé, transition TR-2026-0006 autorisée depuis ORCHESTRATOR vers BUILDER sur dev_sprint_02 à créer depuis main = 16f6d02 (PR #4 MERGED, protection active). exécution confiée au BUILDER en session séparée via docs/governance/prompts/BUILDER_S2_prompt.md ; reçu attendu sprint_report/TR-2026-0006_receipt.md. Cette décision n'autorise ni audit S2, ni acceptation S2, ni fusion S2, ni S3, ni levée de réserve : R-S0-02 et E-01 restent maintenues, S0-AC-04 et S1-AC-08 restent NOT_CHECKED. Aucun identifiant de transition réutilisé (TR-2026-0001 à TR-2026-0005 terminales) ; INV-04/INV-05/INV-12 respectés. La consignation est intervenue sur dev_sprint_00 (commit df56a39) : main porte encore D-039, si bien qu'une décision VALIDATOR distincte est requise pour synchroniser la gouvernance vers main avant la consommation de TR-2026-0006 ; aucun agent ne crée de PR ni ne fusionne. Aucun merge, aucune PR, aucun checkout main par un agent."
   },
   "blockers": [
     {

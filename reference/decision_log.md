@@ -4,7 +4,7 @@
 |---|---|
 | Version | 0.27 |
 | Date | 2026-11-23 |
-| Statut | **CP1, CP2, CP3 validés · main protégée · S0 fusionnée · S1 fusionnée (PR #2, merge `b2cbc2e`) · gouvernance synchronisée (PR #3, merge `f303923`) · clôture portée sur `main` (PR #4, merge `16f6d02`) · B-02 clos · S2 autorisée (D-040, `TR-2026-0006`) — en attente de la session BUILDER, 2026-11-23** |
+| Statut | **CP1, CP2, CP3 validés · main protégée · S0 fusionnée · S1 fusionnée (PR #2, merge `b2cbc2e`) · gouvernance synchronisée (PR #3, merge `f303923`) · clôture portée sur `main` (PR #4, merge `16f6d02`) · B-02 clos · S2 autorisée (D-040, `TR-2026-0006`) — synchronisation de D-040 vers `main` en attente de décision, puis session BUILDER, 2026-11-23** |
 | Auteur | ORCHESTRATOR |
 | Portée | Décisions du VALIDATOR, identifiées et tracées |
 | Ne contient pas | Décisions de sprint (GO, GO_WITH_RESERVES, NO_GO, HOLD, CANCELLED) — voir `state.json` |
@@ -104,6 +104,7 @@
 | ~~B-02 — décision de synchronisation~~ | **Exécutée le 2026-11-23T06:34:09Z au titre de D-038** — PR #3 `dev_sprint_00` → `main` `MERGED`, merge commit `f303923f2213d9a1c82a1cb8a5bfe2c274af1ee6`, `main` = `f303923`, checks verts, `CLEAN`. Cohérence vérifiée sur `origin/main`. B-02 clos |
 | ~~PR complémentaire de clôture~~ | **D-039 (`GO`) exécutée le 2026-11-23T06:42:23Z** — PR #4 `dev_sprint_00` → `main` `MERGED`, merge commit `16f6d029b287fd5368818dcdac992a8b6339b639`, `main` = `16f6d02`, checks verts, `CLEAN`, protection maintenue ; B-02 clos sur `main` |
 | ~~Ouverture S2~~ | **D-040 (`GO`) rendue le 2026-11-23T06:55:41Z** — mandat `S2-v0.1`, `TR-2026-0006` autorisée vers BUILDER sur `dev_sprint_02` depuis `main` = `16f6d02` ; reçu attendu `sprint_report/TR-2026-0006_receipt.md` ; transition non consommée |
+| **Préalable au lancement BUILDER** | **Décision VALIDATOR distincte requise pour synchroniser D-040 vers `main`** — la consignation est sur `dev_sprint_00` (commit `df56a39`), `main` porte encore D-039 ; sans `state.json` à jour sur `main`, l'étape 0 du prompt BUILDER bloque. Exécution de la PR réservée au VALIDATOR ; aucun agent ne crée de PR ni ne fusionne |
 | Après livraison S2 | **Décision d'audit S2** — nouvelle transition à autoriser explicitement par le VALIDATOR ; avis AUDITOR non décisionnel ; `unknown`, `NOT_CHECKED` et `declared_only` ne valent jamais `PASS` |
 | Après audit S2 | **Décision d'acceptation S2** — distincte de l'audit et de la fusion ; sort des réserves à arbitrer explicitement |
 | Après acceptation S2 | **Décision de fusion S2 vers `main`** — décision distincte (GC-07), exécution réservée au VALIDATOR |

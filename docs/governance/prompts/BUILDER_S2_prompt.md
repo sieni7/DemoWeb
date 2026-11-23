@@ -29,13 +29,14 @@ Tu n'acceptes rien, tu ne lèves aucune réserve, tu ne décides ni fusion, ni c
 Vérifie AVANT toute action :
 - gh pr view 4 --repo sieni7/DemoWeb --json number,state,baseRefName,headRefName → state MERGED, base main, head dev_sprint_00 ;
 - git fetch origin ; origin/main doit être 16f6d029b287fd5368818dcdac992a8b6339b639 ;
+- `git show origin/main:state.json` doit porter `sprint.current_id=S2`, `current_status=authorized`, `agent.current_agent=BUILDER`, `transition.transition_id=TR-2026-0006`, `status=authorized`, `decision_id=D-040`, `consumed_at=null` et `last_decision.decision_id=D-040` ;
 - après création de ta branche : git merge-base --is-ancestor origin/main HEAD doit réussir ;
 - aucune branche dev_sprint_02 existante sur origin (sinon ARRÊT et signalement).
 
-Si un seul fait manque : ARRÊT IMMÉDIAT. N'écris aucun fichier, ne crée aucune branche, ne lance aucune commande de build. Produis uniquement un message de blocage avec l'état observé.
+Si un seul fait manque : ARRÊT IMMÉDIAT. N'écris aucun fichier, ne crée aucune branche, ne lance aucune commande de build. Produis uniquement un message de blocage avec l'état observé. Si `main` porte encore D-039 (consignation D-040 restée sur `dev_sprint_00`), signaler que la synchronisation de la gouvernance vers `main` exige une **décision VALIDATOR distincte**, exécutée par le VALIDATOR — aucun agent ne peut créer de PR ni fusionner.
 
 ### Autorisation
-Vérifie dans state.json que TR-2026-0006 contient :
+Vérifie dans `state.json` **tel que poussé sur `origin/main`** (`git show origin/main:state.json`) et dans `docs/governance/transitions/TR-2026-0006.md` que TR-2026-0006 contient :
 - statut authorized ;
 - to_agent: BUILDER ;
 - from_agent: ORCHESTRATOR ;
@@ -143,6 +144,6 @@ N'oublie pas : tu exécutes le mandat, tu fournis des preuves, tu ne vérifies p
 
 ## Note pour le VALIDATOR
 
-La transition `TR-2026-0006` est autorisée et non consommée. L'étape 0 bloque si `origin/main` n'est pas `16f6d02`, si la PR #4 n'est pas `MERGED` ou si le reçu existe déjà. Le BUILDER déposera son reçu dans `sprint_report/`, et l'ORCHESTRATOR enregistrera la consommation dans `state.json` après coup.
+La transition `TR-2026-0006` est autorisée et non consommée, mais sa consignation (`commit df56a39`) est actuellement sur `dev_sprint_00` : `origin/main` porte encore D-039 et `S1/merged`. L'étape 0 bloque donc tant que `state.json` sur `main` ne porte pas D-040 / `TR-2026-0006` `authorized`. La synchronisation de la gouvernance vers `main` exige une **décision VALIDATOR distincte du GO S2**, exécutée par le VALIDATOR (aucun agent ne crée de PR ni ne fusionne). L'étape 0 bloque aussi si `origin/main` n'est pas `16f6d02`, si la PR #4 n'est pas `MERGED` ou si le reçu existe déjà. Le BUILDER déposera son reçu dans `sprint_report/`, et l'ORCHESTRATOR enregistrera la consommation dans `state.json` après coup.
 
 `R-S0-02` et `E-01` restent maintenues : D-040 autorise S2 mais ne lève aucune réserve, n'autorise aucun audit, aucune acceptation, aucune fusion et aucune transition S3.

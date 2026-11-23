@@ -27,6 +27,7 @@ Mettre en place la persistance et l'authentification du futur backoffice : base 
 
 - D-040 (`GO` pour S2) rendue par le VALIDATOR le 2026-11-23T06:55:41Z.
 - PR #4 `MERGED` (merge `16f6d029b287fd5368818dcdac992a8b6339b639`) ; `origin/main` = `16f6d02`.
+- **`state.json` sur `origin/main` doit porter D-040 / `TR-2026-0006` `authorized`** : la consignation est intervenue sur `dev_sprint_00` (commit `df56a39`) et `main` porte encore D-039. La synchronisation de la gouvernance vers `main` exige une décision VALIDATOR distincte, exécutée par le VALIDATOR, avant le lancement du BUILDER.
 - Protection de `main` active et prouvée (D-034) ; strict, check obligatoire, `enforce_admins`, pas de force push ni de suppression.
 - `dev_sprint_02` reste à créer par le BUILDER depuis `origin/main` mise à jour.
 - Aucun agent ne peut `git checkout main`, `git switch main`, fusionner ni ouvrir de PR.
