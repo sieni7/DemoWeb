@@ -15,7 +15,7 @@
     "name": "DemoWeb",
     "status": "in_progress",
     "created_at": "2026-11-22T08:00:00Z",
-    "updated_at": "2026-11-23T06:08:46Z"
+    "updated_at": "2026-11-23T06:18:36Z"
   },
   "checkpoints": {
     "cp1": "validated",
@@ -46,7 +46,7 @@
       "reserves": "aucune réserve nouvelle ; R-S0-02 et E-01 restent maintenues (réserves S0 antérieures)",
       "merge": "GO décidé par D-038 le 2026-11-23T06:02:53Z — exécution réservée au VALIDATOR",
       "merge_execution": "exécutée par le VALIDATOR le 2026-11-23T06:08:46Z — PR #2 'S1 — Design system' (dev_sprint_01 -> main) MERGED, merge commit b2cbc2e318593d4eb846363c248ecba8a2df8611, main = b2cbc2e ; checks verts (run 45032235345), mergeStateStatus CLEAN ; dérogation explicite à S1-AC-08 NOT_CHECKED et aux réserves R-S0-02 / E-01 maintenues",
-      "governance_sync": "non décidée — main porte le snapshot de gouvernance du BUILDER (S1/authorized, agent=BUILDER, TR-2026-0004/authorized) et ne contient pas les livrables d'audit S1 déposés sur dev_sprint_00 ; décision VALIDATOR requise pour une PR de synchronisation dev_sprint_00 -> main"
+      "governance_sync": "confirmée par le VALIDATOR le 2026-11-23T06:18:36Z au titre de D-038 (aucune décision distincte requise) : PR de synchronisation dev_sprint_00 -> main à créer puis fusionner ; exécution réservée au VALIDATOR. main porte provisoirement le snapshot BUILDER (S1/authorized, agent=BUILDER, TR-2026-0004/authorized) et ne contient pas encore les livrables d'audit S1"
     }
   },
   "agent": {
@@ -80,7 +80,7 @@
     "date": "2026-11-23T06:02:53Z",
     "decision_id": "D-038",
     "decision_type": "merge_sprint",
-    "motif": "Décision distincte D-038 — GO pour la fusion de S1 vers main, après acceptation D-037. Exécutée par le VALIDATOR : PR #2 MERGED, merge commit b2cbc2e318593d4eb846363c248ecba8a2df8611. Décision de fusion distincte de l'acceptation (GC-07 / state_model §3.2). R-S0-02 et E-01 maintenues, dérogation explicite : S1-AC-08 reste NOT_CHECKED et S0-AC-04 définitivement NOT_CHECKED. Aucune décision S2. B-02 ouvert : synchronisation de la gouvernance sur main à décider."
+    "motif": "Décision distincte D-038 — GO pour la fusion de S1 vers main, après acceptation D-037. Exécutée par le VALIDATOR : PR #2 MERGED, merge commit b2cbc2e318593d4eb846363c248ecba8a2df8611. Décision de fusion distincte de l'acceptation (GC-07 / state_model §3.2). R-S0-02 et E-01 maintenues, dérogation explicite : S1-AC-08 reste NOT_CHECKED et S0-AC-04 définitivement NOT_CHECKED. Aucune décision S2. Périmètre confirmé par le VALIDATOR le 2026-11-23T06:18:36Z : D-038 couvre aussi la PR de synchronisation dev_sprint_00 -> main (B-02 qualifié, en attente d'exécution)."
   },
   "blockers": [
     {
@@ -93,9 +93,9 @@
     {
       "id": "B-02",
       "objet": "Cohérence de la gouvernance sur main après fusion S1",
-      "statut": "ouvert — à qualifier par le VALIDATOR",
-      "detail": "Après la PR #2 (merge b2cbc2e), main contient le code S1 et ses preuves BUILDER, mais son state.json est le snapshot du BUILDER (S1/authorized, agent=BUILDER, TR-2026-0004/authorized). L'état courant (S1/merged, D-037, D-038, TR-2026-0005/completed) et les livrables audit_report/S1_audit.md et audit_report/TR-2026-0005_receipt.md restent sur dev_sprint_00. Ce décalage est un fait constaté, pas une divergence état/reçu (INV-04) : les reçus déposés sont cohérents avec la consignation sur dev_sprint_00.",
-      "decision_attendue": "décision VALIDATOR : PR de synchronisation dev_sprint_00 -> main (OUI/NON)"
+      "statut": "qualifié — exécution autorisée au titre de D-038 (confirmation VALIDATOR du 2026-11-23T06:18:36Z), en attente d'exécution",
+      "detail": "Après la PR #2 (merge b2cbc2e), main contient le code S1 et ses preuves BUILDER, mais son state.json est le snapshot du BUILDER (S1/authorized, agent=BUILDER, TR-2026-0004/authorized). L'état courant (S1/merged, D-037, D-038, TR-2026-0005/completed) et les livrables audit_report/S1_audit.md et audit_report/TR-2026-0005_receipt.md restent sur dev_sprint_00. Ce décalage est un fait constaté, pas une divergence état/reçu (INV-04) : les reçus déposés sont cohérents avec la consignation sur dev_sprint_00. Comparaison GitHub : main...dev_sprint_00 = diverged (11 ahead, 13 behind), 12 fichiers de gouvernance/audit, aucun conflit détecté par git merge-tree.",
+      "decision_attendue": "aucune — PR de synchronisation dev_sprint_00 -> main à exécuter par le VALIDATOR au titre de D-038"
     }
   ],
   "reserves": [
