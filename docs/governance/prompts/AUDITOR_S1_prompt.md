@@ -4,11 +4,11 @@
 |---|---|
 | Version | 0.1 |
 | Date | 2026-11-23T05:30:00Z |
-| Statut | **NON EXÉCUTABLE — en attente de la décision VALIDATOR D-036 (`GO` pour l'audit S1)** |
-| Transition associée | `TR-2026-0005` — à autoriser, non créée dans `state.json` à ce jour |
+| Statut | **ACTIF — `TR-2026-0005` autorisée par D-036 (`GO` pour l'audit S1), non consommée** |
+| Transition associée | `TR-2026-0005` — `authorized` / `to_agent=AUDITOR` / `decision_id=D-036` dans `state.json` sur `dev_sprint_00` |
 | À copier dans | une **session séparée**, sans contexte du BUILDER ni de l'ORCHESTRATOR |
 
-> **Blocage.** Ce prompt ne doit pas être exécuté tant que le VALIDATOR n'a pas rendu la décision distincte `GO` pour l'audit S1 et tant que `TR-2026-0005` n'est pas portée `authorized` / `to_agent=AUDITOR` / `decision_id=D-036` dans `state.json` sur `dev_sprint_00`. L'étape 0 ci-dessous impose un arrêt immédiat si cette condition n'est pas remplie : aucun reçu, aucun fichier, aucune consommation. `TR-2026-0003` est terminale (`cancelled`, D-031) et n'est pas réactivable (INV-05).
+> **Activation.** Le VALIDATOR a rendu la décision distincte `GO` pour l'audit S1 (D-036, 2026-11-23T05:33:42Z). Le prompt est exécutable en session AUDITOR séparée. L'étape 0 ci-dessous revérifie l'autorisation avant toute consommation et impose un arrêt immédiat si elle manque : aucun reçu, aucun fichier. `TR-2026-0003` est terminale (`cancelled`, D-031) et n'est pas réactivable (INV-05) ; `TR-2026-0004` est `completed`, elle non plus non réactivable.
 
 ---
 
@@ -69,7 +69,7 @@ Les éléments marqués `(dev_sprint_00)` se lisent avec `git -C C:\test\DemoWeb
 
 1. `git show dev_sprint_00:state.json` — état autoritatif (et, pour comparaison, le `state.json` local de `dev_sprint_01`)
 2. `AGENTS.md` — contrats et matrice de permissions déclarée
-3. `current_sprint.md` — mandat `S1-v0.1`, tâches T1-1 à T1-9, critères S1-AC-01 à S1-AC-08
+3. `current_sprint.md` — mandat `S1-v0.1`, tâches T1-1 à T1-9, critères S1-AC-01 à S1-AC-08 (contenu du mandat identique sur les deux branches ; état de phase courant sur `dev_sprint_00` via `git show dev_sprint_00:current_sprint.md`)
 4. `sprint_report/TR-2026-0004_receipt.md` — reçu du BUILDER
 5. `sprint_report/S1_report.md` — rapport BUILDER, 10 sections
 6. `(dev_sprint_00)` `docs/governance/transitions/TR-2026-0004.md` et `docs/governance/transitions/TR-2026-0005.md`
@@ -134,7 +134,7 @@ N'oublie pas : tu vérifies, tu ne corriges pas et tu ne décides pas.
 
 ## Note pour le VALIDATOR
 
-Ce prompt est volontairement autonome : il ne présuppose aucune connaissance de la session qui a produit le code. Il ne devient exécutable qu'après votre décision distincte `GO` pour l'audit S1 (D-036) et la mise à jour de `state.json` sur `dev_sprint_00`. L'indépendance reste **procédurale** (`GC-37`) : session séparée sans mémoire d'exécution, et non une isolation technique prouvée. Aucune acceptation ni fusion de S1 n'est autorisée par ce document.
+Ce prompt est volontairement autonome : il ne présuppose aucune connaissance de la session qui a produit le code. Il est exécutable depuis la décision D-036 (`GO` pour l'audit S1, 2026-11-23T05:33:42Z) et la mise à jour de `state.json` sur `dev_sprint_00`. L'indépendance reste **procédurale** (`GC-37`) : session séparée sans mémoire d'exécution, et non une isolation technique prouvée. Aucune acceptation ni fusion de S1 n'est autorisée par ce document.
 
 ---
 
@@ -143,3 +143,4 @@ Ce prompt est volontairement autonome : il ne présuppose aucune connaissance de
 | Version | Date | Modification |
 |---|---|---|
 | 0.1 | 2026-11-23T05:30:00Z | Rédaction en mode non exécutable, en attente de D-036 et de `TR-2026-0005` |
+| 0.2 | 2026-11-23T05:33:42Z | D-036 `GO` rendue : prompt activé, `TR-2026-0005` autorisée vers AUDITOR |
