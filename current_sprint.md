@@ -2,9 +2,9 @@
 
 | Champ | Valeur |
 |---|---|
-| Version | 1.0 |
+| Version | 1.1 |
 | Date | 2026-11-23 |
-| Statut | **S1 FUSIONNÉE ET GOUVERNANCE SYNCHRONISÉE — PR #2 `MERGED` (`b2cbc2e`), PR #3 `MERGED` (`f303923`) ; B-02 clos ; PR complémentaire autorisée (D-039), exécution en attente — 2026-11-23** |
+| Statut | **FINALISATION TERMINÉE — S1 fusionnée (PR #2 `b2cbc2e`), gouvernance synchronisée (PR #3 `f303923`), clôture B-02 portée sur `main` (PR #4 `16f6d02`) — 2026-11-23** |
 | Sprint | **S1 — Design system** |
 | `mandate_version` | `S1-v0.1` |
 | Branche | `dev_sprint_01` (à créer depuis `main` après fusion de S0) |
@@ -102,7 +102,7 @@ Mettre en place le design system et la structure des pages publiques vides : lay
 | Acceptation | **D-037 `GO`** — 2026-11-23T06:00:41Z, aucune réserve nouvelle ; `R-S0-02` et `E-01` maintenues ; sprint `S1/accepted` |
 | Fusion | **D-038 `GO` exécuté** — PR #2 `dev_sprint_01` → `main` `MERGED`, merge commit `b2cbc2e318593d4eb846363c248ecba8a2df8611` ; dérogation explicite : `S1-AC-08` `NOT_CHECKED`, `R-S0-02` maintenue |
 | Gouvernance | **Synchronisée le 2026-11-23T06:34:09Z au titre de D-038** — PR #3 `dev_sprint_00` → `main` `MERGED`, merge commit `f303923f2213d9a1c82a1cb8a5bfe2c274af1ee6`, `main` = `f303923` ; `origin/main` vérifié : `S1/merged`, `agent=ORCHESTRATOR`, D-036 à D-038, `audit_report/S1_audit.md` et `audit_report/TR-2026-0005_receipt.md` présents |
-| Suite | **B-02 clos** ; **D-039 `GO`** (2026-11-23T06:37:49Z) pour une PR complémentaire portant la clôture vers `main`, exécution réservée au VALIDATOR. Aucune décision S2 sans décision explicite ; `R-S0-02` et `E-01` maintenues, `S1-AC-08` et `S0-AC-04` `NOT_CHECKED` |
+| Suite | **Finalisation terminée** — D-039 exécutée le 2026-11-23T06:42:23Z : PR #4 `MERGED`, merge `16f6d029b287fd5368818dcdac992a8b6339b639`, `main` = `16f6d02`, B-02 clos sur `main`. Aucune décision S2 sans décision explicite ; `R-S0-02` et `E-01` maintenues, `S1-AC-08` et `S0-AC-04` `NOT_CHECKED` |
 
 ---
 
@@ -120,3 +120,4 @@ Mettre en place le design system et la structure des pages publiques vides : lay
 | 0.8 | 2026-11-23 | Synchronisation gouvernance confirmée au titre de D-038 ; `mandate_version` inchangée |
 | 0.9 | 2026-11-23 | Synchronisation exécutée (PR #3, merge `f303923`) ; cohérence de `main` vérifiée, B-02 clos ; `mandate_version` inchangée |
 | 1.0 | 2026-11-23 | D-039 — `GO` pour la PR complémentaire de clôture vers `main`, exécution réservée au VALIDATOR ; `mandate_version` inchangée |
+| 1.1 | 2026-11-23 | D-039 exécutée (PR #4, merge `16f6d02`) ; B-02 clos sur `main`, finalisation terminée ; `mandate_version` inchangée |

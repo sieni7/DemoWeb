@@ -15,7 +15,7 @@
     "name": "DemoWeb",
     "status": "in_progress",
     "created_at": "2026-11-22T08:00:00Z",
-    "updated_at": "2026-11-23T06:37:49Z"
+    "updated_at": "2026-11-23T06:42:55Z"
   },
   "checkpoints": {
     "cp1": "validated",
@@ -80,7 +80,7 @@
     "date": "2026-11-23T06:37:49Z",
     "decision_id": "D-039",
     "decision_type": "governance_sync",
-    "motif": "Décision distincte D-039 — GO pour une PR complémentaire dev_sprint_00 -> main portant la clôture de B-02 (commit 8bfaa9d), après synchronisation exécutée au titre de D-038 (PR #3, merge f303923). Exécution réservée au VALIDATOR : création de la PR, checks verts, `mergeStateStatus=CLEAN`, fusion puis consignation du merge commit. Aucune décision de sprint, aucune transition, aucun identifiant réutilisé, aucune ouverture S2. Constat consigné : main contient déjà l'essentiel de la gouvernance (S1/merged, agent=ORCHESTRATOR, D-036 à D-038, livrables d'audit S1) ; seul le champ B-02 du snapshot de main diffère. La branche d'autorité conservera structurellement un commit de plus que main après consignation du merge ; ce décalage n'est pas une divergence état/reçu (INV-04). R-S0-02 et E-01 maintenues, S1-AC-08 et S0-AC-04 NOT_CHECKED."
+    "motif": "Décision distincte D-039 — GO pour une PR complémentaire dev_sprint_00 -> main portant la clôture de B-02 (commit 8bfaa9d), après synchronisation exécutée au titre de D-038 (PR #3, merge f303923). Exécutée par le VALIDATOR le 2026-11-23T06:42:23Z : PR #4 'Gouvernance — clôture B-02 (D-039)' MERGED, merge commit 16f6d029b287fd5368818dcdac992a8b6339b639, main = 16f6d02 ; checks verts (runs 45125664922 et 45125673603), mergeStateStatus CLEAN, protection de main maintenue (ni --admin ni --auto). Vérification directe de origin/main : S1/merged, agent=ORCHESTRATOR, last_decision=D-039, B-02 'levé — synchronisation exécutée…'. Blocage transitoire consigné : premier merge refusé avant propagation des checks sur le head f660a0e issu de update-branch, puis résolu sans contournement. Aucune décision de sprint, aucune transition, aucun identifiant réutilisé, aucune ouverture S2. Le décalage résiduel d'un commit entre la branche d'autorité et main est structurel, non une divergence état/reçu (INV-04). R-S0-02 et E-01 maintenues, S1-AC-08 et S0-AC-04 NOT_CHECKED."
   },
   "blockers": [
     {
