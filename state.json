@@ -15,7 +15,7 @@
     "name": "DemoWeb",
     "status": "in_progress",
     "created_at": "2026-11-22T08:00:00Z",
-    "updated_at": "2026-11-23T05:50:20Z"
+    "updated_at": "2026-11-23T06:02:53Z"
   },
   "checkpoints": {
     "cp1": "validated",
@@ -24,7 +24,7 @@
   },
   "sprint": {
     "current_id": "S1",
-    "current_status": "audit_completed",
+    "current_status": "accepted",
     "next_id": "S2",
     "previous_sprint": {
       "id": "S0",
@@ -35,6 +35,17 @@
       "merge_executed_at": "2026-11-22T12:16:09Z",
       "merge_commit": "2a2272f405a98c47d77842d7b99992ba28578e26",
       "merge_execution": "exécutée par le VALIDATOR — PR #1 MERGED ; main = 2a2272f4 ; dérogation explicite à R-S0-02 maintenue"
+    },
+    "acceptance": {
+      "decision_id": "D-037",
+      "value": "GO",
+      "author": "VALIDATOR",
+      "date": "2026-11-23T06:00:41Z",
+      "decision_type": "acceptance_sprint",
+      "basis": "TR-2026-0005/completed ; audit_report/S1_audit.md : S1-AC-01 à S1-AC-07 PASS, S1-AC-08 NOT_CHECKED (gitleaks absent, preuve declared_only)",
+      "reserves": "aucune réserve nouvelle ; R-S0-02 et E-01 restent maintenues (réserves S0 antérieures)",
+      "merge": "GO décidé par D-038 le 2026-11-23T06:02:53Z — exécution réservée au VALIDATOR ; aucun agent ne peut merger ni checkout main ; PR dev_sprint_01 -> main à vérifier puis fusionner",
+      "merge_execution": "en attente du VALIDATOR"
     }
   },
   "agent": {
@@ -65,9 +76,10 @@
   "last_decision": {
     "value": "GO",
     "author": "VALIDATOR",
-    "date": "2026-11-23T05:33:42Z",
-    "decision_id": "D-036",
-    "motif": "Décision distincte D-036 — GO pour l'audit du sprint S1. TR-2026-0005 autorisée vers AUDITOR, agent courant AUDITOR, sprint S1 en auditing. Aucune acceptation ni fusion S1 décidée ; R-S0-02 maintenue et S0-AC-04 définitivement NOT_CHECKED ; E-01 maintenue."
+    "date": "2026-11-23T06:02:53Z",
+    "decision_id": "D-038",
+    "decision_type": "merge_sprint",
+    "motif": "Décision distincte D-038 — GO pour la fusion de S1 vers main, après acceptation D-037. Exécution réservée au VALIDATOR (aucun agent ne peut merger ni checkout main). Décision de fusion distincte de l'acceptation (GC-07 / state_model §3.2). R-S0-02 et E-01 maintenues, dérogation explicite : S1-AC-08 reste NOT_CHECKED et S0-AC-04 définitivement NOT_CHECKED. Aucune décision S2."
   },
   "blockers": [
     {

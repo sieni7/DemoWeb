@@ -2,9 +2,9 @@
 
 | Champ | Valeur |
 |---|---|
-| Version | 0.19 |
+| Version | 0.21 |
 | Date | 2026-11-23 |
-| Statut | **CP1, CP2, CP3 validés · main protégée · S0 fusionnée · S1 livrée et auditée · acceptation S1 en attente du VALIDATOR — 2026-11-23** |
+| Statut | **CP1, CP2, CP3 validés · main protégée · S0 fusionnée · S1 acceptée et fusion autorisée · exécution de la fusion réservée au VALIDATOR — 2026-11-23** |
 | Auteur | ORCHESTRATOR |
 | Portée | Décisions du VALIDATOR, identifiées et tracées |
 | Ne contient pas | Décisions de sprint (GO, GO_WITH_RESERVES, NO_GO, HOLD, CANCELLED) — voir `state.json` |
@@ -67,6 +67,8 @@
 | D-034 | 2026-11-22 | Protection de `main` avant fusion | **`GO` pour activer la protection de `main` puis fusionner S0** — constat confirmé : `gh api repos/sieni7/DemoWeb/branches/main/protection` renvoie 404 « Branch not protected », donc E-05 n'est plus `unknown` mais **absence confirmée**. Protection : PR obligatoire, status checks stricts sur `Lint, typecheck, tests, build and secret scan`, `enforce_admins`, interdiction des force push et suppressions | VALIDATOR | **Validée — exécutée : protection active et prouvée par `gh api` (`strict: true`, `enforce_admins.enabled: true`, `allow_force_pushes.enabled: false`, `allow_deletions.enabled: false`) avant fusion** |
 | D-035 | 2026-11-22 | Livrables hors transition | **Dépôt comme traces historiques** de `audit_report/S0_audit_rapport_signe.md` et `sprint_report/BUILDER_snapshot_refresh_report.md`, sans modification de contenu ; qualification `INC-2026-0005` : livrables produits hors transition, snapshots périmés, aucune divergence état/reçu, INV-04/INV-05 respectés ; aucune réserve levée, aucune transition consommée | VALIDATOR | **Validée** |
 | D-036 | 2026-11-23 | Audit du sprint S1 | **`GO` pour l'audit S1** — décision distincte de l'acceptation et de la fusion. `TR-2026-0005` autorisée vers AUDITOR, mandat `S1-v0.1`, branche auditée `dev_sprint_01`, prompt `docs/governance/prompts/AUDITOR_S1_prompt.md` activé. État `S1/builder_completed` → `S1/auditing`, `agent.current_agent=AUDITOR`. Aucune réactivation de `TR-2026-0003` (`cancelled`) ni de `TR-2026-0004` (`completed`) ; INV-02/INV-03/INV-05/INV-12 respectés. `R-S0-02`/`E-01` maintenues, `S0-AC-04` définitivement `NOT_CHECKED`. Le `gitleaks` `declared_only` de S1 ne lève pas `R-S0-02` | VALIDATOR | **Validée — exécutée le 2026-11-23T05:33:42Z** |
+| D-037 | 2026-11-23 | Acceptation du sprint S1 | **`GO` pour l'acceptation de S1** — décision distincte de D-036 (audit) et de la fusion (non décidée). Fondement : `TR-2026-0005/completed`, `audit_report/S1_audit.md` : `S1-AC-01` à `S1-AC-07` `PASS`, `S1-AC-08` `NOT_CHECKED` (`gitleaks` absent, preuve `declared_only`). **Aucune réserve nouvelle** ; `R-S0-02` et `E-01` restent maintenues en tant que réserves S0 antérieures, `S0-AC-04` définitivement `NOT_CHECKED`. État `S1/audit_completed` → `S1/accepted` (INV-07 respecté) | VALIDATOR | **Validée — exécutée le 2026-11-23T06:00:41Z** |
+| D-038 | 2026-11-23 | Fusion S1 vers `main` | **`GO` pour la fusion** de S1 vers `main`, décision distincte de D-037 (acceptation) et de D-036 (audit) — GC-07 / `state_model.md` §3.2. **Dérogation explicite** : fusion autorisée alors que `S1-AC-08` reste `NOT_CHECKED` (preuve `declared_only` du BUILDER, `gitleaks` absent chez l'AUDITOR) et que `R-S0-02` / `E-01` sont maintenues ; `S0-AC-04` définitivement `NOT_CHECKED`. Exécution **réservée au VALIDATOR** : aucun agent ne peut `git merge`, ni `checkout main` / `switch main`. Prérequis d'exécution : PR `dev_sprint_01` → `main`, checks obligatoires verts, protection de `main` maintenue. Aucune décision S2 | VALIDATOR | **Validée — exécution en attente du VALIDATOR** |
 
 ---
 
@@ -95,7 +97,9 @@
 | ~~Sprint suivant~~ | ~~S1 non autorisé~~ — **GO par D-033**, mandat `S1-v0.1`, transition `TR-2026-0004` vers le BUILDER ; effet subordonné à la fusion S0 |
 | ~~Exécution S1~~ | **Livrée le 2026-11-22T14:19:08Z** — `TR-2026-0004` consommée puis complétée ; `sprint=S1/builder_completed` ; aucune acceptation décidée |
 | ~~Audit S1~~ | **D-036 (`GO`) rendue le 2026-11-23T05:33:42Z** ; `TR-2026-0005` consommée le 2026-11-23T05:45:00Z et complétée le 2026-11-23T05:50:20Z ; reçu `audit_report/TR-2026-0005_receipt.md` et rapport `audit_report/S1_audit.md` livrés. Recommandation AUDITOR : `GO_WITH_RESERVES` — **avis, non décision** |
-| À court terme | **Acceptation S1** — décision VALIDATOR à prendre (`GO` / `GO_WITH_RESERVES` / `NO_GO` / `HOLD`) ; puis, **séparément**, fusion S1 vers `main`. `R-S0-02` et `E-01` maintenues, `S1-AC-08` `NOT_CHECKED` |
+| ~~Acceptation S1~~ | **D-037 (`GO`) rendue le 2026-11-23T06:00:41Z** — `S1/accepted`, aucune réserve nouvelle, `R-S0-02` et `E-01` maintenues |
+| ~~Fusion S1 vers `main`~~ | **D-038 (`GO`) rendue le 2026-11-23T06:02:53Z** — exécution réservée au VALIDATOR (PR `dev_sprint_01` → `main`, checks verts, protection maintenue). Aucun agent ne peut merger ni checkout `main` |
+| À court terme | Exécution de D-038 par le VALIDATOR puis consignation du merge commit. Aucune transition S2 sans décision explicite. Si une preuve indépendante de `S1-AC-08` est exigée : nouvelle transition AUDITOR (`TR-2026-0005` est terminale) |
 | Chaque sprint | Acceptation puis fusion, en deux décisions séparées |
 
 ---
@@ -123,3 +127,5 @@
 | 0.17 | 2026-11-22 | D-035 — dépôt des rapports signés comme traces historiques ; `INC-2026-0005` qualifié |
 | 0.18 | 2026-11-23 | D-036 — `GO` pour l'audit S1 ; `TR-2026-0005` autorisée vers AUDITOR ; `S1/auditing` |
 | 0.19 | 2026-11-23 | Consignation de la consommation et de la livraison de l'audit S1 ; `S1/audit_completed` ; recommandation `GO_WITH_RESERVES` enregistrée comme avis, aucune décision d'acceptation prise |
+| 0.20 | 2026-11-23 | D-037 — `GO` pour l'acceptation de S1 ; `S1/accepted`, aucune réserve nouvelle |
+| 0.21 | 2026-11-23 | D-038 — `GO` pour la fusion S1 vers `main` ; exécution réservée au VALIDATOR |

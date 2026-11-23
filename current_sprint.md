@@ -2,9 +2,9 @@
 
 | Champ | Valeur |
 |---|---|
-| Version | 0.4 |
+| Version | 0.6 |
 | Date | 2026-11-23 |
-| Statut | **S1 LIVRÉE ET AUDITÉE — `TR-2026-0005/completed` ; acceptation et fusion en attente de décisions VALIDATOR distinctes** |
+| Statut | **S1 ACCEPTÉE (D-037) ET FUSION AUTORISÉE (D-038) — exécution de la fusion réservée au VALIDATOR** |
 | Sprint | **S1 — Design system** |
 | `mandate_version` | `S1-v0.1` |
 | Branche | `dev_sprint_01` (à créer depuis `main` après fusion de S0) |
@@ -98,7 +98,9 @@ Mettre en place le design system et la structure des pages publiques vides : lay
 | Reçu | `sprint_report/TR-2026-0004_receipt.md` |
 | Précondition | Fusion S0 exécutée (D-032) |
 | État d'exécution | **Livrée** — `TR-2026-0004/completed`, rapport `sprint_report/S1_report.md` |
-| Audit | **`TR-2026-0005/completed`** — reçu `audit_report/TR-2026-0005_receipt.md`, rapport `audit_report/S1_audit.md` ; recommandation AUDITOR `GO_WITH_RESERVES` (avis, non décision) ; sprint `S1/audit_completed` |
+| Audit | **`TR-2026-0005/completed`** — reçu `audit_report/TR-2026-0005_receipt.md`, rapport `audit_report/S1_audit.md` ; recommandation AUDITOR `GO_WITH_RESERVES` (avis, non décision) |
+| Acceptation | **D-037 `GO`** — 2026-11-23T06:00:41Z, aucune réserve nouvelle ; `R-S0-02` et `E-01` maintenues ; sprint `S1/accepted` |
+| Fusion | **D-038 `GO`** — 2026-11-23T06:02:53Z ; exécution réservée au VALIDATOR (PR `dev_sprint_01` → `main`) ; dérogation explicite : `S1-AC-08` `NOT_CHECKED`, `R-S0-02` maintenue |
 
 ---
 
@@ -110,3 +112,5 @@ Mettre en place le design system et la structure des pages publiques vides : lay
 | 0.2 | 2026-11-22 | Précondition remplie : protection de main active (D-034) et PR #1 fusionnée (merge `2a2272f4`) ; `mandate_version` inchangée (`S1-v0.1`) |
 | 0.3 | 2026-11-23 | Consignation de la livraison S1 et de l'autorisation d'audit (D-036 / `TR-2026-0005`) ; `mandate_version` inchangée (`S1-v0.1`) |
 | 0.4 | 2026-11-23 | Audit livré (`TR-2026-0005/completed`) ; recommandation AUDITOR `GO_WITH_RESERVES` enregistrée comme avis ; `mandate_version` inchangée |
+| 0.5 | 2026-11-23 | Acceptation `GO` (D-037) ; `mandate_version` inchangée (`S1-v0.1`) |
+| 0.6 | 2026-11-23 | Fusion autorisée (D-038), exécution réservée au VALIDATOR ; `mandate_version` inchangée |
