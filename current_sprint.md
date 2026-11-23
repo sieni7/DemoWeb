@@ -2,9 +2,9 @@
 
 | Champ | Valeur |
 |---|---|
-| Version | 0.6 |
+| Version | 0.7 |
 | Date | 2026-11-23 |
-| Statut | **S1 ACCEPTÉE (D-037) ET FUSION AUTORISÉE (D-038) — exécution de la fusion réservée au VALIDATOR** |
+| Statut | **S1 FUSIONNÉE — PR #2 `MERGED`, merge `b2cbc2e` (D-038) ; synchronisation de la gouvernance sur `main` en attente de décision (B-02)** |
 | Sprint | **S1 — Design system** |
 | `mandate_version` | `S1-v0.1` |
 | Branche | `dev_sprint_01` (à créer depuis `main` après fusion de S0) |
@@ -100,7 +100,8 @@ Mettre en place le design system et la structure des pages publiques vides : lay
 | État d'exécution | **Livrée** — `TR-2026-0004/completed`, rapport `sprint_report/S1_report.md` |
 | Audit | **`TR-2026-0005/completed`** — reçu `audit_report/TR-2026-0005_receipt.md`, rapport `audit_report/S1_audit.md` ; recommandation AUDITOR `GO_WITH_RESERVES` (avis, non décision) |
 | Acceptation | **D-037 `GO`** — 2026-11-23T06:00:41Z, aucune réserve nouvelle ; `R-S0-02` et `E-01` maintenues ; sprint `S1/accepted` |
-| Fusion | **D-038 `GO`** — 2026-11-23T06:02:53Z ; exécution réservée au VALIDATOR (PR `dev_sprint_01` → `main`) ; dérogation explicite : `S1-AC-08` `NOT_CHECKED`, `R-S0-02` maintenue |
+| Fusion | **D-038 `GO` exécuté** — PR #2 `dev_sprint_01` → `main` `MERGED`, merge commit `b2cbc2e318593d4eb846363c248ecba8a2df8611` ; dérogation explicite : `S1-AC-08` `NOT_CHECKED`, `R-S0-02` maintenue |
+| Suite | **B-02** — `main` porte encore le snapshot BUILDER ; PR de synchronisation `dev_sprint_00` → `main` à décider par le VALIDATOR |
 
 ---
 
@@ -114,3 +115,4 @@ Mettre en place le design system et la structure des pages publiques vides : lay
 | 0.4 | 2026-11-23 | Audit livré (`TR-2026-0005/completed`) ; recommandation AUDITOR `GO_WITH_RESERVES` enregistrée comme avis ; `mandate_version` inchangée |
 | 0.5 | 2026-11-23 | Acceptation `GO` (D-037) ; `mandate_version` inchangée (`S1-v0.1`) |
 | 0.6 | 2026-11-23 | Fusion autorisée (D-038), exécution réservée au VALIDATOR ; `mandate_version` inchangée |
+| 0.7 | 2026-11-23 | Fusion exécutée (PR #2, merge `b2cbc2e`) ; ouverture de B-02 ; `mandate_version` inchangée |

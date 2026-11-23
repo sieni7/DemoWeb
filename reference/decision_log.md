@@ -2,9 +2,9 @@
 
 | Champ | Valeur |
 |---|---|
-| Version | 0.21 |
+| Version | 0.22 |
 | Date | 2026-11-23 |
-| Statut | **CP1, CP2, CP3 validés · main protégée · S0 fusionnée · S1 acceptée et fusion autorisée · exécution de la fusion réservée au VALIDATOR — 2026-11-23** |
+| Statut | **CP1, CP2, CP3 validés · main protégée · S0 fusionnée · S1 fusionnée (PR #2, merge `b2cbc2e`) · synchronisation gouvernance à décider (B-02) — 2026-11-23** |
 | Auteur | ORCHESTRATOR |
 | Portée | Décisions du VALIDATOR, identifiées et tracées |
 | Ne contient pas | Décisions de sprint (GO, GO_WITH_RESERVES, NO_GO, HOLD, CANCELLED) — voir `state.json` |
@@ -68,7 +68,7 @@
 | D-035 | 2026-11-22 | Livrables hors transition | **Dépôt comme traces historiques** de `audit_report/S0_audit_rapport_signe.md` et `sprint_report/BUILDER_snapshot_refresh_report.md`, sans modification de contenu ; qualification `INC-2026-0005` : livrables produits hors transition, snapshots périmés, aucune divergence état/reçu, INV-04/INV-05 respectés ; aucune réserve levée, aucune transition consommée | VALIDATOR | **Validée** |
 | D-036 | 2026-11-23 | Audit du sprint S1 | **`GO` pour l'audit S1** — décision distincte de l'acceptation et de la fusion. `TR-2026-0005` autorisée vers AUDITOR, mandat `S1-v0.1`, branche auditée `dev_sprint_01`, prompt `docs/governance/prompts/AUDITOR_S1_prompt.md` activé. État `S1/builder_completed` → `S1/auditing`, `agent.current_agent=AUDITOR`. Aucune réactivation de `TR-2026-0003` (`cancelled`) ni de `TR-2026-0004` (`completed`) ; INV-02/INV-03/INV-05/INV-12 respectés. `R-S0-02`/`E-01` maintenues, `S0-AC-04` définitivement `NOT_CHECKED`. Le `gitleaks` `declared_only` de S1 ne lève pas `R-S0-02` | VALIDATOR | **Validée — exécutée le 2026-11-23T05:33:42Z** |
 | D-037 | 2026-11-23 | Acceptation du sprint S1 | **`GO` pour l'acceptation de S1** — décision distincte de D-036 (audit) et de la fusion (non décidée). Fondement : `TR-2026-0005/completed`, `audit_report/S1_audit.md` : `S1-AC-01` à `S1-AC-07` `PASS`, `S1-AC-08` `NOT_CHECKED` (`gitleaks` absent, preuve `declared_only`). **Aucune réserve nouvelle** ; `R-S0-02` et `E-01` restent maintenues en tant que réserves S0 antérieures, `S0-AC-04` définitivement `NOT_CHECKED`. État `S1/audit_completed` → `S1/accepted` (INV-07 respecté) | VALIDATOR | **Validée — exécutée le 2026-11-23T06:00:41Z** |
-| D-038 | 2026-11-23 | Fusion S1 vers `main` | **`GO` pour la fusion** de S1 vers `main`, décision distincte de D-037 (acceptation) et de D-036 (audit) — GC-07 / `state_model.md` §3.2. **Dérogation explicite** : fusion autorisée alors que `S1-AC-08` reste `NOT_CHECKED` (preuve `declared_only` du BUILDER, `gitleaks` absent chez l'AUDITOR) et que `R-S0-02` / `E-01` sont maintenues ; `S0-AC-04` définitivement `NOT_CHECKED`. Exécution **réservée au VALIDATOR** : aucun agent ne peut `git merge`, ni `checkout main` / `switch main`. Prérequis d'exécution : PR `dev_sprint_01` → `main`, checks obligatoires verts, protection de `main` maintenue. Aucune décision S2 | VALIDATOR | **Validée — exécution en attente du VALIDATOR** |
+| D-038 | 2026-11-23 | Fusion S1 vers `main` | **`GO` pour la fusion** de S1 vers `main`, décision distincte de D-037 (acceptation) et de D-036 (audit) — GC-07 / `state_model.md` §3.2. **Dérogation explicite** : fusion autorisée alors que `S1-AC-08` reste `NOT_CHECKED` (preuve `declared_only` du BUILDER, `gitleaks` absent chez l'AUDITOR) et que `R-S0-02` / `E-01` sont maintenues ; `S0-AC-04` définitivement `NOT_CHECKED`. Exécution **réservée au VALIDATOR** : aucun agent ne peut `git merge`, ni `checkout main` / `switch main`. Prérequis d'exécution : PR `dev_sprint_01` → `main`, checks obligatoires verts, protection de `main` maintenue. Aucune décision S2 | VALIDATOR | **Validée — exécutée le 2026-11-23T06:08:46Z : PR #2 `MERGED`, merge commit `b2cbc2e318593d4eb846363c248ecba8a2df8611`, `main` = `b2cbc2e` ; checks verts, `CLEAN`** |
 
 ---
 
@@ -98,8 +98,8 @@
 | ~~Exécution S1~~ | **Livrée le 2026-11-22T14:19:08Z** — `TR-2026-0004` consommée puis complétée ; `sprint=S1/builder_completed` ; aucune acceptation décidée |
 | ~~Audit S1~~ | **D-036 (`GO`) rendue le 2026-11-23T05:33:42Z** ; `TR-2026-0005` consommée le 2026-11-23T05:45:00Z et complétée le 2026-11-23T05:50:20Z ; reçu `audit_report/TR-2026-0005_receipt.md` et rapport `audit_report/S1_audit.md` livrés. Recommandation AUDITOR : `GO_WITH_RESERVES` — **avis, non décision** |
 | ~~Acceptation S1~~ | **D-037 (`GO`) rendue le 2026-11-23T06:00:41Z** — `S1/accepted`, aucune réserve nouvelle, `R-S0-02` et `E-01` maintenues |
-| ~~Fusion S1 vers `main`~~ | **D-038 (`GO`) rendue le 2026-11-23T06:02:53Z** — exécution réservée au VALIDATOR (PR `dev_sprint_01` → `main`, checks verts, protection maintenue). Aucun agent ne peut merger ni checkout `main` |
-| À court terme | Exécution de D-038 par le VALIDATOR puis consignation du merge commit. Aucune transition S2 sans décision explicite. Si une preuve indépendante de `S1-AC-08` est exigée : nouvelle transition AUDITOR (`TR-2026-0005` est terminale) |
+| ~~Fusion S1 vers `main`~~ | **Exécutée le 2026-11-23T06:08:46Z** — D-038 (`GO`), PR #2 `MERGED`, merge commit `b2cbc2e318593d4eb846363c248ecba8a2df8611`, `main` = `b2cbc2e` ; dérogation explicite maintenue (`S1-AC-08` `NOT_CHECKED`, `R-S0-02` et `E-01` maintenues) |
+| À court terme | **B-02 — cohérence de la gouvernance sur `main`** : décision VALIDATOR requise pour une PR de synchronisation `dev_sprint_00` → `main` (main porte encore `S1/authorized`, `BUILDER`, et non les livrables d'audit S1). Aucune transition S2 sans décision explicite. Si une preuve indépendante de `S1-AC-08` est exigée : nouvelle transition AUDITOR (`TR-2026-0005` est terminale) |
 | Chaque sprint | Acceptation puis fusion, en deux décisions séparées |
 
 ---
@@ -129,3 +129,4 @@
 | 0.19 | 2026-11-23 | Consignation de la consommation et de la livraison de l'audit S1 ; `S1/audit_completed` ; recommandation `GO_WITH_RESERVES` enregistrée comme avis, aucune décision d'acceptation prise |
 | 0.20 | 2026-11-23 | D-037 — `GO` pour l'acceptation de S1 ; `S1/accepted`, aucune réserve nouvelle |
 | 0.21 | 2026-11-23 | D-038 — `GO` pour la fusion S1 vers `main` ; exécution réservée au VALIDATOR |
+| 0.22 | 2026-11-23 | Exécution D-038 : PR #2 `MERGED`, merge `b2cbc2e`, `S1/merged` ; ouverture de B-02 (synchronisation gouvernance sur `main`) |
