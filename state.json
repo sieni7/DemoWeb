@@ -15,7 +15,7 @@
     "name": "DemoWeb",
     "status": "in_progress",
     "created_at": "2026-11-22T08:00:00Z",
-    "updated_at": "2026-11-23T06:35:15Z"
+    "updated_at": "2026-11-23T06:37:49Z"
   },
   "checkpoints": {
     "cp1": "validated",
@@ -77,10 +77,10 @@
   "last_decision": {
     "value": "GO",
     "author": "VALIDATOR",
-    "date": "2026-11-23T06:02:53Z",
-    "decision_id": "D-038",
-    "decision_type": "merge_sprint",
-    "motif": "Décision distincte D-038 — GO pour la fusion de S1 vers main, après acceptation D-037. Exécutée par le VALIDATOR : PR #2 MERGED, merge commit b2cbc2e318593d4eb846363c248ecba8a2df8611. Décision de fusion distincte de l'acceptation (GC-07 / state_model §3.2). R-S0-02 et E-01 maintenues, dérogation explicite : S1-AC-08 reste NOT_CHECKED et S0-AC-04 définitivement NOT_CHECKED. Aucune décision S2. Périmètre confirmé par le VALIDATOR le 2026-11-23T06:18:36Z : D-038 couvre aussi la PR de synchronisation dev_sprint_00 -> main. Synchronisation exécutée le 2026-11-23T06:34:09Z (PR #3 MERGED, merge f303923f2213d9a1c82a1cb8a5bfe2c274af1ee6) ; cohérence de main vérifiée ; B-02 clos."
+    "date": "2026-11-23T06:37:49Z",
+    "decision_id": "D-039",
+    "decision_type": "governance_sync",
+    "motif": "Décision distincte D-039 — GO pour une PR complémentaire dev_sprint_00 -> main portant la clôture de B-02 (commit 8bfaa9d), après synchronisation exécutée au titre de D-038 (PR #3, merge f303923). Exécution réservée au VALIDATOR : création de la PR, checks verts, `mergeStateStatus=CLEAN`, fusion puis consignation du merge commit. Aucune décision de sprint, aucune transition, aucun identifiant réutilisé, aucune ouverture S2. Constat consigné : main contient déjà l'essentiel de la gouvernance (S1/merged, agent=ORCHESTRATOR, D-036 à D-038, livrables d'audit S1) ; seul le champ B-02 du snapshot de main diffère. La branche d'autorité conservera structurellement un commit de plus que main après consignation du merge ; ce décalage n'est pas une divergence état/reçu (INV-04). R-S0-02 et E-01 maintenues, S1-AC-08 et S0-AC-04 NOT_CHECKED."
   },
   "blockers": [
     {
