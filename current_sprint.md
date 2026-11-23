@@ -2,9 +2,9 @@
 
 | Champ | Valeur |
 |---|---|
-| Version | 0.3 |
+| Version | 0.4 |
 | Date | 2026-11-23 |
-| Statut | **S1 LIVRÉE — en audit (`TR-2026-0005` autorisée par D-036) ; aucune acceptation ni fusion décidée** |
+| Statut | **S1 LIVRÉE ET AUDITÉE — `TR-2026-0005/completed` ; acceptation et fusion en attente de décisions VALIDATOR distinctes** |
 | Sprint | **S1 — Design system** |
 | `mandate_version` | `S1-v0.1` |
 | Branche | `dev_sprint_01` (à créer depuis `main` après fusion de S0) |
@@ -98,7 +98,7 @@ Mettre en place le design system et la structure des pages publiques vides : lay
 | Reçu | `sprint_report/TR-2026-0004_receipt.md` |
 | Précondition | Fusion S0 exécutée (D-032) |
 | État d'exécution | **Livrée** — `TR-2026-0004/completed`, rapport `sprint_report/S1_report.md` |
-| Audit | **`TR-2026-0005/authorized`** — D-036 `GO` du 2026-11-23T05:33:42Z, AUDITOR en session séparée ; sprint `S1/auditing` |
+| Audit | **`TR-2026-0005/completed`** — reçu `audit_report/TR-2026-0005_receipt.md`, rapport `audit_report/S1_audit.md` ; recommandation AUDITOR `GO_WITH_RESERVES` (avis, non décision) ; sprint `S1/audit_completed` |
 
 ---
 
@@ -109,3 +109,4 @@ Mettre en place le design system et la structure des pages publiques vides : lay
 | 0.1 | 2026-11-22 | Mandat initial S1 — Design system ; `TR-2026-0004` autorisée par D-033 ; subordonné à la fusion S0 (D-032) |
 | 0.2 | 2026-11-22 | Précondition remplie : protection de main active (D-034) et PR #1 fusionnée (merge `2a2272f4`) ; `mandate_version` inchangée (`S1-v0.1`) |
 | 0.3 | 2026-11-23 | Consignation de la livraison S1 et de l'autorisation d'audit (D-036 / `TR-2026-0005`) ; `mandate_version` inchangée (`S1-v0.1`) |
+| 0.4 | 2026-11-23 | Audit livré (`TR-2026-0005/completed`) ; recommandation AUDITOR `GO_WITH_RESERVES` enregistrée comme avis ; `mandate_version` inchangée |
